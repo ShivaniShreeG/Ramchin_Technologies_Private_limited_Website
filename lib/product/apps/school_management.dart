@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ramchin_web/pages/product/features_page.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+// import 'widget/microsoft_button.dart';
+import 'widget/header.dart';
+import 'widget/footer.dart';
+import 'widget/video_header.dart';
+import 'widget/button.dart';
 import 'package:video_player/video_player.dart';
-import 'dart:html' as html;
-import 'widget/windows_buttons.dart';
+import 'features/school.dart';
 
 class SchoolPage extends StatefulWidget {
   const SchoolPage({super.key});
@@ -14,401 +18,556 @@ class SchoolPage extends StatefulWidget {
 
 class _SchoolPageState extends State<SchoolPage>
     with SingleTickerProviderStateMixin {
-  late AnimationController _textAnimationController;
-  late Animation<Offset> _textSlideAnimation;
+  late AnimationController _controller;
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey _demoSectionKey = GlobalKey();
   final String pdfPath = 'assets/ramchin_smart_school_manual.pdf';
-
-  Future<void> _openPdf() async {
-    final url = '${Uri.base.origin}/$pdfPath';
-    final uri = Uri.parse(url);
-
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(
-        uri,
-        mode: LaunchMode.externalApplication,
-      );
-    } else {
-      print('Could not open PDF');
-    }
-  }
-
-  void _launchAppStore() async {
-    const url = 'https://apps.apple.com/app/idYOUR_APP_ID';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
-
-  void _launchPlayStore() async {
-    const url =
-        'https://play.google.com/store/apps/details?id=com.demo.ramchin_smart_school&pcampaignid=web_share';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
-
-  void _launchWindowsStore() async {
-    const url = 'https://www.microsoft.com/store/apps/9YOUR_WINDOWS_APP_ID';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
-
-  void _launchWebsite() async {
-    const url = 'https://smartschool.ramchintech.com';
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
+  late VideoPlayerController _videoController;
+  bool _isVideoReady = false;
+  bool _showScrollToTop = false;
 
   @override
   void initState() {
     super.initState();
-    _textAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-    _textSlideAnimation =
-        Tween<Offset>(begin: const Offset(-0.5, 0), end: Offset.zero).animate(
-          CurvedAnimation(
-            parent: _textAnimationController,
-            curve: Curves.easeOut,
-          ),
-        );
-    _textAnimationController.forward();
+    _videoController = VideoPlayerController.asset('assets/screenV.mp4')
+      ..initialize().then((_) {
+        setState(() {
+          _isVideoReady = true;
+        });
+        _videoController.play();
+        _videoController.setLooping(true);
+      });
+    _scrollController.addListener(_scrollListener);
+
   }
 
   @override
   void dispose() {
-    _textAnimationController.dispose();
+    _controller.dispose();
+    _videoController.dispose();
     super.dispose();
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset > 300 && !_showScrollToTop) {
+      setState(() {
+        _showScrollToTop = true;
+      });
+    } else if (_scrollController.offset <= 300 && _showScrollToTop) {
+      setState(() {
+        _showScrollToTop = false;
+      });
+    }
+  }
+  Future<void> _launch(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 700),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _scrollToDemo() {
+    final context = _demoSectionKey.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!_isVideoReady) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("Ramchin Smart School"),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// HERO SECTION
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  bool isWide = constraints.maxWidth > 800;
-                  return isWide
-                      ? Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: SlideTransition(
-                          position: _textSlideAnimation,
-                          child: _buildHeroText(isWide),
+      body: Stack(
+        children: [
+
+          // ===== MAIN SCROLL VIEW =====
+          SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              children: [
+                  Header (
+                    title: "Ramchin Smart School",
+                    subtitle: "From Attendance and Mark Entry to Messaging and Full Academic Management — Everything Your School Needs in One Smart App.",
+                    startColor: Colors.blue.shade50,
+                    logoPath:'assets/product/logo/schoolmanagement.png',
+                    endColor: Colors.white,
+                    trailingWidget: const HeroVideo(
+                      videoPath: 'assets/screenV.mp4',
+                    ),
+                    actionButton: SizedBox(
+                      height: 60, // fixed height
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue.shade700,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 18),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              elevation: 5,
+                              shadowColor: Colors.blue.shade200,
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const FeaturesPage(),
+                                ),
+                              );
+                            },
+                            child: const Text("Explore Features"),
+                          ),
+                          const SizedBox(width: 16),
+                          OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(color: Colors.blue.shade700, width: 2),
+                              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 18),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              textStyle: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ).copyWith(
+                              overlayColor: WidgetStateProperty.all(Colors.blue.shade50),
+                            ),
+                            onPressed: _scrollToDemo,
+                            child: Text(
+                              "Free Trial",
+                              style: TextStyle(color: Colors.blue.shade700),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                    key: _demoSectionKey,
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 1150),
+                        child: Column(
+                          children: [
+                            _sectionTitle("Explore Our School App Live"),
+
+                            const SizedBox(height: 18),
+
+                            SizedBox(
+                              width: 650,
+                              child: Text(
+                                "Login with demo accounts and experience Attendance, Homework, Assignments, Reports and Real-Time Communication.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey.shade700,
+                                  height: 1.6,
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(height: 60),
+
+                            _downloadCard(),
+
+                            const SizedBox(height: 40),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.blue.shade50,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Text(
+                                "LIVE DEMO ACCESS",
+                                style: TextStyle(
+                                  color: Colors.blue.shade700,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 1,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 40),
+
+                            Wrap(
+                              spacing: 30,
+                              runSpacing: 30,
+                              alignment: WrapAlignment.center,
+                              children: const [
+                                DemoCard(
+                                  role: "Admin",
+                                  schoolid: "1",
+                                  login: "1",
+                                  password: "abc@123",
+                                ),
+                                DemoCard(
+                                  role: "Staff",
+                                  schoolid: "1",
+                                  login: "2",
+                                  password: "abc@123",
+                                ),
+                                DemoCard(
+                                  role: "Student",
+                                  schoolid: "1",
+                                  login: "2025003",
+                                  password: "abc@123",
+                                ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 30),
-                      Expanded(flex: 1, child: _buildHeroImage(isWide)),
-                    ],
-                  )
-                      : Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _buildHeroImage(isWide),
-                      const SizedBox(height: 20),
-                      SlideTransition(
-                        position: _textSlideAnimation,
-                        child: _buildHeroText(isWide),
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 80),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(60),
+                        topRight: Radius.circular(60),
                       ),
-                    ],
-                  );
-                },
+                    ),
+                    child: Column(
+                      children: [
+                        _sectionTitle("Why School Choose Us?"),
+                        const SizedBox(height: 50),
+                        _featuresGrid(),
+                      ],
+                    ),
+                  ),
+                  Footer(
+                    title: "Ready to Transform Your School?",
+                    buttonText: "Get Started Today",
+                    onPressed: () =>
+                        _launch("https://smartschool.ramchintech.com"),
+                    backgroundColor: Colors.blue.shade700,
+                    cornercolor:Colors.blue.shade50,
+                  ),
+                ],
+            ),
+          ),
+
+          // ===== BACK BUTTON =====
+          Positioned(
+            top: 40,
+            left: 20,
+            child: _backButton(context),
+          ),
+
+          // ===== SCROLL TO TOP BUTTON =====
+          if (_showScrollToTop)
+            Positioned(
+              bottom: 40,
+              right: 30,
+              child: AnimatedOpacity(
+                duration: const Duration(milliseconds: 300),
+                opacity: _showScrollToTop ? 1 : 0,
+                child: FloatingActionButton(
+                  backgroundColor: Colors.white,
+                  elevation: 6,
+                  onPressed: _scrollToTop,
+                  child: const Icon(Icons.keyboard_arrow_up, size: 28,color: Colors.blue,),
+                ),
               ),
             ),
+        ],
+      ),
+    );
+  }
+  Widget _backButton(BuildContext context) {
+    return SizedBox(
+      width: 48,
+      height: 48,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            if (Navigator.canPop(context)) Navigator.pop(context);
+          },
+          borderRadius: BorderRadius.circular(50),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.9),
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.1),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF1A237E), size: 20),
+          ),
+        ),
+      ),
+    );
+  }
 
-            /// DEMO LOGIN SECTION
-            Container(
-              width: double.infinity,
-              color: Colors.blue.shade50,
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+
+  Widget _featuresGrid() {
+    final features = [
+      {
+        "title": "Easy To Use",
+        "desc": "Simple interface for teachers, students and parents.",
+        "icon": Icons.touch_app,
+      },
+      {
+        "title": "Save 70% Admin Time",
+        "desc": "Automate attendance, reports and communication.",
+        "icon": Icons.timer,
+      },
+      {
+        "title": "24/7 Support Team",
+        "desc": "Dedicated support team available anytime.",
+        "icon": Icons.support_agent,
+      },
+      {
+        "title": "Smart Reports",
+        "desc": "Accurate academic & performance insights.",
+        "icon": Icons.bar_chart,
+      },
+      {
+        "title": "Secure Cloud System",
+        "desc": "Your school data is safe and encrypted.",
+        "icon": Icons.security,
+      },
+      {
+        "title": "All-in-One Platform",
+        "desc": "Everything your school needs in one app.",
+        "icon": Icons.apps,
+      },
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Wrap(
+        spacing: 30,
+        runSpacing: 30,
+        alignment: WrapAlignment.center,
+        children: features.map((feature) {
+          return MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: 300,
+              padding: const EdgeInsets.all(28),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+                border: Border.all(
+                  color: Colors.grey.shade200,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.04),
+                    blurRadius: 20,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Explore Our School App Live",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                  // Softer Icon Style
+                  Container(
+                    width: 64,
+                    height: 64,
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    child: Icon(
+                      feature["icon"] as IconData,
+                      color: Colors.blue.shade700,
+                      size: 30,
                     ),
                   ),
+
+                  const SizedBox(height: 22),
+
+                  Text(
+                    feature["title"] as String,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+
                   const SizedBox(height: 10),
-                  const Text(
-                    "Login with demo accounts and explore Attendance, Homework, Assignments, and more.",
+
+                  Text(
+                    feature["desc"] as String,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Download For Ramchin Smart School App.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton.icon(
-                    onPressed: _openPdf,
-                    icon: const Icon(Icons.picture_as_pdf, color: Colors.white),
-                    label: const Text(
-                      'Open User Manual',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    style: TextStyle(
+                      fontSize: 14.5,
+                      color: Colors.grey.shade600,
+                      height: 1.6,
                     ),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                        vertical: 14,
-                      ),
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 6,
-                      shadowColor: Colors.blueAccent,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  // ✅ 4 UNIFORM SIZE BUTTONS WITH REDUCED SHADOWS
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      /// Android Download Card - FIXED SIZE
-                      _buildUniformButton(
-                        onTap: _launchPlayStore,
-                        icon: Icons.android,
-                        color: Colors.green,
-                        label: "Android",
-                      ),
-                      const SizedBox(width: 20),
-
-                      /// iOS Download Card - FIXED SIZE
-                      _buildUniformButton(
-                        onTap: _launchAppStore,
-                        icon: Icons.apple,
-                        color: Colors.white,
-                        label: "iOS",
-                        iconColor: Colors.black,
-                      ),
-                      const SizedBox(width: 20),
-
-                      /// Windows Button - FIXED SIZE
-                      SizedBox(
-                        width: 80,
-                        child: WindowsDownloadButton(
-                          onTap: _launchWindowsStore,
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-
-                      _buildUniformButton(
-                        onTap: _launchWebsite,
-                        icon: Icons.language,
-                        color: Colors.white,
-                        label: "Website",
-                        iconColor: Colors.black,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  ApkDownloadButton(),
-                  const SizedBox(height: 15),
-                  GestureDetector(
-                    onTap: () {
-                      // Push Privacy Policy route.
-                    },
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: const Text(
-                        "Privacy Policy",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      return Wrap(
-                        spacing: 20,
-                        runSpacing: 20,
-                        alignment: WrapAlignment.center,
-                        children: const [
-                          DemoCard(
-                            role: "Admin",
-                            schoolid: "2",
-                            login: "demoadmin",
-                            password: "demo@123",
-                          ),
-                          DemoCard(
-                            role: "Staff",
-                            schoolid: "2",
-                            login: "9876543210",
-                            password: "demo@123",
-                          ),
-                          DemoCard(
-                            role: "Student",
-                            schoolid: "2",
-                            login: "2025000",
-                            password: "demo@123",
-                          ),
-                        ],
-                      );
-                    },
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          );
+        }).toList(),
       ),
     );
   }
 
-  /// ✅ UNIFORM BUTTON BUILDER - SAME SIZE, REDUCED SHADOWS
-  Widget _buildUniformButton({
-    required VoidCallback onTap,
-    required IconData icon,
-    required Color color,
-    required String label,
-    Color? iconColor,
-    bool showClickCursor = true,
-  }) {
-    return MouseRegion(
-      cursor: showClickCursor ? SystemMouseCursors.click : MouseCursor.defer,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: onTap,
-        child: Column(
-          children: [
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Icon(
-                icon,
-                size: 40,
-                color: iconColor ?? Colors.white,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// Extracted Widgets for readability
-  Widget _buildHeroText(bool isWide) {
-    return Column(
-      crossAxisAlignment: isWide
-          ? CrossAxisAlignment.start
-          : CrossAxisAlignment.center,
-      children: [
-        const Icon(Icons.school, size: 80, color: Colors.blue),
-        const SizedBox(height: 20),
-        Text(
-          "Smart Solutions for Smarter Schools",
-          textAlign: isWide ? TextAlign.start : TextAlign.center,
-          style: TextStyle(
-            fontSize: isWide ? 42 : 28,
-            color: Colors.blue.shade700,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 12),
-        Text(
-          "Attendance, Homework, Assignments and more –\nfor Admins, Staff and Students.",
-          textAlign: isWide ? TextAlign.start : TextAlign.center,
-          style: TextStyle(fontSize: isWide ? 20 : 16, color: Colors.black87),
-        ),
-        const SizedBox(height: 25),
-        ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            elevation: 4,
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const FeaturesPage()),
-            );
-          },
-          icon: const Icon(Icons.explore, size: 20),
-          label: const Text(
-            "Explore Features",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildHeroImage(bool isWide) {
-    final screenWidth = MediaQuery.sizeOf(context).width;
+  Widget _downloadCard() {
     return Container(
-      height: screenWidth > 1024
-          ? MediaQuery.sizeOf(context).height * 0.45
-          : screenWidth > 600
-          ? MediaQuery.sizeOf(context).height * 0.43
-          : MediaQuery.sizeOf(context).height * 0.3,
-      width: double.infinity,
-      decoration: BoxDecoration(color: Colors.transparent),
-      child: AutoPlayVideo(),
+      padding: const EdgeInsets.all(40),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.withValues(alpha: 0.2),
+            blurRadius: 30,
+            offset: const Offset(0, 15),
+          )
+        ],
+      ),
+      child: Column(
+        children: [
+          const Text(
+            "Download & Explore",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 40),
+          Wrap(
+            spacing: 40,
+            runSpacing: 30,
+            alignment: WrapAlignment.center,
+            children: [
+
+              StoreButton(
+                icon: Image.asset(
+                  "assets/product/icon/playstore.png",
+                  width: 55,
+                  height: 55,
+                ),
+                label: "Google Play",
+                onTap: () => _launch(
+                  "https://play.google.com/store/apps/details?id=com.demo.ramchin_smart_school",
+                ),
+              ),
+
+              StoreButton(
+                icon: const Icon(Icons.android,
+                    size: 55, color: Colors.green),
+                label: "Download APK",
+                onTap: () => _launch(
+                  "https://yourdomain.com/downloads/app-release.apk",
+                ),
+              ),
+              // StoreButton(
+              //   icon: const WindowsLogo(),
+              //   label: "Microsoft Store",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/windows_app.zip",
+              //   ),
+              // ),
+              // StoreButton(
+              //   icon: const Icon(Icons.apple,
+              //       size: 55, color: Colors.black),
+              //   label: "iOS",
+              //   onTap: () => _launch(
+              //     "https://apps.apple.com/app/idYOUR_APP_ID",
+              //   ),
+              // ),
+
+              StoreButton(
+                icon: const Icon(Icons.window,
+                    size: 55, color: Colors.blue),
+                label: "Windows",
+                onTap: () => _launch(
+                  "https://yourdomain.com/downloads/windows_app.zip",
+                ),
+              ),
+
+
+
+              StoreButton(
+                icon: const Icon(Icons.language,
+                    size: 55, color: Colors.deepPurple),
+                label: "Website",
+                onTap: () => _launch(
+                  "https://smartschool.ramchintech.com",
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _sectionTitle(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -0.5,
+              height: 1.2,
+              color: Color(0xFF1A1A1A),
+            ),
+          ),
+
+          const SizedBox(height: 14),
+
+          // Center underline
+          Container(
+            width: 70,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.blue.shade700,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -429,113 +588,90 @@ class DemoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.all(10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Container(
-        width: 300,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Text(
+    return Container(
+      width: 300,
+      padding: const EdgeInsets.all(28),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: Colors.blue.shade200),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 25,
+            offset: const Offset(0, 12),
+          )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child:Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.blue.shade50,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
               role,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
+              style: TextStyle(
+                color: Colors.blue.shade700,
+                fontWeight: FontWeight.w600,
               ),
-              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 10),
-            Text(
-              "School ID: $schoolid",
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.left,
-            ),
-            const SizedBox(height: 5),
-            Text(
-              "User ID: $login",
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.left,
-            ),
-            const SizedBox(height: 5),
-            Text(
-              "Password: $password",
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.left,
-            ),
-          ],
-        ),
+          ),
+          ),
+          const SizedBox(height: 20),
+          _infoTile("School ID", schoolid),
+          const SizedBox(height: 12),
+          _infoTile("User ID", login),
+          const SizedBox(height: 12),
+          _infoTile("Password", password),
+        ],
       ),
     );
   }
-}
 
-class ApkDownloadButton extends StatelessWidget {
-  const ApkDownloadButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        final apkPath = 'assets/apk/ramchinsmartschool.apk';
-        html.AnchorElement anchor = html.AnchorElement(href: apkPath)
-          ..setAttribute('download', 'ramchin_smart_school.apk')
-          ..click();
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.orange,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        elevation: 5,
+  Widget _infoTile(String label, String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(14),
       ),
-      child: const Text(
-        "Download for apk",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
+      child: Row(
+        children: [
+          Expanded(
+            child: RichText(
+              text: TextSpan(
+                style: const TextStyle(fontSize: 14),
+                children: [
+                  TextSpan(
+                    text: "$label\n",
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      fontSize: 12,
+                    ),
+                  ),
+                  TextSpan(
+                    text: value,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          IconButton(
+            icon: Icon(Icons.copy, size: 18, color: Colors.grey.shade600),
+            onPressed: () =>
+                Clipboard.setData(ClipboardData(text: value)),
+          )
+        ],
       ),
-    );
-  }
-}
-
-class AutoPlayVideo extends StatefulWidget {
-  @override
-  _AutoPlayVideoState createState() => _AutoPlayVideoState();
-}
-
-class _AutoPlayVideoState extends State<AutoPlayVideo> {
-  late VideoPlayerController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset('assets/screenV.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-        _controller.play();
-        _controller.setLooping(true);
-      });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: _controller.value.isInitialized
-          ? AspectRatio(
-        aspectRatio: _controller.value.aspectRatio,
-        child: VideoPlayer(_controller),
-      )
-          : CircularProgressIndicator(),
     );
   }
 }

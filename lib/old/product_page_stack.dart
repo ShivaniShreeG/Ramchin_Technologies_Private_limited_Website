@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../pages/product/productListpage.dart';
+import 'productListpage.dart';
 
 class ProductPageStack extends StatelessWidget {
   const ProductPageStack({super.key});

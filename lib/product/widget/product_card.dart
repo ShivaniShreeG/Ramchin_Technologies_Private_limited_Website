@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: Colors.red.withOpacity(0.09),
+              color: Colors.red.withValues(alpha: 0.09),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -61,17 +61,13 @@ class ProductCard extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 40,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  elevation: 0,
+            Align(
+              alignment: Alignment.center,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  foregroundColor: Colors.redAccent,
+                  overlayColor: Colors.redAccent.withOpacity(0.1),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -79,13 +75,20 @@ class ProductCard extends StatelessWidget {
                     MaterialPageRoute(builder: (_) => app.destinationPage),
                   );
                 },
-                child: const Text(
-                  "View Product",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "View Product",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                    SizedBox(width: 6),
+                    Icon(Icons.arrow_forward_rounded, size: 16),
+                  ],
                 ),
               ),
             ),

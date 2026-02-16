@@ -18,7 +18,9 @@ class _TeamCardState extends State<TeamCard> {
 
   Future<void> _launch(String url) async {
     final uri = Uri.parse(url);
-    await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -28,8 +30,8 @@ class _TeamCardState extends State<TeamCard> {
       onExit: (_) => setState(() => _hover = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        transform:
-        _hover ? (Matrix4.identity()..translate(0, -10)) : Matrix4.identity(),
+        transform: _hover ? (Matrix4.identity()..translate(0, -10)) : Matrix4.identity(),
+        clipBehavior: Clip.hardEdge, // Prevents shadow overflow
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
@@ -44,87 +46,111 @@ class _TeamCardState extends State<TeamCard> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
-          child: Column(
-            children: [
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+          child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(), // optional: prevent scrolling
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+              // Avatar
               Hero(
                 tag: widget.member.name,
                 child: CircleAvatar(
                   radius: 65,
-                  backgroundImage:
-                  AssetImage(widget.member.imageUrl),
+                  backgroundImage: AssetImage(widget.member.imageUrl),
                 ),
               ),
-              const SizedBox(height: 24),
-              Text(widget.member.name,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w700)),
+              const SizedBox(height: 20),
+
+              // Name
+              Text(
+                widget.member.name,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 12),
+
+              // Role
               Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16, vertical: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                 decoration: BoxDecoration(
-                  color:
-                  const Color(0xfff1b9a0).withOpacity(0.15),
+                  color: const Color(0xfff1b9a0).withOpacity(0.15),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Text(
                   widget.member.role,
                   style: const TextStyle(
-                      color: Color(0xfff1b9a0),
-                      fontWeight: FontWeight.w600),
+                    color: Color(0xfff1b9a0),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               const SizedBox(height: 18),
-              Text(widget.member.bio,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 14, height: 1.6)),
-              const SizedBox(height: 22),
+
+              // Bio
+              Text(
+                widget.member.bio,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, height: 1.6),
+              ),
+              const SizedBox(height: 18),
+
+              // View Profile Button
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>
-                          TeamDetailPage(member: widget.member),
+                      builder: (_) => TeamDetailPage(member: widget.member),
                     ),
                   );
                 },
-                child: const Text(
+                child: Text(
                   "View Profile",
-                  style: TextStyle(
-                      color: Color(0xfff1b9a0),
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline),
+                  style: const TextStyle(
+                    color: Color(0xfff1b9a0),
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
+
+              // Social Icons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                      icon: const FaIcon(
-                          FontAwesomeIcons.linkedin,
-                          color: Color(0xff0077b5)),
-                      onPressed: () =>
-                          _launch(widget.member.linkedinUrl)),
+                    icon: const FaIcon(
+                      FontAwesomeIcons.linkedin,
+                      color: Color(0xff0077b5),
+                      size: 24,
+                    ),
+                    onPressed: () => _launch(widget.member.linkedinUrl),
+                  ),
                   IconButton(
-                      icon:
-                      const FaIcon(FontAwesomeIcons.github),
-                      onPressed: () =>
-                          _launch(widget.member.githubUrl)),
+                    icon: const FaIcon(
+                      FontAwesomeIcons.github,
+                      size: 24,
+                    ),
+                    onPressed: () => _launch(widget.member.githubUrl),
+                  ),
                   IconButton(
-                      icon:
-                      const FaIcon(FontAwesomeIcons.upwork),
-                      onPressed: () =>
-                          _launch(widget.member.upworkUrl)),
+                    icon: FaIcon(
+                      FontAwesomeIcons.upwork,
+                      size: 24,
+                      color: Colors.green.shade700,
+                    ),
+                    onPressed: () => _launch(widget.member.upworkUrl),
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
+    ),
     );
   }
 }
