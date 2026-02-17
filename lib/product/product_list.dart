@@ -1,9 +1,4 @@
-import 'package:ramchin_web/pages/product/pharmacy.dart';
 import 'package:flutter/material.dart';
-import '../pages/BookingHall.dart';
-import '../pages/HosppitalManagement.dart';
-import '../pages/MoneyManager.dart';
-import '../pages/product/lodge.dart';
 import 'apps/school_management.dart';
 import 'apps/hall_management.dart';
 import 'apps/hospital_management.dart';
@@ -46,7 +41,7 @@ class _ProductListPageState extends State<ProductListPage> {
         'assets/product/logo/hospitalmanagement.png',
         fit: BoxFit.cover,
       ),
-      destinationPage: const HospitalManagement(),
+      destinationPage: const HospitalManagementPage(),
     ),
     AppData(
       title:"Pharmacy Management",
@@ -55,7 +50,7 @@ class _ProductListPageState extends State<ProductListPage> {
         'assets/product/logo/pharmacymanagement.png',
         fit: BoxFit.cover,
       ),
-      destinationPage: const  PharmacyPage(),
+      destinationPage: const  PharmacyManagementPage(),
     ),
     AppData(
       title: "Hall Management",
@@ -64,7 +59,7 @@ class _ProductListPageState extends State<ProductListPage> {
         'assets/product/logo/hallmanagement.png',
         fit: BoxFit.cover,
       ),
-      destinationPage: const BookingHall(),
+      destinationPage: const HallManagementPage(),
     ),
     AppData(
       title: "Lodge Management",
@@ -73,7 +68,7 @@ class _ProductListPageState extends State<ProductListPage> {
         'assets/product/logo/lodgemanagement.png',
         fit: BoxFit.cover,
       ),
-      destinationPage: const LodgeAppPage(),
+      destinationPage: const LodgeManagementPage(),
     ),
     AppData(
       title: "Fin Track ",
@@ -82,7 +77,7 @@ class _ProductListPageState extends State<ProductListPage> {
         'assets/product/logo/moneymanagement.png',
         fit: BoxFit.cover,
       ),
-      destinationPage: const MoneyManager(),
+      destinationPage: const MoneyManagementPage(),
     ),
     AppData(
       title: "Grocery Management",
@@ -91,7 +86,7 @@ class _ProductListPageState extends State<ProductListPage> {
         'assets/product/logo/grocerymanagement.png',
         fit: BoxFit.cover,
       ),
-      destinationPage: const LodgeAppPage(),
+      destinationPage: const GroceryManagementPage(),
     ),
   ];
   final ScrollController _scrollController = ScrollController();

@@ -9,6 +9,9 @@ class Header extends StatelessWidget {
   final String? logoPath;
   final Color startColor;
   final Color endColor;
+  final Color brandColor;
+  final Color titleColor;
+  final Color subtitleColor;
 
   const Header({
     super.key,
@@ -20,6 +23,9 @@ class Header extends StatelessWidget {
     this.startColor = const Color(0xFFE3F2FD),
     this.endColor = Colors.white,
     this.logoPath,
+    required this.brandColor,
+    required this.titleColor,
+    required this.subtitleColor,
   });
 
   @override
@@ -30,7 +36,7 @@ class Header extends StatelessWidget {
       clipper: BottomCornersCurveClipper(),
       child: Container(
         width: double.infinity,
-        color: startColor.withOpacity(0.9),
+        color: startColor.withValues(alpha: 0.9),
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: isWide ? 80 : 60,
@@ -57,7 +63,7 @@ class Header extends StatelessWidget {
                       : Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      if (trailingWidget != null) trailingWidget!,
+                      ?trailingWidget,
                       const SizedBox(height: 30),
                       _textSection(isWide),
                     ],
@@ -76,27 +82,49 @@ class Header extends StatelessWidget {
       crossAxisAlignment:
       isWide ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
-        if (logoPath != null)
-          Image.asset(
-            logoPath!,
-            height: isWide ? 80 : 60,
-          ),
-        const SizedBox(height: 24),
+        Row(
+          mainAxisAlignment:
+          isWide ? MainAxisAlignment.start : MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            logoPath != null?
+              Padding(
+                padding: const EdgeInsets.only(bottom: 18,top: 0,left: 0,right: 0),
+                child: Image.asset(
+                  logoPath!,
+                  height: isWide ? 70 : 55,
+
+                ),
+              ):Text(
+              "R",
+              style: TextStyle(
+                fontSize: isWide ? 70 : 50,
+                fontWeight: FontWeight.w800,
+                height: 1.1,
+                color: brandColor,
+              ),
+            ),
+
+
+            Text(
+              "amchin",
+              style: TextStyle(
+                fontSize: isWide ? 70 : 50,
+                fontWeight: FontWeight.w800,
+                height: 1.1,
+                color: brandColor,
+              ),
+            ),
+          ],
+        ),
         Text(
           title,
           textAlign: isWide ? TextAlign.left : TextAlign.center,
           style: TextStyle(
-            fontSize: isWide ? 52 : 36,
+            fontSize: isWide ? 65 : 40,
             fontWeight: FontWeight.w800,
             height: 1.1,
-            color: const Color(0xFF1A237E),
-            shadows: [
-              Shadow(
-                color: Colors.black.withOpacity(0.1),
-                offset: const Offset(2, 2),
-                blurRadius: 4,
-              ),
-            ],
+            color: brandColor,
           ),
         ),
         const SizedBox(height: 16),
@@ -106,7 +134,7 @@ class Header extends StatelessWidget {
           style: TextStyle(
             fontSize: isWide ? 20 : 16,
             height: 1.5,
-            color: Colors.blueGrey.shade800,
+            color: subtitleColor,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -119,7 +147,6 @@ class Header extends StatelessWidget {
   }
 }
 
-/// ClipPath for bottom-left and bottom-right curved corners only
 class BottomCornersCurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

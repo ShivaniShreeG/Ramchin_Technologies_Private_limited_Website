@@ -102,7 +102,7 @@ class _SchoolPageState extends State<SchoolPage>
             child: Column(
               children: [
                   Header (
-                    title: "Ramchin Smart School",
+                    title: " Smart School",
                     subtitle: "From Attendance and Mark Entry to Messaging and Full Academic Management — Everything Your School Needs in One Smart App.",
                     startColor: Colors.blue.shade50,
                     logoPath:'assets/product/logo/schoolmanagement.png',
@@ -110,6 +110,9 @@ class _SchoolPageState extends State<SchoolPage>
                     trailingWidget: const HeroVideo(
                       videoPath: 'assets/screenV.mp4',
                     ),
+                    brandColor: Color(0xFF1B96BF),
+                    titleColor: Colors.blue.shade700,
+                    subtitleColor: Colors.blueGrey.shade800,
                     actionButton: SizedBox(
                       height: 60, // fixed height
                       child: Row(
