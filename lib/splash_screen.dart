@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/Home.dart';
+import 'Home.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashScreen extends StatefulWidget {

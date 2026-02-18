@@ -21,7 +21,6 @@ class _VisionCarouselState extends State<VisionCarousel> {
   void initState() {
     super.initState();
 
-    // Load items based on visionNum
     _items = widget.visionNum == 0
         ? [
             {

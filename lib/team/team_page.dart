@@ -48,14 +48,13 @@ class TeamPage extends StatelessWidget {
     TeamMember(
       name: "PARTHIBAN R",
       role: "SOFTWARE DEVELOPER",
-      imageUrl: "assets/member/parthi_11zon.jpg",
-      bio:
-      "Flutter Developer building cross-platform apps with backend APIs, aiming to grow as a full-stack developer.",
+      imageUrl: "assets/member/parthi.jpg",
+      bio: "Flutter Developer building cross-platform apps with backend APIs, aiming to grow as a full-stack developer.",
       description: "specializes in Flutter & Node.js...",
       projects: [""],
       experience: [""],
       resumeUrl: "https://resume-priya.com",
-      linkedinUrl: "https://linkedin.com/in/parthiban-r",
+      linkedinUrl: "https://www.linkedin.com/in/parthiban-r-822487292/",
       githubUrl: "https://github.com/parthiban3264",
       upworkUrl: "https://www.upwork.com/freelancers/~015a100a32dfed77ba/",
       reviews: [
@@ -67,8 +66,7 @@ class TeamPage extends StatelessWidget {
       name: "SHIVANI SHREE G",
       role: "SOFTWARE DEVELOPER",
       imageUrl: "assets/member/shivani.jpeg",
-      bio:
-      "Shivani Shree G – Flutter Developer creating cross-platform apps and full-stack solutions with modern tools for scalable, user-friendly applications.",
+      bio: "Shivani Shree G – Flutter Developer creating cross-platform apps and full-stack solutions with modern tools for scalable, user-friendly applications.",
       description: "specializes in Flutter & Node.js...",
       projects: [""],
       experience: [""],
