@@ -118,29 +118,29 @@ class TeamPage extends StatelessWidget {
 
             const SizedBox(height: 80),
 
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const UploadPage(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40,
-                  vertical: 15,
-                ),
-                backgroundColor: Colors.blue,
-              ),
-              child: const Text(
-                "Go to Next Page",
-                style: TextStyle(fontSize: 18),
-              ),
-            ),
-
-            const SizedBox(height: 40),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => const UploadPage(),
+            //       ),
+            //     );
+            //   },
+            //   style: ElevatedButton.styleFrom(
+            //     padding: const EdgeInsets.symmetric(
+            //       horizontal: 40,
+            //       vertical: 15,
+            //     ),
+            //     backgroundColor: Colors.blue,
+            //   ),
+            //   child: const Text(
+            //     "Go to Next Page",
+            //     style: TextStyle(fontSize: 18),
+            //   ),
+            // ),
+            //
+            // const SizedBox(height: 40),
 
           ],
         ),
