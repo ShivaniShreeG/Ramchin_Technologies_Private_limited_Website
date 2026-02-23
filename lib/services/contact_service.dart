@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 import '../utils/utils.dart';
 
 class ContactService {
-  /// ✅ Send a new contact message
+
   Future<bool> sendMessage(String name, String email, String message) async {
     final url = Uri.parse("${Utils.baseUrl}/contact/create");
 

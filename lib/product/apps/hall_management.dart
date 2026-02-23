@@ -86,11 +86,11 @@ class _HallManagementPageState extends State<HallManagementPage>
 
   @override
   Widget build(BuildContext context) {
-    if (!_isVideoReady) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // if (!_isVideoReady) {
+    //   return const Scaffold(
+    //     body: Center(child: CircularProgressIndicator()),
+    //   );
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -105,7 +105,7 @@ class _HallManagementPageState extends State<HallManagementPage>
                   title: "Hall Management",
                   subtitle: "Manage hall bookings, events, billing, and reports — all in one smart platform.",
                   startColor: Color(0xFFECE5D8),
-                  logoPath:'assets/product/logo/hallmanagement.png',
+                  logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664367727-577671008.png",
                   endColor: Colors.white,
                   // trailingWidget: const HeroVideo(
                   //   videoPath: 'assets/screenV.mp4',

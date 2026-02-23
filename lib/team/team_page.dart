@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../upload.dart';
 import 'widget/team_member.dart';
 import 'widget/team_header.dart';
 import 'widget/team_card.dart';
@@ -10,16 +11,13 @@ class TeamPage extends StatelessWidget {
     TeamMember(
       name: "DR.C.VELAYUTHAM",
       role: "ARCHITECT",
-      imageUrl: "assets/cvsir2.jpg",
-      bio:
-      "Creative and detail-oriented Architect specializing in innovative, sustainable, and functional design.",
-      description:
-      "Dr. Velayutham has led multiple architectural projects focused on sustainable development and futuristic design systems.",
+      imageUrl: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1771656786530-747879659.jpg",
+      bio: "Creative and detail-oriented Architect specializing in innovative, sustainable, and functional design.",
+      description: "Dr. Velayutham has led multiple architectural projects focused on sustainable development and futuristic design systems.",
       projects: ["Urban Housing", "Smart Villa", "Eco Tower"],
       experience: ["15+ Years", "International Projects", "Award Winner"],
       resumeUrl: "https://resume-link.com",
-      linkedinUrl:
-      "https://www.linkedin.com/in/velayutham-c-8a18a9166/",
+      linkedinUrl: "https://www.linkedin.com/in/velayutham-c-8a18a9166/",
       githubUrl: "https://github.com/cvelayutham",
       upworkUrl: "https://upwork.com/freelancers/~01abc123def456",
       reviews: [
@@ -30,7 +28,7 @@ class TeamPage extends StatelessWidget {
     TeamMember(
       name: "BALASUBRAMANIAN M",
       role: "TEAM LEADER",
-      imageUrl: "assets/member/bala.jpg",
+      imageUrl: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658164911-985279142.jpeg",
       bio:
       "Aspiring Full-Stack Developer skilled in Flutter, building cross-platform apps with powerful backend APIs.",
       description: "specializes in Flutter & Node.js...",
@@ -48,7 +46,7 @@ class TeamPage extends StatelessWidget {
     TeamMember(
       name: "PARTHIBAN R",
       role: "SOFTWARE DEVELOPER",
-      imageUrl: "assets/member/parthi.jpg",
+      imageUrl: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658155618-43958510.jpg",
       bio: "Flutter Developer building cross-platform apps with backend APIs, aiming to grow as a full-stack developer.",
       description: "specializes in Flutter & Node.js...",
       projects: [""],
@@ -65,7 +63,7 @@ class TeamPage extends StatelessWidget {
     TeamMember(
       name: "SHIVANI SHREE G",
       role: "SOFTWARE DEVELOPER",
-      imageUrl: "assets/member/shivani.jpeg",
+      imageUrl: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658151141-548760048.jpeg",
       bio: "Shivani Shree G – Flutter Developer creating cross-platform apps and full-stack solutions with modern tools for scalable, user-friendly applications.",
       description: "specializes in Flutter & Node.js...",
       projects: [""],
@@ -119,6 +117,31 @@ class TeamPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 80),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const UploadPage(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                  vertical: 15,
+                ),
+                backgroundColor: Colors.blue,
+              ),
+              child: const Text(
+                "Go to Next Page",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+
+            const SizedBox(height: 40),
+
           ],
         ),
       ),

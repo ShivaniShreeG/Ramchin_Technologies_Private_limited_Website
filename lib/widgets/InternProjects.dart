@@ -96,85 +96,85 @@ class _MemberCardGridState extends State<MemberCardGrid>
 
   final List<MemberCard> members = [
     MemberCard(
-      image: "assets/member/shivani.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658151141-548760048.jpeg",
       name: "Shivani Shree G",
       project: "Flutter Developer creating cross-platform apps and scalable, user-friendly solutions.",
       link: "https://shivanishreeg.github.io/HoverSale/",
     ),
     MemberCard(
-      image: "assets/member/gopi.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823819215-698840732.jpeg",
       name: "Rajagopika N",
       project: "Flutter Developer focused on modern e-commerce UI and seamless shopping experiences.",
       link: "http://tech-gadgets-store.s3-website.eu-north-1.amazonaws.com",
     ),
     MemberCard(
-      image: "assets/member/brightlin.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823790530-749043110.jpeg",
       name: "Brightlin A",
       project: "Building smart toy solutions with intuitive web apps for kids and parents.",
       link: "https://ramchintech.com/brightlin/login.php",
     ),
     MemberCard(
-      image: "assets/member/dharsha.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823794250-436005492.jpeg",
       name: "Dharsha Gayathri G",
       project: "Designing online footwear experiences with clean layouts and easy navigation.",
       link: "https://ramchintech.com/gaya/login.php",
     ),
     MemberCard(
-      image: "assets/member/sowmiya.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823827225-185702173.jpeg",
       name: "Sowmiya T",
       project: "Creating hotel booking systems with responsive design and smooth workflows.",
       link: "https://projects.ramchintech.com",
     ),
     MemberCard(
-      image: "assets/member/yoga.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823836715-114713355.jpeg",
       name: "Yogalakshmi K",
       project: "CareKart – E-commerce app tailored for healthcare and personal care products.",
       link: "http://care-kart.s3-website.eu-north-1.amazonaws.com/",
     ),
     MemberCard(
-      image: "assets/member/swarlin.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823832626-476931550.jpeg",
       name: "Swarlin Aishwarya B",
       project: "Word Aura – Online book store with attractive layouts and simple checkout.",
       link: "http://word-aura.s3-website.ap-south-1.amazonaws.com/",
     ),
     MemberCard(
-      image: "assets/member/lakshmi.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823802865-518102426.jpeg",
       name: "Lakshmi K",
       project: "Jewellery e-commerce site highlighting premium collections and easy browsing.",
       link: "http://jewellery-shop1.s3-website.eu-north-1.amazonaws.com/",
     ),
     MemberCard(
-      image: "assets/member/ramu.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823823576-82411444.jpeg",
       name: "Ramu K",
       project: "Online bag shop with modern product cards and mobile-first layouts.",
       link: "http://bag-shop.s3-website.ap-south-1.amazonaws.com/",
     ),
     MemberCard(
-      image: "assets/member/parthi.jpg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658155618-43958510.jpg",
       name: "Parthiban R",
       project: "Flutter Developer building cross‑platform apps with backend APIs.",
       link: "",
     ),
     MemberCard(
-      image: "assets/member/bala.jpg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658164911-985279142.jpeg",
       name: "Balasubramanian M",
       project: "Aspiring Full‑Stack Developer skilled in Flutter and backend APIs.",
       link: "",
     ),
     MemberCard(
-      image: "assets/member/murali.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823809691-376160524.jpeg",
       name: "Murali K",
       project: "Developer focusing on scalable backend solutions and clean UI.",
       link: "",
     ),
     MemberCard(
-      image: "assets/member/pooja.jpg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823814249-685898487.jpg",
       name: "Pooja M",
       project: "Watch demo of the e‑commerce website implementation.",
       link: "https://ramchintech.com/video/pooja.mp4",
     ),
     MemberCard(
-      image: "assets/member/essakkiyammal.jpg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823798685-732528839.jpg",
       name: "Muthu Essakkiammal",
       project: "Watch demo of the e‑commerce website implementation.",
       link: "https://ramchintech.com/video/esakkiammal.mp4",
@@ -296,8 +296,22 @@ class _MemberCardGridState extends State<MemberCardGrid>
                         alignment: Alignment.center,
                         child: CircleAvatar(
                           radius: isMobile ? 56 : 60,
-                          backgroundImage: AssetImage(member.image),
                           backgroundColor: Colors.transparent,
+                          child: ClipOval(
+                            child: Image.network(
+                              member.image,
+                              width: isMobile ? 112 : 120,
+                              height: isMobile ? 112 : 120,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(
+                                  Icons.person,
+                                  size: 50,
+                                  color: Colors.grey,
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 18),

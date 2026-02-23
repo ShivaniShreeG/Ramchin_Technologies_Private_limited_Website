@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../appbar/footer.dart';
 import '../InfoSection.dart';
 import '../ManagementMembers.dart';

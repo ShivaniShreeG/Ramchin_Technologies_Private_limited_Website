@@ -105,7 +105,7 @@ class _SchoolPageState extends State<SchoolPage>
                     title: " Smart School",
                     subtitle: "From Attendance and Mark Entry to Messaging and Full Academic Management — Everything Your School Needs in One Smart App.",
                     startColor: Colors.blue.shade50,
-                    logoPath:'assets/product/logo/schoolmanagement.png',
+                    logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664396958-18768973.png",
                     endColor: Colors.white,
                     trailingWidget: const HeroVideo(
                       videoPath: 'assets/screenV.mp4',

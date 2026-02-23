@@ -4,12 +4,12 @@ import '../intern/pages/homepage.dart';
 import '../widgets/About.dart';
 import '../team/team_page.dart';
 import '../widgets/AddData.dart';
+import '../widgets/Contact.dart';
 import '../widgets/Gallery.dart';
 import '../widgets/stacks/Admin_page_stack.dart';
 import '../widgets/stacks/home_page_stack.dart';
 import '../widgets/stacks/service_page_stack.dart';
 import '../widgets/stacks/project_page_stack.dart';
-import '../widgets/stacks/contact_us__page_stack.dart';
 
 class DesktopHomePage extends StatefulWidget {
   final int selectedIndex;
@@ -44,24 +44,17 @@ class _DesktopHomePageState extends State<DesktopHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ✅ This ensures keyboard pushes content up
-      // resizeToAvoidBottomInset: true,
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          HomePageStack(
-            selectedIndex: _currentIndex,
-            onTabSelected: widget.onTabSelected,
-          ),
-          ProductListPage(
-            onTabSelected: widget.onTabSelected,
-          ),
+          HomePageStack(selectedIndex: _currentIndex, onTabSelected: widget.onTabSelected,),
+          ProductListPage(onTabSelected: widget.onTabSelected,),
           TeamPage(),
           ProjectPageStack(),
           ServicePageStack(onTabSelected: widget.onTabSelected),
           InternshipPage(),
           RamchinTechPhotoGallery(),
-          ContactUsPageStack(onTabSelected: widget.onTabSelected),
+          ContactPage(),
           AboutUsPage(),
           AdminPageStack(onTabSelected: widget.onTabSelected),
           AddData(),

@@ -88,11 +88,11 @@ class _GroceryManagementPageState extends State<GroceryManagementPage>
 
   @override
   Widget build(BuildContext context) {
-    if (!_isVideoReady) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // if (!_isVideoReady) {
+    //   return const Scaffold(
+    //     body: Center(child: CircularProgressIndicator()),
+    //   );
+    // }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -107,7 +107,7 @@ class _GroceryManagementPageState extends State<GroceryManagementPage>
                   title: " Grocery Management",
                   subtitle:"Manage stock, sales, orders, and customer deliveries seamlessly — everything your grocery store needs in one smart platform.",
                   startColor: Colors.teal.shade50,
-                  logoPath:'assets/product/logo/grocerymanagement.png',
+                  logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664363024-386084719.png",
                   endColor: Colors.white,
                   // trailingWidget: const HeroVideo(
                   //   videoPath: 'assets/screenV.mp4',

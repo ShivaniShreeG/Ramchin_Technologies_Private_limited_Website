@@ -28,8 +28,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title: "Smart School",
       description: "Empowering smarter education management.",
-      icon: Image.asset(
-        'assets/product/logo/schoolmanagement.png',
+      icon: Image.network(
+        "https://www.ramchintech.com/companyweb/Logo/Product/1771664396958-18768973.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const SchoolPage(),
@@ -37,8 +37,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title: "Hospital Management",
       description: "Streamlining healthcare operations with precision.",
-      icon: Image.asset(
-        'assets/product/logo/hospitalmanagement.png',
+      icon: Image.network(
+        "https://www.ramchintech.com/companyweb/Logo/Product/1771664372297-779776174.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const HospitalManagementPage(),
@@ -46,8 +46,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title:"Pharmacy Management",
       description: "Effortless billing and inventory control.",
-      icon: Image.asset(
-        'assets/product/logo/pharmacymanagement.png',
+      icon: Image.network(
+        "https://www.ramchintech.com/companyweb/Logo/Product/1771664389099-375206227.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const  PharmacyManagementPage(),
@@ -55,8 +55,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title: "Hall Management",
       description: "Simplifying event bookings and scheduling.",
-      icon: Image.asset(
-        'assets/product/logo/hallmanagement.png',
+      icon: Image.network(
+        "https://www.ramchintech.com/companyweb/Logo/Product/1771664367727-577671008.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const HallManagementPage(),
@@ -64,8 +64,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title: "Lodge Management",
       description: "Smart room management made simple.",
-      icon: Image.asset(
-        'assets/product/logo/lodgemanagement.png',
+      icon: Image.network(
+        "https://www.ramchintech.com/companyweb/Logo/Product/1771664376692-302919420.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const LodgeManagementPage(),
@@ -73,8 +73,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title: "Fin Track ",
       description: "Control your finances with confidence.",
-      icon: Image.asset(
-        'assets/product/logo/moneymanagement.png',
+      icon: Image.network(
+        "https://www.ramchintech.com/companyweb/Logo/Product/1771664382983-949109623.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const MoneyManagementPage(),
@@ -82,8 +82,8 @@ class _ProductListPageState extends State<ProductListPage> {
     AppData(
       title: "Grocery Management",
       description: "Smarter retail operations every day.",
-      icon: Image.asset(
-        'assets/product/logo/grocerymanagement.png',
+      icon: Image.network(
+          "https://www.ramchintech.com/companyweb/Logo/Product/1771664363024-386084719.png",
         fit: BoxFit.cover,
       ),
       destinationPage: const GroceryManagementPage(),

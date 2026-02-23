@@ -62,8 +62,8 @@ class Footer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Image.asset(
-          "assets/ramchinlogo.png",
+        Image.network(
+          "https://www.ramchintech.com/companyweb/Logo/Company/1771665122392-303725152.png",
           fit: BoxFit.contain,
           width: 220,
           height: 80,
@@ -78,7 +78,7 @@ class Footer extends StatelessWidget {
         const SizedBox(height: 15),
         InkWell(
           onTap: () {
-            _openPdf("assets/Brochure.pdf");
+            _openPdf("https://www.ramchintech.com/companyweb/Brochure/Company/1771825008992-944357908.pdf");
           },
           borderRadius: BorderRadius.circular(8),
           child: Row(
@@ -126,11 +126,7 @@ class Footer extends StatelessWidget {
                 children: [
                   FooterLink("Home", onTabSelected: onTabSelected, index: 0),
                   FooterLink("Careers", onTabSelected: onTabSelected, index: 0),
-                  FooterLink(
-                    "CEO's Profile",
-                    onTabSelected: onTabSelected,
-                    index: 0,
-                  ),
+                  FooterLink("CEO's Profile", onTabSelected: onTabSelected, index: 0),
                 ],
               ),
             ),
@@ -138,21 +134,9 @@ class Footer extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FooterLink(
-                    "Services",
-                    onTabSelected: onTabSelected,
-                    index: 4,
-                  ),
-                  FooterLink(
-                    "Contact Us",
-                    onTabSelected: onTabSelected,
-                    index: 7,
-                  ),
-                  FooterLink(
-                    "Management",
-                    onTabSelected: onTabSelected,
-                    index: 0,
-                  ),
+                  FooterLink("Services", onTabSelected: onTabSelected, index: 4),
+                  FooterLink("Contact Us", onTabSelected: onTabSelected, index: 7),
+                  FooterLink("Management", onTabSelected: onTabSelected, index: 0),
                 ],
               ),
             ),
@@ -162,7 +146,6 @@ class Footer extends StatelessWidget {
     );
   }
 
-  // ✅ Office Address Section
   Widget _officeAddress(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,6 +201,13 @@ class Footer extends StatelessWidget {
         const SizedBox(height: 8),
         Row(
           children: [
+            SocialIconButton(
+              icon: FontAwesomeIcons.youtube,
+              normalColor: const Color(0xFFFFFFFF),
+              hoverColor: Colors.white,
+              url: "https://www.youtube.com/@ramchintech",
+            ),
+            const SizedBox(width: 12),
             SocialIconButton(
               icon: FontAwesomeIcons.github,
               normalColor: const Color(0xFFFFFFFF),

@@ -132,8 +132,8 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
             padding: const EdgeInsets.all(2.0),
             child: InkWell(
               onTap: _goHome,
-              child: Image.asset(
-                "assets/logo/ramchin.png",
+              child: Image.network(
+                "https://www.ramchintech.com/companyweb/Logo/Company/1771658553998-120044895.png",
                 fit: BoxFit.contain,
                 width: 220,
                 height: 80,
@@ -151,8 +151,12 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
               itemBuilder: (context) {
                 final items = <PopupMenuEntry<int>>[];
                 for (var i = 0; i <= 8; i++) {
-                  if (i == 7) continue;
-                  items.add(PopupMenuItem(value: i, child: Text(_tabs[i])));
+                  items.add(
+                    PopupMenuItem(
+                      value: i,
+                      child: Text(_tabs[i]),
+                    ),
+                  );
                 }
                 if (AdminLoginPage.isLoggedIn == false) {
                   items.add(PopupMenuItem(value: 9, child: Text(_tabs[9])));
@@ -183,8 +187,8 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: InkWell(
                 onTap: _goHome,
-                child: Image.asset(
-                  "assets/logo/ramchin.png",
+                child: Image.network(
+                  "https://www.ramchintech.com/companyweb/Logo/Company/1771658553998-120044895.png",
                   fit: BoxFit.contain,
                   width: 200,
                   height: 70,
@@ -219,6 +223,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
                   const PopupMenuItem(value: 4, child: Text("Services")),
                   const PopupMenuItem(value: 5, child: Text("Internship")),
                   const PopupMenuItem(value: 6, child: Text("Gallery")),
+                  const PopupMenuItem(value: 7, child: Text("Contact Us")),
                   const PopupMenuItem(value: 8, child: Text("About Us")),
                 ];
 
@@ -257,8 +262,8 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: InkWell(
                 onTap: _goHome,
-                child: Image.asset(
-                  "assets/logo/ramchin.png",
+                child:  Image.network(
+                  "https://www.ramchintech.com/companyweb/Logo/Company/1771658553998-120044895.png",
                   fit: BoxFit.contain,
                   width: 220,
                   height: 70,
@@ -285,6 +290,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
               },
               itemBuilder: (context) {
                 final List<PopupMenuEntry<int>> menuItems = [
+                  const PopupMenuItem(value: 7, child: Text("Contact Us")), // ✅ ADD THIS
                   const PopupMenuItem(value: 8, child: Text("About Us")),
                 ];
                 if (AdminLoginPage.isLoggedIn == false) {

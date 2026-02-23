@@ -87,11 +87,11 @@ class _MoneyManagementPageState extends State<MoneyManagementPage>
 
   @override
   Widget build(BuildContext context) {
-    if (!_isVideoReady) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // if (!_isVideoReady) {
+    //   return const Scaffold(
+    //     body: Center(child: CircularProgressIndicator()),
+    //   );
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -106,7 +106,7 @@ class _MoneyManagementPageState extends State<MoneyManagementPage>
                   title: "Fin Track",
                   subtitle: "Manage your money, track expenses, income, budgets, and generate detailed reports — all in one place.",
                   startColor: Colors.teal.shade50,
-                  logoPath:'assets/product/logo/moneymanagement.png',
+                  logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664382983-949109623.png",
                   endColor: Colors.white,
                   // trailingWidget: const HeroVideo(
                   //   videoPath: 'assets/screenV.mp4',

@@ -53,14 +53,36 @@ class _TeamCardState extends State<TeamCard> {
               mainAxisSize: MainAxisSize.min,
               children: [
               // Avatar
-              Hero(
-                tag: widget.member.name,
-                child: CircleAvatar(
-                  radius: 65,
-                  backgroundImage: AssetImage(widget.member.imageUrl),
+                Hero(
+                  tag: widget.member.name,
+                  child: ClipOval(
+                    child: SizedBox(
+                      width: 130,
+                      height: 130,
+                      child: Image.network(
+                        widget.member.imageUrl,
+                        fit: BoxFit.cover,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return const Center(
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey[200],
+                            child: const Icon(
+                              Icons.person,
+                              size: 50,
+                              color: Colors.grey,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
               // Name
               Text(

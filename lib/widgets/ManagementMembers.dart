@@ -22,36 +22,33 @@ class MemberSection extends StatelessWidget {
 
   final List<ManagementMember> members = [
     ManagementMember(
-      image: "assets/cvsir2.jpg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1771656786530-747879659.jpg",
       name: "Dr. C VELAYUTHAM",
       role: "Managing Director",
       description:
           "Dr C Velayutham, is the Managing Director of Ramchin Technologies (P) Ltd., He did Postgraduate in Applied Mathematics, Doctoral degree in Computer Science.",
-      pdfPath: "assets/drcv.pdf",
+      pdfPath: "https://www.ramchintech.com/companyweb/Profile/Management_Member/Resume/1771827196315-154788124.pdf",
     ),
     ManagementMember(
-      image: "assets/mozhi2.png",
+      image: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1771656780491-304047309.png",
       name: "Mrs V THIRAVIDAMOZHI, MBA",
       role: "Director HRD",
-      description:
-          "Mrs. V Thiravidamozhi is the Director of Ramchin Technologies (P) Ltd. She did MBA (HRD) in Alagappa University, Karaikudi.",
-      pdfPath: "assets/team/thiravidamozhi.pdf",
+      description: "Mrs. V Thiravidamozhi is the Director of Ramchin Technologies (P) Ltd. She did MBA (HRD) in Alagappa University, Karaikudi.",
+      pdfPath: "https://www.ramchintech.com/companyweb/Profile/Management_Member/Resume/1771827208715-231557912.pdf",
     ),
     ManagementMember(
-      image: "assets/SenPhoto3.jpg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1771656763230-98000933.jpg",
       name: "SENTHIL RAMCHIN V",
       role: "Data Analyst",
-      description:
-          "Mr Senthil Ramchin V is the Data Analyst of Ramchin Technologies (P) Ltd. He is M.Sc Post Graduate in Mathematics, Manonmaniam Sundaranar University, Tirunelveli.",
-      pdfPath: "assets/team/senthil.pdf",
+      description: "Mr Senthil Ramchin V is the Data Analyst of Ramchin Technologies (P) Ltd. He is M.Sc Post Graduate in Mathematics, Manonmaniam Sundaranar University, Tirunelveli.",
+      pdfPath: "https://www.ramchintech.com/companyweb/Profile/Management_Member/Resume/1771827215865-444573150.jpeg",
     ),
     ManagementMember(
-      image: "assets/SarPhoto.png",
+      image: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1771656772117-811992019.png",
       name: "SARAVANA RAMCHIN V",
       role: "Director - Operations",
-      description:
-          "Mr Saravana Ramchin V is the Director Admin of Ramchin Technologies (P) Ltd. He is B.E Graduate in Computer Science and Engineering, Anna University, Chennai.",
-      pdfPath: "assets/team/saravana.pdf",
+      description: "Mr Saravana Ramchin V is the Director Admin of Ramchin Technologies (P) Ltd. He is B.E Graduate in Computer Science and Engineering, Anna University, Chennai.",
+      pdfPath: "https://www.ramchintech.com/companyweb/Profile/Management_Member/Resume/1771827215865-444573150.jpeg",
     ),
   ];
 
@@ -117,8 +114,10 @@ class MemberSection extends StatelessWidget {
                   child: Column(
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage(member.image),
                         radius: 45,
+                        backgroundColor: Colors.grey[200],
+                        backgroundImage: NetworkImage(member.image),
+                        onBackgroundImageError: (_, __) {}
                       ),
                       const SizedBox(height: 15),
                       Text(

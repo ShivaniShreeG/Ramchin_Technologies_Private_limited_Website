@@ -86,11 +86,11 @@ class _HospitalManagementPageState extends State<HospitalManagementPage>
 
   @override
   Widget build(BuildContext context) {
-    if (!_isVideoReady) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // if (!_isVideoReady) {
+    //   return const Scaffold(
+    //     body: Center(child: CircularProgressIndicator()),
+    //   );
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -105,7 +105,7 @@ class _HospitalManagementPageState extends State<HospitalManagementPage>
                   title: "Hospital Management",
                   subtitle: "From Patient Registration and Appointment Scheduling to Billing and Medical Records — Everything Your Hospital Needs in One Smart System.",
                   startColor: Colors.yellow.shade50.withValues(alpha: 0.2),
-                  logoPath:'assets/product/logo/hospitalmanagement.png',
+                  logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664372297-779776174.png",
                   endColor: Colors.white,
                   // trailingWidget: const HeroVideo(
                   //   videoPath: 'assets/screenV.mp4',

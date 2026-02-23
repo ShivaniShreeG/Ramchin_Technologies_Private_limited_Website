@@ -88,11 +88,11 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
 
   @override
   Widget build(BuildContext context) {
-    if (!_isVideoReady) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // if (!_isVideoReady) {
+    //   return const Scaffold(
+    //     body: Center(child: CircularProgressIndicator()),
+    //   );
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -107,7 +107,7 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
                   title: "Lodge Management",
                   subtitle:"Ramchin Lodge Management is an all-in-one solution to manage bookings, rooms, finances, and guest services efficiently from any device.",
                   startColor: Colors.blue.shade50,
-                  logoPath:'assets/product/logo/lodgemanagement.png',
+                  logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664376692-302919420.png",
                   endColor: Colors.white,
                   // trailingWidget: const HeroVideo(
                   //   videoPath: 'assets/screenV.mp4',

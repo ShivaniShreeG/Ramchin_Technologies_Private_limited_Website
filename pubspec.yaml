@@ -81,13 +81,16 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/logo/
+    - assets/Logo/Product/
+    - assets/Logo/Company/
+    - assets/Profile/Interns/
+    - assets/Profile/Management_Member/
+    - assets/Profile/Software_Developer/
+    - assets/Brochure/Company/
     - assets/product/logo/
     - assets/product/icon/
     - assets/drcv.pdf
-    - assets/Brochure.pdf
     - assets/png/
-    - assets/member/
     - assets/compress/
     - assets/screenV.mp4
 

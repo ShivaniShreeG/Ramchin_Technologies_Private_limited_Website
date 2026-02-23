@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Home.dart';
+import 'home.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -59,8 +59,8 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/logo/ramchin.png',
+                Image.network(
+                  "https://www.ramchintech.com/companyweb/Logo/Company/1771658553998-120044895.png",
                   width: isMobile ? 200 : 320,
                   height: isMobile ? 60 : 110,
                 ),

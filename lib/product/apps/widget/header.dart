@@ -90,7 +90,7 @@ class Header extends StatelessWidget {
             logoPath != null?
               Padding(
                 padding: const EdgeInsets.only(bottom: 18,top: 0,left: 0,right: 0),
-                child: Image.asset(
+                child: Image.network(
                   logoPath!,
                   height: isWide ? 70 : 55,
 

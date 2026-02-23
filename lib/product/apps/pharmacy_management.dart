@@ -86,11 +86,11 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
 
   @override
   Widget build(BuildContext context) {
-    if (!_isVideoReady) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // if (!_isVideoReady) {
+    //   return const Scaffold(
+    //     body: Center(child: CircularProgressIndicator()),
+    //   );
+    // }
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -105,7 +105,7 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
                   title: " Pharmacy Management",
                   subtitle:"Manage stock, prescriptions, billing, and inventory seamlessly — everything your pharmacy needs in one smart platform.",
                   startColor: Colors.brown.shade50.withValues(alpha: 0.6),
-                  logoPath:'assets/product/logo/pharmacymanagement.png',
+                  logoPath:"https://www.ramchintech.com/companyweb/Logo/Product/1771664389099-375206227.png",
                   endColor: Colors.white,
                   // trailingWidget: const HeroVideo(
                   //   videoPath: 'assets/screenV.mp4',
