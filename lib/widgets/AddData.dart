@@ -3,12 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import '../pages/AddPage/ViewContact.dart';
-import '../pages/Home/AdminHomePage.dart';
-import '../pages/Home/GalleryHomePage.dart';
-import '../pages/Home/InternshipHomePage.dart';
-import '../pages/Home/admindash.dart';
-import '../pages/Home/createcourse.dart';
+import '../old_pages/AddPage/ViewContact.dart';
+import '../old_pages/Home/AdminHomePage.dart';
+import '../old_pages/Home/GalleryHomePage.dart';
+import '../old_pages/Home/InternshipHomePage.dart';
+import '../old_pages/Home/admindash.dart';
+import '../old_pages/Home/createcourse.dart';
 
 class AddData extends StatefulWidget {
   const AddData({super.key});

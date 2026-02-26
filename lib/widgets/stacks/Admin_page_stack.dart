@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../appbar/footer.dart';
+import '../../old/footer.dart';
 import '../Admin.dart';
 
 class AdminPageStack extends StatefulWidget {

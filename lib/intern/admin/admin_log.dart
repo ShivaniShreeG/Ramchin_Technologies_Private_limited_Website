@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../pages/Home/admindash.dart';
+import '../../old_pages/Home/admindash.dart';
 
 class AdminLoginPage extends StatefulWidget {
   const AdminLoginPage({super.key});

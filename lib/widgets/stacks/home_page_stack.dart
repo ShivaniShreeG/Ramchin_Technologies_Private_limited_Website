@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../appbar/footer.dart';
+import '../../old/footer.dart';
 import '../InfoSection.dart';
-import '../ManagementMembers.dart';
+import '../../old/ManagementMembers.dart';
 import '../OurTechStack.dart';
-import '../VisionCard.dart';
-import '../ourservices.dart';
+import '../../old/VisionCard.dart';
+import '../../old/ourservices.dart';
 
 class HomePageStack extends StatelessWidget {
   const HomePageStack({

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Page;
 import 'appbar/mobile_appbar.dart';
-import 'pages/desktop_home_page.dart';
+import 'pages/page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,7 +28,7 @@ class HomePageState extends State<HomePage> {
           onTabSelected: _onTabSelected,
         ),
       ),
-      body: DesktopHomePage(
+      body: Page(
         selectedIndex: selectedIndex,
         onTabSelected: _onTabSelected,
       ),

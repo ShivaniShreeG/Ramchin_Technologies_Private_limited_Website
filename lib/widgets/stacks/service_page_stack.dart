@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../appbar/footer.dart';
-import '../ourservices.dart';
+import '../../old/footer.dart';
+import '../../old/ourservices.dart';
 
 class ServicePageStack extends StatelessWidget {
   const ServicePageStack({super.key, required this.onTabSelected});

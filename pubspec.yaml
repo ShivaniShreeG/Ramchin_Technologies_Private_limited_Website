@@ -87,6 +87,8 @@ flutter:
     - assets/Profile/Management_Member/
     - assets/Profile/Software_Developer/
     - assets/Brochure/Company/
+    - assets/Home_Page/Website_Header/
+    - assets/Home_Page/Core_Section/
     - assets/product/logo/
     - assets/product/icon/
     - assets/drcv.pdf
