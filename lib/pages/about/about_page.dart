@@ -4,7 +4,7 @@ import 'widget/who_are_we.dart';
 import 'widget/mission_vision.dart';
 import 'widget/technical_team.dart';
 import 'widget/our_story.dart';
-import 'widget/future_goals.dart';
+import 'widget/our_goals.dart';
 
 class AboutUsPage extends StatefulWidget {
   const AboutUsPage({super.key});
@@ -55,11 +55,10 @@ class _AboutUsPageState extends State<AboutUsPage> {
           children:  [
             WhoWeAreSection(),
             MissionVisionSection(),
-            FutureGoalsSection(),
+            OurGoalsSection(),
             MemberSection(),
             TeamSection(),
             OurStorySection(),
-            SizedBox(height: 80),
           ],
         ),
       ),

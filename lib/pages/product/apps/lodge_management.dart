@@ -475,8 +475,8 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
             children: [
 
               StoreButton(
-                icon: Image.asset(
-                  "assets/product/icon/playstore.png",
+                icon: Image.network(
+                  "https://www.ramchintech.com/companyweb/Icon/1772169948779-125916949.png",
                   width: 55,
                   height: 55,
                 ),

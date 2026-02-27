@@ -23,7 +23,7 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
-
+  bool _showScrollToTop = false;
   final List<AppData> apps = [
     AppData(
       title: "Smart School",
@@ -103,12 +103,47 @@ class _ProductListPageState extends State<ProductListPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(() {
+      if (_scrollController.offset > 300 && !_showScrollToTop) {
+        setState(() => _showScrollToTop = true);
+      } else if (_scrollController.offset <= 300 && _showScrollToTop) {
+        setState(() => _showScrollToTop = false);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+  @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final isMobile = width < 600;
 
     return Scaffold(
       backgroundColor: Colors.white,
+      floatingActionButton: _showScrollToTop
+          ? FloatingActionButton(
+        onPressed: _scrollToTop,
+        backgroundColor: Colors.white,
+        child: const Icon(
+          Icons.keyboard_arrow_up,
+          color: Colors.blueAccent,
+        ),
+      )
+          : null,
       body: SafeArea(
         child:SingleChildScrollView(
           controller: _scrollController,

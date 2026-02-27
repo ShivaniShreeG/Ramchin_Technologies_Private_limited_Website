@@ -89,9 +89,8 @@ flutter:
     - assets/Brochure/Company/
     - assets/Home_Page/Website_Header/
     - assets/Home_Page/Core_Section/
-    - assets/product/logo/
-    - assets/product/icon/
-    - assets/drcv.pdf
+    - assets/About_Us/
+    - assets/Icon/
     - assets/png/
     - assets/compress/
     - assets/screenV.mp4

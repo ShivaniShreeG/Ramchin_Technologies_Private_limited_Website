@@ -80,7 +80,7 @@ class TeamSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
       color: const Color(0xFFF8FAFC),
       child: Column(
         children: [
@@ -96,6 +96,7 @@ class TeamSection extends StatelessWidget {
           const SizedBox(height: 10),
           const Text(
             "Technical Engineering Team",
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.w900,
@@ -117,7 +118,7 @@ class TeamSection extends StatelessWidget {
   Widget _buildTechCard(TeamMember member) {
     return Container(
       width: 280,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -215,7 +216,7 @@ class TeamSection extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _socialIcon(FontAwesomeIcons.linkedin, const Color(0xFF0A66C2), member.linkedin),
+              _socialIcon(FontAwesomeIcons.linkedinIn, const Color(0xFF0A66C2), member.linkedin),
               _socialIcon(FontAwesomeIcons.github, const Color(0xFF181717), member.github),
               _socialIcon(FontAwesomeIcons.upwork, const Color(0xFF14A800), member.upwork),
             ],
@@ -228,16 +229,55 @@ class TeamSection extends StatelessWidget {
   }
 
   Widget _socialIcon(IconData icon, Color color, String url) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: IconButton(
-        icon: FaIcon(icon, color: color, size: 18),
-        onPressed: () => _launch(url),
-        splashRadius: 20,
+    return _InteractiveSocialBtn(icon: icon, color: color, url: url);
+  }
+
+}
+class _InteractiveSocialBtn extends StatefulWidget {
+  final IconData icon;
+  final Color color;
+  final String url;
+
+  const _InteractiveSocialBtn({required this.icon, required this.color, required this.url});
+
+  @override
+  State<_InteractiveSocialBtn> createState() => _InteractiveSocialBtnState();
+}
+
+class _InteractiveSocialBtnState extends State<_InteractiveSocialBtn> {
+  bool isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: GestureDetector(
+        onTap: () => launchUrl(Uri.parse(widget.url)),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          margin: const EdgeInsets.symmetric(horizontal: 6),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            // When hovered, use full color. When not, use a subtle ghost version.
+            color: isHovered ? widget.color : widget.color.withOpacity(0.08),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              if (isHovered)
+                BoxShadow(
+                  color: widget.color.withOpacity(0.3),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                )
+            ],
+          ),
+          child: FaIcon(
+            widget.icon,
+            // Flip the icon color to white when the background fills up
+            color: isHovered ? Colors.white : widget.color,
+            size: 18,
+          ),
+        ),
       ),
     );
   }

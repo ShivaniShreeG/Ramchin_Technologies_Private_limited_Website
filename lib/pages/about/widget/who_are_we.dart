@@ -13,22 +13,22 @@ class WhoWeAreSection extends StatelessWidget {
       color: Colors.white,
       padding: EdgeInsets.symmetric(
         horizontal: isWide ? size.width * 0.08 : 24,
-        vertical: 100,
+        vertical: isWide ? 64 : 48,
       ),
       child: isWide
           ? Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(flex: 5, child: _buildImageSide()),
+          Expanded(flex: 5, child: _buildImageSide(isWide)),
           const SizedBox(width: 80),
           Expanded(flex: 6, child: _buildContentSide(isWide)),
         ],
       )
           : Column(
         children: [
-          _buildContentSide(isWide),
+          _buildImageSide(isWide),
           const SizedBox(height: 60),
-          _buildImageSide(),
+          _buildContentSide(isWide),
         ],
       ),
     );
@@ -91,22 +91,21 @@ class WhoWeAreSection extends StatelessWidget {
     );
   }
 
-  Widget _buildImageSide() {
+  Widget _buildImageSide(bool isWide) {
     return Stack(
       children: [
         // Main Image Placeholder
         Container(
-          height: 500,
+          height: isWide ? 420 : 320,
           decoration: BoxDecoration(
             color: Colors.blue.shade50,
             borderRadius: BorderRadius.circular(24),
             image: const DecorationImage(
-              image: NetworkImage('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80'), // Replace with your actual team/office image
+              image: NetworkImage("https://www.ramchintech.com/companyweb/About_Us/1772171954635-565131107.png"), // Replace with your actual team/office image
               fit: BoxFit.cover,
             ),
           ),
         ),
-        // Floating "Founded" Badge
         Positioned(
           bottom: 30,
           left: -20,

@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 class MissionVisionSection extends StatelessWidget {
   const MissionVisionSection({super.key});
+  static const String missionContent =
+      "To empower businesses worldwide by providing innovative, scalable, and efficient software solutions that drive transformation and enhance productivity. We strive to be a trusted partner, nurturing creativity while making a positive impact in the global tech ecosystem.";
 
+  static const String visionContent =
+      "To deliver tailored software solutions that empower businesses to thrive in a rapidly evolving digital world. By prioritizing quality and collaboration, we aim to transform ideas into powerful tools, ensuring efficiency and measurable success for our clients.";
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -12,21 +16,15 @@ class MissionVisionSection extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xFFF9FAFB),
-        // Subtle background pattern to make it feel more "designed"
-        image: DecorationImage(
-          image: const NetworkImage('https://www.toptal.com/designers/subtlepatterns/patterns/grid.png'),
-          repeat: ImageRepeat.repeat,
-          opacity: 0.03,
-        ),
       ),
       padding: EdgeInsets.symmetric(
         horizontal: isWide ? size.width * 0.08 : 24,
-        vertical: 140,
+        vertical: isWide ? 44 : 32,
       ),
       child: Column(
         children: [
           _buildEliteHeader(isWide),
-          const SizedBox(height: 100),
+          const SizedBox(height: 40),
           _buildContentGrid(isWide),
         ],
       ),
@@ -52,7 +50,7 @@ class MissionVisionSection extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 32),
+            const SizedBox(height: 24), // was 32
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
@@ -60,7 +58,7 @@ class MissionVisionSection extends StatelessWidget {
               fontSize: isWide ? 64 : 40,
               color: const Color(0xFF101828),
               letterSpacing: -2.5,
-              height: 1.0,
+              height: 0.95, // was 1.0
             ),
             children: [
               const TextSpan(
@@ -69,7 +67,7 @@ class MissionVisionSection extends StatelessWidget {
               ),
               const TextSpan(
                 text: "Purpose",
-                style: TextStyle(fontWeight: FontWeight.w900),
+                style: TextStyle(fontWeight: FontWeight.w300),
               ),
             ],
           ),
@@ -80,25 +78,31 @@ class MissionVisionSection extends StatelessWidget {
 
   Widget _buildContentGrid(bool isWide) {
     return isWide
-        ? Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(child: _buildPerspectiveCard(
-          title: "Our Mission",
-          subtitle: "THE EXECUTION",
-          icon: Icons.rocket_launch_rounded,
-          isPrimary: true,
-          content: "To empower businesses worldwide by providing innovative, scalable, and efficient software solutions that drive transformation and enhance productivity. We strive to be a trusted partner, nurturing creativity while making a positive impact in the global tech ecosystem.",
-        )),
-        const SizedBox(width: 50),
-        Expanded(child: _buildPerspectiveCard(
-          title: "Our Vision",
-          subtitle: "THE FUTURE",
-          icon: Icons.remove_red_eye_rounded,
-          isPrimary: false,
-          content: "To deliver tailored software solutions that empower businesses to thrive in a rapidly evolving digital world. By prioritizing quality and collaboration, we aim to transform ideas into powerful tools, ensuring efficiency and measurable success for our clients.",
-        )),
-      ],
+        ? IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: _buildPerspectiveCard(
+              title: "Our Mission",
+              subtitle: "THE EXECUTION",
+              icon: Icons.rocket_launch_rounded,
+              isPrimary: true,
+              content:missionContent
+            ),
+          ),
+          const SizedBox(width: 50),
+          Expanded(
+            child: _buildPerspectiveCard(
+              title: "Our Vision",
+              subtitle: "THE FUTURE",
+              icon: Icons.remove_red_eye_rounded,
+              isPrimary: false,
+              content:visionContent
+            ),
+          ),
+        ],
+      ),
     )
         : Column(
       children: [
@@ -107,7 +111,7 @@ class MissionVisionSection extends StatelessWidget {
           subtitle: "THE EXECUTION",
           icon: Icons.rocket_launch_rounded,
           isPrimary: true,
-          content: "To empower businesses worldwide by providing innovative software solutions...",
+          content: missionContent,
         ),
         const SizedBox(height: 40),
         _buildPerspectiveCard(
@@ -115,7 +119,7 @@ class MissionVisionSection extends StatelessWidget {
           subtitle: "THE FUTURE",
           icon: Icons.remove_red_eye_rounded,
           isPrimary: false,
-          content: "To deliver tailored software solutions that empower businesses to thrive...",
+          content: visionContent,
         ),
       ],
     );
@@ -132,7 +136,7 @@ class MissionVisionSection extends StatelessWidget {
     final textColor = isPrimary ? Colors.white : const Color(0xFF101828);
 
     return Container(
-      padding: const EdgeInsets.all(50),
+      padding: const EdgeInsets.all(40),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(24),
@@ -154,16 +158,22 @@ class MissionVisionSection extends StatelessWidget {
               Text(
                 subtitle,
                 style: TextStyle(
-                  color: isPrimary ? Colors.blueAccent : Colors.blueAccent.shade700,
+                  color: isPrimary ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w900,
                   fontSize: 12,
                   letterSpacing: 2.0,
                 ),
               ),
-              Icon(icon, color: isPrimary ? Colors.white24 : Colors.grey.shade200, size: 40),
+              Icon(
+                icon,
+                size: 40,
+                color: isPrimary
+                    ? Colors.white // primary card icon
+                    : Colors.black, // secondary card icon
+              ),
             ],
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 40),
           Text(
             title,
             style: TextStyle(
@@ -182,13 +192,6 @@ class MissionVisionSection extends StatelessWidget {
               height: 1.8,
               fontWeight: FontWeight.w400,
             ),
-          ),
-          const SizedBox(height: 40),
-          // A professional "Learn More" or "Arrow" indicator
-          Icon(
-            Icons.arrow_forward_rounded,
-            color: isPrimary ? Colors.blueAccent : Colors.blueAccent,
-            size: 28,
           ),
         ],
       ),
