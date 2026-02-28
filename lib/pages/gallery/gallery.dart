@@ -6,19 +6,13 @@ import 'package:photo_view/photo_view_gallery.dart';
 import '../../services/Gallery_service.dart';
 
 class GalleryItem {
-  final String imagePath; // asset path OR base64 OR URL
+  final String imagePath; // Asset path or Base64 string
   final String caption;
   final bool isAsset;
-  final bool isNetwork;
-  Uint8List? decodedBytes;
+  Uint8List? decodedBytes; // cache for base64
 
-  GalleryItem(
-      this.imagePath,
-      this.caption, {
-        this.isAsset = false,
-        this.isNetwork = false,
-      }) {
-    if (!isAsset && !isNetwork) {
+  GalleryItem(this.imagePath, this.caption, {this.isAsset = true}) {
+    if (!isAsset) {
       try {
         decodedBytes = base64Decode(imagePath);
       } catch (e) {
