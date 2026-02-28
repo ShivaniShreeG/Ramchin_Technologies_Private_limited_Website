@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import '../utils/utils.dart';
 
 class GalleryService {
-  /// ✅ CREATE (Upload image with description)
   Future<bool> addImage({
     required String description,
     File? imageFile,

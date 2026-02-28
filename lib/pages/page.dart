@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'home/home_page.dart';
 import 'product/product_list.dart';
 import 'about/about_page.dart';
+import 'contact/contact_us.dart';
+import 'gallery/gallery.dart';
 import '../intern/pages/homepage.dart';
 import '../widgets/AddData.dart';
-import '../widgets/Contact.dart';
-import '../widgets/Gallery.dart';
 import '../widgets/stacks/Admin_page_stack.dart';
 import '../widgets/stacks/project_page_stack.dart';
 

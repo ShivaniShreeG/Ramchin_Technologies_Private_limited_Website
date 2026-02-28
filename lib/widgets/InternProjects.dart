@@ -257,11 +257,11 @@ class _MemberCardGridState extends State<MemberCardGrid>
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 2),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: 0.96,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            childAspectRatio: isMobile ? 0.85 : 0.96,
             crossAxisSpacing: 14,
-            mainAxisSpacing: 6,
+            mainAxisSpacing: 12,
           ),
           itemCount: members.length,
           itemBuilder: (context, index) {
