@@ -125,7 +125,7 @@ class TeamSection extends StatelessWidget {
         border: Border.all(color: Colors.grey.shade100),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF64748B).withOpacity(0.08),
+            color: const Color(0xFF64748B).withValues(alpha:0.08),
             blurRadius: 24,
             offset: const Offset(0, 8),
           ),
@@ -141,7 +141,7 @@ class TeamSection extends StatelessWidget {
                 height: 100,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.blueAccent.withOpacity(0.2), width: 2),
+                  border: Border.all(color: Colors.blueAccent.withValues(alpha:0.2), width: 2),
                 ),
               ),
               CircleAvatar(
@@ -198,7 +198,7 @@ class TeamSection extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
-                      color: const Color(0xFF1E293B).withOpacity(0.8),
+                      color: const Color(0xFF1E293B).withValues(alpha:0.8),
                     ),
                   ),
                   const SizedBox(width: 4),
@@ -260,12 +260,12 @@ class _InteractiveSocialBtnState extends State<_InteractiveSocialBtn> {
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             // When hovered, use full color. When not, use a subtle ghost version.
-            color: isHovered ? widget.color : widget.color.withOpacity(0.08),
+            color: isHovered ? widget.color : widget.color.withValues(alpha:0.08),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               if (isHovered)
                 BoxShadow(
-                  color: widget.color.withOpacity(0.3),
+                  color: widget.color.withValues(alpha:0.3),
                   blurRadius: 12,
                   offset: const Offset(0, 4),
                 )

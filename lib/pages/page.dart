@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import '../old/course/pages/home_page.dart';
 import 'home/home_page.dart';
 import 'product/product_list.dart';
 import 'about/about_page.dart';
 import 'contact/contact_us.dart';
 import 'gallery/gallery.dart';
-import '../intern/pages/homepage.dart';
-import '../widgets/AddData.dart';
-import '../widgets/stacks/Admin_page_stack.dart';
 import '../widgets/stacks/project_page_stack.dart';
 
 class Page extends StatefulWidget {
@@ -49,11 +47,9 @@ class _PageState extends State<Page> {
           ProductListPage(onTabSelected: widget.onTabSelected,),
           AboutUsPage(),
           ProjectPageStack(),
-          InternshipPage(),
+          InternHomePage(),
           RamchinTechPhotoGallery(),
           ContactPage(),
-          AdminPageStack(onTabSelected: widget.onTabSelected),
-          AddData(),
         ],
       ),
     );

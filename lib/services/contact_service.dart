@@ -14,7 +14,6 @@ class ContactService {
         body: jsonEncode({"name": name, "email": email, "message": message}),
       );
 
-      print("Send Message Response: ${response.statusCode} - ${response.body}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(response.body);
@@ -22,7 +21,6 @@ class ContactService {
       }
       return false;
     } catch (e) {
-      print("Error sending message: $e");
       return false;
     }
   }
@@ -37,17 +35,12 @@ class ContactService {
         headers: {"Content-Type": "application/json"},
       );
 
-      print(
-        "Delete Contact Response: ${response.statusCode} - ${response.body}",
-      );
-
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         return data['status'] == 'success';
       }
       return false;
     } catch (e) {
-      print("Error deleting contact: $e");
       return false;
     }
   }
@@ -62,7 +55,6 @@ class ContactService {
         headers: {"Content-Type": "application/json"},
       );
 
-      print("Get All Contacts Response: ${response.statusCode}");
 
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
@@ -70,7 +62,6 @@ class ContactService {
       }
       return [];
     } catch (e) {
-      print("Error fetching contacts: $e");
       return [];
     }
   }

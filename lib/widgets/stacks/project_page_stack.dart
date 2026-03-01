@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../InternProjects.dart';
-import '../../old/VisionCard.dart';
+import '../internprojects.dart';
+import '../../old/vision_card.dart';
 
 class ProjectPageStack extends StatelessWidget {
   const ProjectPageStack({super.key});

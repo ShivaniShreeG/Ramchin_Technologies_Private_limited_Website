@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'widget/microsoft_button.dart';
 import 'widget/header.dart';
 import '../../../pages/product/apps/widget/footer.dart';
-import '../../../pages/product/apps/widget/video_header.dart';
+import 'widget/video_header.dart';
 import 'widget/button.dart';
 import 'package:video_player/video_player.dart';
 import 'features/pharmacy.dart';

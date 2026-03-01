@@ -65,14 +65,17 @@ class _PremiumButtonState extends State<PreButton> {
 
   @override
   Widget build(BuildContext context) {
+    final scale = _hovering ? 1.05 : 1.0;
+
     return MouseRegion(
       onEnter: (_) => setState(() => _hovering = true),
       onExit: (_) => setState(() => _hovering = false),
+
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
-        transform: Matrix4.identity()..scale(_hovering ? 1.05 : 1.0),
-        decoration: widget.primary
+      transform: Matrix4.identity()
+        ..scaleByDouble(scale, scale, scale, 1.0),        decoration: widget.primary
             ? BoxDecoration(
           gradient: LinearGradient(
             colors: _hovering
@@ -82,7 +85,7 @@ class _PremiumButtonState extends State<PreButton> {
           borderRadius: BorderRadius.circular(40),
           boxShadow: [
             BoxShadow(
-              color: Colors.blue.withOpacity(0.4),
+              color: Colors.blue.withValues(alpha:0.4),
               blurRadius: _hovering ? 25 : 15,
               offset: const Offset(0, 8),
             )

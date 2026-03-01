@@ -37,7 +37,7 @@ class MissionVisionSection extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.blueAccent.withOpacity(0.1),
+            color: Colors.blueAccent.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(100),
           ),
           child: Text(
@@ -143,7 +143,7 @@ class MissionVisionSection extends StatelessWidget {
         border: isPrimary ? null : Border.all(color: Colors.grey.shade200),
         boxShadow: [
           BoxShadow(
-            color: isPrimary ? Colors.blueAccent.withOpacity(0.15) : Colors.black.withOpacity(0.03),
+            color: isPrimary ? Colors.blueAccent.withValues(alpha: 0.15) : Colors.black.withValues(alpha: 0.03),
             blurRadius: 50,
             offset: const Offset(0, 30),
           ),

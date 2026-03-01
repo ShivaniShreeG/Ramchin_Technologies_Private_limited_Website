@@ -42,7 +42,7 @@ class OurStorySection extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [const Color(0xFFF8FAFC), Colors.white.withOpacity(0.5)],
+          colors: [const Color(0xFFF8FAFC), Colors.white.withValues(alpha:0.5)],
         ),
       ),
       padding: EdgeInsets.symmetric(
@@ -56,7 +56,7 @@ class OurStorySection extends StatelessWidget {
           // We use a Column to maintain the vertical flow
           ..._events.asMap().entries.map((entry) {
             return _buildStoryNode(entry.value, entry.key, isWide, entry.key == _events.length - 1);
-          }).toList(),
+          }),
         ],
       ),
     );
@@ -68,7 +68,7 @@ class OurStorySection extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
-            color: Colors.blueAccent.withOpacity(0.08),
+            color: Colors.blueAccent.withValues(alpha:0.08),
             borderRadius: BorderRadius.circular(100),
           ),
           child: Text(
@@ -120,7 +120,7 @@ class OurStorySection extends StatelessWidget {
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.blueAccent, width: 3),
                     boxShadow: [
-                      BoxShadow(color: Colors.blueAccent.withOpacity(0.2), blurRadius: 10)
+                      BoxShadow(color: Colors.blueAccent.withValues(alpha:0.2), blurRadius: 10)
                     ],
                   ),
                   child: Center(
@@ -139,7 +139,7 @@ class OurStorySection extends StatelessWidget {
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          colors: [Colors.blueAccent, Colors.blueAccent.withOpacity(0.0)],
+                          colors: [Colors.blueAccent, Colors.blueAccent.withValues(alpha:0.0)],
                         ),
                       ),
                     ),
@@ -185,11 +185,11 @@ class _StoryCardState extends State<_StoryCard> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: isHovered ? Colors.blueAccent.withOpacity(0.3) : Colors.grey.shade100,
+            color: isHovered ? Colors.blueAccent.withValues(alpha:0.3) : Colors.grey.shade100,
           ),
           boxShadow: [
             BoxShadow(
-              color: isHovered ? Colors.blueAccent.withOpacity(0.08) : Colors.black.withOpacity(0.02),
+              color: isHovered ? Colors.blueAccent.withValues(alpha:0.08) : Colors.black.withValues(alpha:0.02),
               blurRadius: isHovered ? 30 : 15,
               offset: const Offset(0, 10),
             )

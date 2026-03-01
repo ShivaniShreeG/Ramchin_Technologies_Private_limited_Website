@@ -206,7 +206,7 @@ class _ServiceCardState extends State<ServiceCard> {
                 BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
                   child: Container(
-                    color: Colors.black.withOpacity(0.55),
+                    color: Colors.black.withValues(alpha:0.55),
                   ),
                 ),
 

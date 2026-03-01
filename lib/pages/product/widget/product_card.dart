@@ -67,7 +67,7 @@ class ProductCard extends StatelessWidget {
                 style: TextButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   foregroundColor: Colors.redAccent,
-                  overlayColor: Colors.redAccent.withOpacity(0.1),
+                  overlayColor: Colors.redAccent.withValues(alpha:0.1),
                 ),
                 onPressed: () {
                   Navigator.push(

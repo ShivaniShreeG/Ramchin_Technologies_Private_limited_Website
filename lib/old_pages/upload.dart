@@ -56,7 +56,7 @@ class _UploadPageState extends State<UploadPage> {
         fileName: fileName!,
         category: safeCategory,  // ✅ sanitized
       );
-
+      if(!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Upload successful')),
       );

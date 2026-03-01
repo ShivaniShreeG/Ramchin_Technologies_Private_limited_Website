@@ -121,14 +121,14 @@ class MemberSection extends StatelessWidget {
       child: InkWell(
         onTap: () => _openPdf(member.pdfPath),
         borderRadius: BorderRadius.circular(24),
-        hoverColor: Colors.blueAccent.withOpacity(0.04),
+        hoverColor: Colors.blueAccent.withValues(alpha: 0.04),
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF0F172A).withOpacity(0.06),
+                color: const Color(0xFF0F172A).withValues(alpha: 0.06),
                 blurRadius: 30,
                 offset: const Offset(0, 15),
               ),
@@ -146,7 +146,7 @@ class MemberSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.blueAccent.shade100.withOpacity(0.1),
+                          Colors.blueAccent.shade100.withValues(alpha: 0.1),
                           Colors.white
                         ],
                         begin: Alignment.topCenter,

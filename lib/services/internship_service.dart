@@ -249,8 +249,7 @@ class InternshipService {
     final response = await http.get(
       Uri.parse('${Utils.baseUrl}/internship/getAll'),
     );
-    print('get body');
-    print(response.body);
+
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {

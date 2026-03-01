@@ -175,9 +175,9 @@ class Footer extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                color: _accent.withOpacity(0.05),
+                color: _accent.withValues(alpha:0.05),
                 borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: _accent.withOpacity(0.2)),
+                border: Border.all(color: _accent.withValues(alpha:0.2)),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -187,7 +187,7 @@ class Footer extends StatelessWidget {
                     style: TextStyle(color: _accent, fontSize: 13, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(width: 6),
-                  Icon(Icons.copy_rounded, color: _accent.withOpacity(0.5), size: 14),
+                  Icon(Icons.copy_rounded, color: _accent.withValues(alpha:0.5), size: 14),
                 ],
               ),
             ),
@@ -210,9 +210,9 @@ class Footer extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.03), // Subtle glass effect
+            color: Colors.white.withValues(alpha:0.03), // Subtle glass effect
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.white.withOpacity(0.08), width: 1),
+            border: Border.all(color: Colors.white.withValues(alpha:0.08), width: 1),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
@@ -223,7 +223,7 @@ class Footer extends StatelessWidget {
                   // 1. Left Accent Bar (Indicator of Action)
                   Container(
                     width: 4,
-                    color: _accent.withOpacity(0.6),
+                    color: _accent.withValues(alpha:0.6),
                   ),
 
                   // 2. Main Content Area
@@ -236,7 +236,7 @@ class Footer extends StatelessWidget {
                           Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: _accent.withOpacity(0.08),
+                              color: _accent.withValues(alpha:0.08),
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
@@ -462,7 +462,7 @@ class _SocialIconState extends State<_SocialIcon> {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: _isHovered ? brandColor : Colors.white.withOpacity(0.03),
+            color: _isHovered ? brandColor : Colors.white.withValues(alpha:0.03),
             shape: BoxShape.circle,
             border: Border.all(
               color: _isHovered ? brandColor : Colors.white10,
@@ -471,7 +471,7 @@ class _SocialIconState extends State<_SocialIcon> {
             boxShadow: _isHovered
                 ? [
               BoxShadow(
-                  color: brandColor.withOpacity(0.2),
+                  color: brandColor.withValues(alpha:0.2),
                   blurRadius: 10,
                   spreadRadius: 1
               )

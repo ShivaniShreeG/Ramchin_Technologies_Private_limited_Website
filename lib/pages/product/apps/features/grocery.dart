@@ -395,7 +395,7 @@ class RoleContainer extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      FontAwesomeIcons.shoppingBasket,
+                      FontAwesomeIcons.basketShopping,
                       color: const Color(0xFF1E3C72),
                       size: 30,
                     ),

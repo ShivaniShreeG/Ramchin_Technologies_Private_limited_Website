@@ -38,7 +38,7 @@ class OurGoalsSection extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
-            color: Colors.blueAccent.withOpacity(0.1),
+            color: Colors.blueAccent.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(100),
           ),
           child: const Text(
@@ -105,15 +105,15 @@ class _GoalCardState extends State<_GoalCard> {
           // 👇 Border now matches the theme of the specific goal
           border: Border.all(
             color: isHovered
-                ? activeColor.withOpacity(0.5)
-                : activeColor.withOpacity(0.1), // Subtle border when not hovered
+                ? activeColor.withValues(alpha: 0.5)
+                : activeColor.withValues(alpha: 0.1), // Subtle border when not hovered
             width: 2,
           ),
           boxShadow: [
             BoxShadow(
               color: isHovered
-                  ? activeColor.withOpacity(0.12)
-                  : Colors.black.withOpacity(0.03),
+                  ? activeColor.withValues(alpha:0.12)
+                  : Colors.black.withValues(alpha:0.03),
               blurRadius: isHovered ? 40 : 20,
               offset: isHovered ? const Offset(0, 15) : const Offset(0, 5),
             ),
@@ -208,7 +208,7 @@ class _GoalCardState extends State<_GoalCard> {
                               : [const Color(0xFF2563EB), const Color(0xFF60A5FA)]
                       ),
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [if (isCompleted) BoxShadow(color: Colors.green.withOpacity(0.4), blurRadius: 10)],
+                      boxShadow: [if (isCompleted) BoxShadow(color: Colors.green.withValues(alpha:0.4), blurRadius: 10)],
                     ),
                   ),
                   AnimatedPositioned(

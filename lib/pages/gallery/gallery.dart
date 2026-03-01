@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import '../../services/Gallery_service.dart';
+import '../../services/gallery_service.dart';
 
 class GalleryItem {
   final String imagePath; // Asset path or Base64 string
@@ -234,6 +234,7 @@ class _RamchinTechPhotoGalleryState extends State<RamchinTechPhotoGallery> {
                 ),
                 itemBuilder: (context, index) {
                   return _HoverCard(
+                    key: ValueKey('${photos[index].imagePath}-$index'),
                     photo: photos[index],
                     onTap: () => _openFullScreen(context, index),
                   );
@@ -257,8 +258,11 @@ class _HoverCard extends StatefulWidget {
   final GalleryItem photo;
   final VoidCallback onTap;
 
-  const _HoverCard({Key? key, required this.photo, required this.onTap})
-      : super(key: key);
+  const _HoverCard({
+    super.key,
+    required this.photo,
+    required this.onTap,
+  });
 
   @override
   State<_HoverCard> createState() => _HoverCardState();
@@ -324,8 +328,11 @@ class _HoverCardState extends State<_HoverCard>
                   fit: BoxFit.cover,
                   gaplessPlayback: true,
                   cacheWidth: 400,
-                  errorBuilder: (_, __, ___) =>
-                  const Center(child: Icon(Icons.broken_image)),
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Center(
+                      child: Icon(Icons.broken_image),
+                    );
+                  },
                 )
                     : const Center(child: Icon(Icons.broken_image))),
               ),
@@ -333,7 +340,7 @@ class _HoverCardState extends State<_HoverCard>
                 opacity: _isHovered ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 300),
                 child: Container(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withValues(alpha:0.5),
                   alignment: Alignment.center,
                   child: Text(
                     widget.photo.caption,

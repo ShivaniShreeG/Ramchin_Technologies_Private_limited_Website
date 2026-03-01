@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../widgets/Admin.dart';
 
 class ResponsiveAppBar extends StatefulWidget implements PreferredSizeWidget {
   final int selectedIndex;
@@ -34,8 +33,6 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
     "Internship", // 4
     "Gallery", // 5
     "Contact Us", // 6
-    "Admin", // 7
-    "Add Data", // 8
   ];
 
   @override
@@ -156,11 +153,6 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
                     ),
                   );
                 }
-                if (AdminLoginPage.isLoggedIn == false) {
-                  items.add(PopupMenuItem(value: 7, child: Text(_tabs[7])));
-                } else {
-                  items.add(PopupMenuItem(value: 8, child: Text(_tabs[8])));
-                }
                 return items;
               },
               icon: const Icon(Icons.menu, color: Colors.black87, size: 35),
@@ -222,16 +214,6 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
                   const PopupMenuItem(value: 5, child: Text("Gallery")),
                   const PopupMenuItem(value: 6, child: Text("Contact Us")),
                 ];
-
-                if (AdminLoginPage.isLoggedIn == false) {
-                  menuItem.add(
-                    const PopupMenuItem(value: 7, child: Text("Admin")),
-                  );
-                } else {
-                  menuItem.add(
-                    const PopupMenuItem(value: 8, child: Text("Add Data")),
-                  );
-                }
                 return menuItem;
               },
               child: const Padding(
@@ -273,35 +255,11 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
               indicatorColor: _isOuterMenu ? Colors.transparent : Colors.blue,
               labelColor: _isOuterMenu ? Colors.black87 : Colors.blue,
               unselectedLabelColor: Colors.black87,
-              tabs: _tabs.sublist(0, 7).map((t) => Tab(text: t)).toList(),
+              tabs: _tabs.sublist(0, 6).map((t) => Tab(text: t)).toList(),
               onTap: (index) {
                 setState(() => _isOuterMenu = false);
                 widget.onTabSelected(index);
               },
-            ),
-            PopupMenuButton<int>(
-              onSelected: (value) {
-                setState(() => _isOuterMenu = true);
-                _handleMenuSelection(value);
-              },
-              itemBuilder: (context) {
-                final List<PopupMenuEntry<int>> menuItems = [
-                ];
-                if (AdminLoginPage.isLoggedIn == false) {
-                  menuItems.add(
-                    const PopupMenuItem(value: 7, child: Text("Admin")),
-                  );
-                } else {
-                  menuItems.add(
-                    const PopupMenuItem(value: 8, child: Text("Add Data")),
-                  );
-                }
-                return menuItems;
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: Icon(Icons.more_vert, color: Colors.black87),
-              ),
             ),
           ],
         ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class WhyChooseRamchinSection extends StatelessWidget {
   const WhyChooseRamchinSection({super.key});
 
-  static const _primary = Color(0xFF183E70);
   static const _textDark = Color(0xFF032365);
   static const _textMuted = Color(0xFF4B5563);
   static const _border = Color(0xFFE5E7EB);
