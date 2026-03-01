@@ -384,7 +384,7 @@ class _TechStackGridState extends State<TechStackGrid>
 
   final List<Map<String, String>> techStack = [
     {"icon": "assets/react1.png", "name": "React", "desc": "Frontend"},
-    {"icon": "assets/flutter1.png", "name": "Flutter", "desc": "Mobile"},
+    {"icon": "assets/flutter.png", "name": "Flutter", "desc": "Mobile"},
     {"icon": "assets/node1.png", "name": "Node.js", "desc": "Backend"},
     {"icon": "assets/mysql21.png", "name": "MySQL", "desc": "Database"},
     {"icon": "assets/mong.png", "name": "MongoDB", "desc": "Database"},
