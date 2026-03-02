@@ -32,7 +32,6 @@ class RamchinTechPhotoGallery extends StatefulWidget {
 class _RamchinTechPhotoGalleryState extends State<RamchinTechPhotoGallery> {
   List<GalleryItem> photos = [];
 
-  // Local asset images
   final List<GalleryItem> _localPhotos = [
     GalleryItem('assets/compress/DSC_2507-min.jpeg', 'Internship Training'),
     GalleryItem('assets/compress/DSC_2513-min.jpeg', 'Internship Training'),

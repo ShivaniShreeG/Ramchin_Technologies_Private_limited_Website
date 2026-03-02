@@ -147,27 +147,27 @@ class ProductHeaderSection extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => const UploadPage(),
-              //       ),
-              //     );
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     padding: const EdgeInsets.symmetric(
-              //       horizontal: 40,
-              //       vertical: 15,
-              //     ),
-              //     backgroundColor: Colors.blue,
-              //   ),
-              //   child: const Text(
-              //     "Go to Next Page",
-              //     style: TextStyle(fontSize: 18),
-              //   ),
-              // ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const UploadPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 15,
+                  ),
+                  backgroundColor: Colors.blue,
+                ),
+                child: const Text(
+                  "Go to Next Page",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
 
             ],
           ),

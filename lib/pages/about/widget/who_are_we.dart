@@ -101,7 +101,7 @@ class WhoWeAreSection extends StatelessWidget {
             color: Colors.blue.shade50,
             borderRadius: BorderRadius.circular(24),
             image: const DecorationImage(
-              image: NetworkImage("https://www.ramchintech.com/companyweb/About_Us/1772429468760-472177386.jpg"), // Replace with your actual team/office image
+              image: NetworkImage("https://www.ramchintech.com/companyweb/About_Us/1772432778841-298982965.webp"), // Replace with your actual team/office image
               fit: BoxFit.cover,
             ),
           ),
