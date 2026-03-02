@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import '../../services/gallery_service.dart';
 
 class GalleryItem {
   final String imagePath; // Asset path or Base64 string
@@ -31,9 +30,7 @@ class RamchinTechPhotoGallery extends StatefulWidget {
 }
 
 class _RamchinTechPhotoGalleryState extends State<RamchinTechPhotoGallery> {
-  final GalleryService _galleryService = GalleryService();
   List<GalleryItem> photos = [];
-  bool _isLoadingBackend = true;
 
   // Local asset images
   final List<GalleryItem> _localPhotos = [
@@ -113,37 +110,10 @@ class _RamchinTechPhotoGalleryState extends State<RamchinTechPhotoGallery> {
   void initState() {
     super.initState();
     photos = List.from(_localPhotos); // show local assets first
-    _fetchBackendImages(); // then fetch backend images
   }
 
-  Future<void> _fetchBackendImages() async {
-    try {
-      debugPrint("📡 Fetching images from backend...");
-      final backendImages = await _galleryService.getAllImages();
-
-      final backendPhotos = backendImages.map<GalleryItem>((item) {
-        return GalleryItem(
-          item['image'] ?? '',
-          item['description'] ?? '',
-          isAsset: false,
-        );
-      }).toList();
-
-      if (mounted) {
-        setState(() {
-          photos.addAll(backendPhotos);
-          _isLoadingBackend = false;
-        });
-        debugPrint("✅ Loaded ${backendPhotos.length} images from backend");
-      }
-    } catch (e) {
-      debugPrint("❌ Error fetching backend images: $e");
-      if (mounted) setState(() => _isLoadingBackend = false);
-    }
-  }
 
   void _openFullScreen(BuildContext context, int index) {
-    debugPrint("🔍 Opening full screen for: ${photos[index].caption}");
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -241,11 +211,6 @@ class _RamchinTechPhotoGalleryState extends State<RamchinTechPhotoGallery> {
                 },
               ),
             ),
-            if (_isLoadingBackend)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: CircularProgressIndicator(),
-              ),
             const SizedBox(height: 40),
           ],
         ),

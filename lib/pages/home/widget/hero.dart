@@ -59,7 +59,7 @@ class HeroSection extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         image: const DecorationImage(
-          image: NetworkImage("https://www.ramchintech.com/companyweb/Home_Page/Website_Header/1772100892670-518957536.png"),
+          image: NetworkImage("https://www.ramchintech.com/companyweb/Home_Page/Website_Header/1772428676006-524101477.jpg"),
           fit: BoxFit.cover,
         ),
         borderRadius: const BorderRadius.only(

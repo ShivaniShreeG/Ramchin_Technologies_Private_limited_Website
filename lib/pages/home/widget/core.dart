@@ -95,32 +95,32 @@ class CoreServicesSection extends StatelessWidget {
                 childAspectRatio: width < 600 ? 1.1 : 1.35,
                 children: const [
                   ServiceCard(
-                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772008886746-225182865.png",
+                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772429073149-705988175.jpg",
                     title: "Software Development",
                     description: "Custom software solutions tailored to your business, with end-to-end support from design to deployment and maintenance.",
                   ),
                   ServiceCard(
-                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772008898321-933559156.png",
+                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772429076938-210529525.jpg",
                     title: "Data Analysis & Science",
                     description: "Transforming raw data into actionable insights through advanced analytics, predictive modeling, and clear data visualization.",
                   ),
                   ServiceCard(
-                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772008914837-632917386.png",
+                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772429080992-239844653.jpg",
                     title: "Software Testing",
                     description: "Ensuring your software works flawlessly by validating core features with efficient, tailored testing solutions.",
                   ),
                   ServiceCard(
-                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772008919567-702409432.png",
+                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772429087704-137875644.jpg",
                     title: "IT Advisory Services",
                     description: "Strategic, hands-on technology consulting to align your systems with business goals and industry trends.",
                   ),
                   ServiceCard(
-                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772008924649-14859731.png",
+                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772429092243-888878932.jpg",
                     title: "Data Warehousing",
                     description: "Modern, scalable data warehousing solutions designed to fit your business needs.",
                   ),
                   ServiceCard(
-                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772008928744-865572385.png",
+                    imageUrl: "https://www.ramchintech.com/companyweb/Home_Page/Core_Section/1772429096078-133340409.jpg",
                     title: "Technology Support Services",
                     description: "High-quality support services delivered using modern tools and technologies.",
                   ),

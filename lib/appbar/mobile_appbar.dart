@@ -228,7 +228,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar>
 
     if (isDesktop) {
       _desktopController?.dispose();
-      _desktopController = _createController(7);
+      _desktopController = _createController(6);
       _syncControllersWithSelectedIndex();
 
       return Container(
