@@ -3,9 +3,9 @@ import '../old/course/pages/home_page.dart';
 import 'home/home_page.dart';
 import 'product/product_list.dart';
 import 'about/about_page.dart';
+import 'internship/internship.dart';
 import 'contact/contact_us.dart';
 import 'gallery/gallery.dart';
-import '../widgets/stacks/project_page_stack.dart';
 
 class Page extends StatefulWidget {
   final int selectedIndex;
@@ -46,7 +46,7 @@ class _PageState extends State<Page> {
           HomePage(selectedIndex: widget.selectedIndex, onTabSelected: widget.onTabSelected,),
           ProductListPage(onTabSelected: widget.onTabSelected,),
           AboutUsPage(),
-          ProjectPageStack(),
+          InternshipPage(),
           InternHomePage(),
           RamchinTechPhotoGallery(),
           ContactPage(),
