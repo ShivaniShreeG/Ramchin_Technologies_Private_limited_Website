@@ -13,7 +13,7 @@ class MyWebApp extends StatelessWidget {
     return MaterialApp(
       title: 'Ramchin Technologies Pvt Ltd',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
+      home: const Home(),
       debugShowCheckedModeBanner: false,
     );
   }

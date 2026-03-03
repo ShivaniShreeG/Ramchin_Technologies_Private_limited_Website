@@ -157,7 +157,7 @@ class _ProductListPageState extends State<ProductListPage> {
               ProductHeaderSection(
                 isMobile: isMobile,
                 onScrollToApps: _scrollToApps,
-                onRequestCustomization: () => widget.onTabSelected(6),
+                onRequestCustomization: () => widget.onTabSelected(5),
               ),
 
               const SizedBox(height: 40),

@@ -21,15 +21,15 @@ class GalleryItem {
   }
 }
 
-class RamchinTechPhotoGallery extends StatefulWidget {
-  const RamchinTechPhotoGallery({super.key});
+class GalleryPage extends StatefulWidget {
+  const GalleryPage({super.key});
 
   @override
-  State<RamchinTechPhotoGallery> createState() =>
-      _RamchinTechPhotoGalleryState();
+  State<GalleryPage> createState() =>
+      _GalleryPageState();
 }
 
-class _RamchinTechPhotoGalleryState extends State<RamchinTechPhotoGallery> {
+class _GalleryPageState extends State<GalleryPage> {
   List<GalleryItem> photos = [];
 
   final List<GalleryItem> _localPhotos = [

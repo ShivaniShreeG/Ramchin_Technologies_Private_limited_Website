@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: HeroSection(
                   onPrimaryTap: () => widget.onTabSelected(1), // Services
-                  onSecondaryTap: () => widget.onTabSelected(6), // Contact
+                  onSecondaryTap: () => widget.onTabSelected(5), // Contact
                 ),
               ),
             ),
