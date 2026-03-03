@@ -6,8 +6,6 @@ class InternshipHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const int visionNum = 2;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28),
       child: Column(
@@ -60,7 +58,7 @@ class InternshipHeader extends StatelessWidget {
             style: TextStyle(fontSize: 18, color: Colors.black54, height: 1.4),
           ),
           SizedBox(height: 6),
-          VisionCarousel(visionNum: visionNum),
+          VisionCarousel(),
         ],
       ),
     );
@@ -69,8 +67,7 @@ class InternshipHeader extends StatelessWidget {
 
 
 class VisionCarousel extends StatefulWidget {
-  final int visionNum;
-  const VisionCarousel({super.key, required this.visionNum});
+  const VisionCarousel({super.key});
 
   @override
   State<VisionCarousel> createState() => _VisionCarouselState();
@@ -88,57 +85,37 @@ class _VisionCarouselState extends State<VisionCarousel> {
   void initState() {
     super.initState();
 
-    _items = widget.visionNum == 0
-        ? [
-      {
-        "title": "VISION",
-        "desc":
-        "To empower businesses worldwide by providing innovative, scalable, and efficient software solutions that drive transformation, enhance productivity, and achieve long-lasting success. We strive to be a trusted partner, nurturing creativity and excellence while making a positive impact in the tech ecosystem.",
-        "image": "assets/compress/DSC_2507-min.webp",
-      },
-      {
-        "title": "MISSION",
-        "desc":
-        "Our mission is to deliver tailored software solutions that empower businesses to thrive in a rapidly evolving digital world. By fostering innovation, prioritizing quality, and collaborating closely with our clients, we aim to transform ideas into powerful tools, ensuring efficiency, scalability, and measurable success. We are committed to building a culture of excellence, growth, and trust, driving progress for both our clients and our team.",
-        "image": "assets/compress/DSC_2566-min.webp",
-      },
-      {
-        "title": "OUR EXPERTISE",
-        "desc":
-        "At Ramchin Technologies Private Limited, we provide a comprehensive suite of Software Development, Data Analysis, Software Testing, and Consultancy Services designed to help businesses achieve excellence and efficiency. With a team of seasoned experts, we deliver tailored, reliable, and cutting-edge solutions.",
-        "image": "assets/compress/DSC_2543-min.webp",
-      },
-    ]
-        : [
+    _items =
+    [
       {
         "title": "E-Commerce Solutions",
         "desc":
         "Custom online stores designed for performance, security, and conversion.",
-        "image": "assets/compress/DSC_2561-min.jpeg",
+        "image": "https://www.ramchintech.com/companyweb/Gallery/1772518089237-820830305.jpeg",
       },
       {
         "title": "Web Application",
         "desc": "Robust, scalable, and secure web applications.",
-        "image": "assets/compress/DSC_2547-min.jpeg",
+        "image": "https://www.ramchintech.com/companyweb/Gallery/1772518094408-218587385.jpeg",
       },
       {
         "title": "Mobile Solutions",
         "desc": "Cross-platform iOS and Android apps with seamless UX.",
-        "image": "assets/compress/75-min.jpeg",
+        "image":"https://www.ramchintech.com/companyweb/Gallery/1772518076092-166858587.jpeg"
       },
       {
         "title": "Enterprise Software",
         "desc":
         "Comprehensive solutions for large-scale business operations.",
-        "image": "assets/compress/DSC_2578-min.jpeg",
+        "image":"https://www.ramchintech.com/companyweb/Gallery/1772517001500-207167263.jpeg",
       },
     ];
 
     // Precache first two images for smoother start
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      precacheImage(AssetImage(_items[0]["image"]!), context);
+      precacheImage(NetworkImage(_items[0]["image"]!), context);
       if (_items.length > 1) {
-        precacheImage(AssetImage(_items[1]["image"]!), context);
+        precacheImage(NetworkImage(_items[1]["image"]!), context);
       }
     });
 
@@ -161,10 +138,10 @@ class _VisionCarouselState extends State<VisionCarousel> {
 
   void _cacheAdjacentImages() {
     if (_currentIndex < _items.length - 1) {
-      precacheImage(AssetImage(_items[_currentIndex + 1]["image"]!), context);
+      precacheImage(NetworkImage(_items[_currentIndex + 1]["image"]!), context);
     }
     if (_currentIndex > 0) {
-      precacheImage(AssetImage(_items[_currentIndex - 1]["image"]!), context);
+      precacheImage(NetworkImage(_items[_currentIndex - 1]["image"]!), context);
     }
   }
 
@@ -179,7 +156,7 @@ class _VisionCarouselState extends State<VisionCarousel> {
     return RepaintBoundary(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: Image.asset(
+        child: Image.network(
           imagePath,
           fit: BoxFit.cover,
           gaplessPlayback: true, // avoids flicker when images change

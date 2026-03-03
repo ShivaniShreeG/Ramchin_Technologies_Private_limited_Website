@@ -19,24 +19,31 @@ class ProjectPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+      padding: EdgeInsets.symmetric(
+        vertical: Responsive.isMobile(context) ? 24 : 40,
+        horizontal: Responsive.isMobile(context) ? 16 : 24,
+      ),
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
           // Header Section
           Column(
             children: [
-              const Text(
+               Text(
                 "Real-World Industry Experience",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 44,
+                  fontSize: Responsive.isMobile(context)
+                      ? 26
+                      : Responsive.isTablet(context)
+                      ? 34
+                      : 44,
                   fontWeight: FontWeight.w800,
                   color: AppTheme.darkSlate,
                   letterSpacing: -1,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
               const MaxWidthBox(
                 maxWidth: 700,
                 child: Text(
@@ -51,14 +58,12 @@ class ProjectPreview extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 80),
-
+          SizedBox(height: Responsive.isMobile(context) ? 32 : 60),
           // Grid Section
           const MemberCardGrid(),
 
-          const SizedBox(height: 80),
+          SizedBox(height: Responsive.isMobile(context) ? 32 : 60),
 
-          // Action Button - Modern Ghost/Solid Hybrid
           ElevatedButton(
             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ProjectPage())),
             style: ElevatedButton.styleFrom(
@@ -167,13 +172,13 @@ class _MemberCardGridState extends State<MemberCardGrid> with TickerProviderStat
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            childAspectRatio: constraints.maxWidth < 600
-                ? 1.0   // mobile → compact
-                : constraints.maxWidth < 1024
-                ? 0.9 // tablet
-                : 0.8, // desktop
-            crossAxisSpacing: 24,
-            mainAxisSpacing: 24,
+            mainAxisExtent: Responsive.isMobile(context)
+                ? 240   // mobile fixed height
+                : Responsive.isTablet(context)
+                ? 280
+                : 320,
+            crossAxisSpacing: Responsive.isMobile(context) ? 16 : 24,
+            mainAxisSpacing: Responsive.isMobile(context) ? 16 : 24,
           ),
           itemCount: members.length,
           itemBuilder: (context, index) {
@@ -220,7 +225,7 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
 
       // 🔻 REDUCED CARD PADDING
       padding: EdgeInsets.all(
-        isMobile ? 16 : isTablet ? 22 : 32,
+        isMobile ? 14 : isTablet ? 20 : 26,
       ),
 
       decoration: BoxDecoration(
@@ -235,7 +240,7 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
         children: [
           // 🔻 SMALLER AVATAR
           CircleAvatar(
-            radius: isMobile ? 30 : isTablet ? 38 : 45,
+            radius: isMobile ? 26 : isTablet ? 34 : 40,
             backgroundImage: NetworkImage(widget.member.image),
           ),
 
@@ -253,19 +258,18 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
 
           SizedBox(height: isMobile ? 6 : 12),
 
-          Expanded(
-            child: Text(
-              widget.member.project,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: isMobile ? 12.5 : 14,
-                height: 1.4,
-                color: AppTheme.mediumSlate,
-              ),
+          Text(
+            widget.member.project,
+            textAlign: TextAlign.center,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: isMobile ? 12.5 : 14,
+              height: 1.4,
+              color: AppTheme.mediumSlate,
             ),
           ),
 
-          // 🔻 REDUCED BUTTON GAP
           SizedBox(height: isMobile ? 8 : 14),
 
           if (widget.member.link.isNotEmpty)
@@ -279,7 +283,6 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
   }
 }
 
-// Helper Widget for Layout
 class MaxWidthBox extends StatelessWidget {
   final double maxWidth;
   final Widget child;

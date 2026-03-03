@@ -1,24 +1,12 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
 class GalleryItem {
-  final String imagePath; // Asset path or Base64 string
+  final String imageUrl;
   final String caption;
-  final bool isAsset;
-  Uint8List? decodedBytes; // cache for base64
 
-  GalleryItem(this.imagePath, this.caption, {this.isAsset = true}) {
-    if (!isAsset) {
-      try {
-        decodedBytes = base64Decode(imagePath);
-      } catch (e) {
-        debugPrint("❌ Base64 decode failed for: $caption, error: $e");
-      }
-    }
-  }
+  GalleryItem(this.imageUrl, this.caption);
 }
 
 class GalleryPage extends StatefulWidget {
@@ -32,75 +20,103 @@ class GalleryPage extends StatefulWidget {
 class _GalleryPageState extends State<GalleryPage> {
   List<GalleryItem> photos = [];
 
-  final List<GalleryItem> _localPhotos = [
-    GalleryItem('assets/compress/DSC_2507-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2513-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2521-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2535-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2538-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2543-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2547-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2561-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2566-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2578-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2584-min.jpeg', 'Internship Training'),
-    GalleryItem('assets/compress/DSC_2593.jpeg', 'Internship Training'),
+  final List<GalleryItem> _networkPhotos = [
     GalleryItem(
-      'assets/compress/2-min.jpeg',
+        "https://www.ramchintech.com/companyweb/Gallery/1772518126818-810057111.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518120903-636792864.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518116813-726226242.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518113013-11129652.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518109027-377393017.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518102869-665074320.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518098884-746405697.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518094408-218587385.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518089237-820830305.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518081013-449278035.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518076092-166858587.jpeg",
+        'Internship Training'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772518071379-691638352.jpeg",
+        'Internship Training'),
+    GalleryItem(
+      "https://www.ramchintech.com/companyweb/Gallery/1772517052153-715550535.jpeg",
       'Chief Guest being welcomed at the opening ceremony',
     ),
     GalleryItem(
-      'assets/compress/5-min.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772517048054-14530304.jpeg",
       'Reception of Guests at the Opening Ceremony',
     ),
     GalleryItem(
-      'assets/compress/9-min.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772517040794-345508224.jpeg",
       'The Chief Guest Opening the Ramchin Technologies (P) Ltd.',
     ),
     GalleryItem(
-      'assets/compress/14-min.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772517037121-225041983.jpeg",
       'Honouring Mr.V.Vairavaraj, Director, Farmer\'s Insurance, USA',
     ),
-    GalleryItem('assets/compress/16-min.jpeg', 'Honouring the Guest'),
-    GalleryItem('assets/compress/18-min.jpeg', 'Honouring the Guest'),
     GalleryItem(
-      'assets/compress/37-min.jpeg',
+        "https://www.ramchintech.com/companyweb/Gallery/1772517033624-727020189.jpeg",
+        'Honouring the Guest'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1772517021635-325763786.jpeg",
+        'Honouring the Guest'),
+    GalleryItem(
+      "https://www.ramchintech.com/companyweb/Gallery/1772517017583-801637198.jpeg",
       'Briefing the objectives of the Company',
     ),
     GalleryItem(
-      'assets/compress/69-min_11zon.png',
+      "https://www.ramchintech.com/companyweb/Gallery/1772517011914-879692453.png",
       'Internship batch from B.Sc (Computer Science)',
     ),
     GalleryItem(
-      'assets/compress/70-min_11zon.png',
+      "https://www.ramchintech.com/companyweb/Gallery/1772517007307-710182824.png",
       'Internship batch from B.E (Computer Science & Engg)',
     ),
     GalleryItem(
-      'assets/compress/75-min.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772517001500-207167263.jpeg",
       'Students actively engaged in their Internship Program',
     ),
     GalleryItem(
-      'assets/compress/77-min.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772516997539-465332409.jpeg",
       'Students actively engaged in their Internship Program',
     ),
     GalleryItem(
-      'assets/compress/79-min.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772516994078-177940857.jpeg",
       'Students actively engaged in their Internship Program',
     ),
     GalleryItem(
-      'assets/compress/g01.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772516656214-804792678.jpeg",
       'The Principal of GAC addressing Students during Campus Interview',
     ),
     GalleryItem(
-      'assets/compress/g02.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772516661218-309601420.jpeg",
       'Screening the Students by conducting a written test',
     ),
     GalleryItem(
-      'assets/compress/g03.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772516664723-803445675.jpeg",
       'The Students are being screened through Personal Interview',
     ),
     GalleryItem(
-      'assets/compress/g04.jpeg',
+      "https://www.ramchintech.com/companyweb/Gallery/1772516668026-165700842.jpeg",
       'The Director of Ramchin Tech addressing candidates during Interview',
     ),
   ];
@@ -108,7 +124,7 @@ class _GalleryPageState extends State<GalleryPage> {
   @override
   void initState() {
     super.initState();
-    photos = List.from(_localPhotos); // show local assets first
+    photos = List.from(_networkPhotos);
   }
 
 
@@ -125,14 +141,7 @@ class _GalleryPageState extends State<GalleryPage> {
                 builder: (context, idx) {
                   final img = photos[idx];
                   return PhotoViewGalleryPageOptions(
-                    imageProvider: img.isAsset
-                        ? AssetImage(img.imagePath)
-                        : (img.decodedBytes != null
-                        ? MemoryImage(img.decodedBytes!)
-                        : const AssetImage(
-                      "assets/compress/DSC_2507-min.jpeg",
-                    )
-                    as ImageProvider),
+                    imageProvider: NetworkImage(img.imageUrl),
                     minScale: PhotoViewComputedScale.contained,
                     maxScale: PhotoViewComputedScale.covered * 2,
                   );
@@ -203,8 +212,7 @@ class _GalleryPageState extends State<GalleryPage> {
                 ),
                 itemBuilder: (context, index) {
                   return _HoverCard(
-                    key: ValueKey('${photos[index].imagePath}-$index'),
-                    photo: photos[index],
+                    key: ValueKey('${photos[index].imageUrl}-$index'),                    photo: photos[index],
                     onTap: () => _openFullScreen(context, index),
                   );
                 },
@@ -279,26 +287,23 @@ class _HoverCardState extends State<_HoverCard>
               SizedBox(
                 width: double.infinity,
                 height: double.infinity,
-                child: widget.photo.isAsset
-                    ? Image.asset(
-                  widget.photo.imagePath,
-                  fit: BoxFit.cover,
-                  gaplessPlayback: true,
-                  cacheWidth: 400, // lower res for smoother grid
-                )
-                    : (widget.photo.decodedBytes != null
-                    ? Image.memory(
-                  widget.photo.decodedBytes!,
+                child: Image.network(
+                  widget.photo.imageUrl,
                   fit: BoxFit.cover,
                   gaplessPlayback: true,
                   cacheWidth: 400,
+                  loadingBuilder: (context, child, progress) {
+                    if (progress == null) return child;
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                   errorBuilder: (context, error, stackTrace) {
                     return const Center(
                       child: Icon(Icons.broken_image),
                     );
                   },
-                )
-                    : const Center(child: Icon(Icons.broken_image))),
+                ),
               ),
               AnimatedOpacity(
                 opacity: _isHovered ? 1.0 : 0.0,
