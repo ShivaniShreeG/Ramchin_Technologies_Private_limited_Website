@@ -89,7 +89,7 @@ class _GalleryPageState extends State<GalleryPage> {
     ),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517007307-710182824.png",
-      'Internship batch from B.E (Computer Science & Engg)',
+      'Internship batch from B.E (Computer Science & Engineering)',
     ),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517001500-207167263.jpeg",
