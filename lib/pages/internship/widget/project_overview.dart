@@ -125,12 +125,12 @@ class _MemberCardGridState extends State<MemberCardGrid> with TickerProviderStat
       image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658164911-985279142.jpeg",
       name: "Balasubramanian M",
       project: "Full‑Stack Developer skilled in Flutter and backend APIs.",
-      link: "https://github.com/bala2006-m/school_attendance",
+      link: "https://github.com/bala2006-m/Attendance_app",
     ),
     MemberCardData(
       image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823819215-698840732.jpeg",
       name: "Rajagopika N",
-      project: "Full-Stack Developer focused on modern e-commerce UI and seamless shopping experiences.",
+      project: "Built a modern e-commerce website with seamless shopping.",
       link: "http://tech-gadgets-store.s3-website.eu-north-1.amazonaws.com",
     ),
   ];
@@ -165,18 +165,26 @@ class _MemberCardGridState extends State<MemberCardGrid> with TickerProviderStat
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        int crossAxisCount = constraints.maxWidth >= 1100 ? 4 : constraints.maxWidth >= 700 ? 2 : 1;
+        double width = constraints.maxWidth;
 
+        int crossAxisCount;
+        if (width >= 1100) {
+          crossAxisCount = 4; // Desktop
+        } else if (width >= 600) {
+          crossAxisCount = 2; // Tablet
+        } else {
+          crossAxisCount = 1; // Mobile
+        }
         return GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             mainAxisExtent: Responsive.isMobile(context)
-                ? 240   // mobile fixed height
+                ? 210
                 : Responsive.isTablet(context)
-                ? 280
-                : 320,
+                ? 240
+                : 270,
             crossAxisSpacing: Responsive.isMobile(context) ? 16 : 24,
             mainAxisSpacing: Responsive.isMobile(context) ? 16 : 24,
           ),
@@ -225,7 +233,7 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
 
       // 🔻 REDUCED CARD PADDING
       padding: EdgeInsets.all(
-        isMobile ? 14 : isTablet ? 20 : 26,
+        isMobile ? 10 : isTablet ? 14 : 18,
       ),
 
       decoration: BoxDecoration(
@@ -244,7 +252,7 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
             backgroundImage: NetworkImage(widget.member.image),
           ),
 
-          SizedBox(height: isMobile ? 12 : isTablet ? 16 : 24),
+          SizedBox(height: isMobile ? 8 : isTablet ? 10 : 14),
 
           Text(
             widget.member.name,
@@ -256,7 +264,7 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
             ),
           ),
 
-          SizedBox(height: isMobile ? 6 : 12),
+          SizedBox(height: isMobile ? 4 : 8),
 
           Text(
             widget.member.project,
@@ -270,7 +278,7 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
             ),
           ),
 
-          SizedBox(height: isMobile ? 8 : 14),
+          SizedBox(height: isMobile ? 6 : 10),
 
           if (widget.member.link.isNotEmpty)
             TextButton(

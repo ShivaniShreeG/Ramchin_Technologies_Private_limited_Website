@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'projects.dart';
-import 'tech_stack.dart';
 
 class ProjectPage extends StatefulWidget {
   const ProjectPage({super.key});
@@ -57,8 +56,6 @@ class _ProjectPageState extends State<ProjectPage> {
                 InternshipHeader(),
                 SizedBox(height: 12),
                 MemberCardGrid(),
-                SizedBox(height: 12),
-                TechStackGrid(),
                 SizedBox(height: 24),
               ],
             ),

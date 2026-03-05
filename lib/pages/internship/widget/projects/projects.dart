@@ -2,21 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// MODEL
-class MemberCard {
-  final String image;
-  final String name;
-  final String project;
-  final String link;
-
-  MemberCard({
-    required this.image,
-    required this.name,
-    required this.project,
-    required this.link,
-  });
-}
-
 class MemberCardGrid extends StatefulWidget {
   const MemberCardGrid({super.key});
 
@@ -24,13 +9,7 @@ class MemberCardGrid extends StatefulWidget {
   State<MemberCardGrid> createState() => _MemberCardGridState();
 }
 
-class _MemberCardGridState extends State<MemberCardGrid>
-    with TickerProviderStateMixin {
-  late final List<AnimationController> _controllers;
-  late final List<Animation<Offset>> _slideAnimations;
-  late final List<Animation<double>> _fadeAnimations;
-  final Set<int> _animatedIndexes = {};
-
+class _MemberCardGridState extends State<MemberCardGrid> with TickerProviderStateMixin {
   final List<MemberCard> members = [
     MemberCard(
       image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658151141-548760048.jpeg",
@@ -39,9 +18,21 @@ class _MemberCardGridState extends State<MemberCardGrid>
       link: "https://shivanishreeg.github.io/HoverSale/",
     ),
     MemberCard(
+      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658155618-43958510.jpg",
+      name: "Parthiban R",
+      project: "Flutter Developer building cross‑platform apps with backend APIs.",
+      link: "https://github.com/parthiban3264/EsateKing",
+    ),
+    MemberCard(
+      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658164911-985279142.jpeg",
+      name: "Balasubramanian M",
+      project: "Full‑Stack Developer skilled in Flutter and backend APIs.",
+      link: "https://github.com/bala2006-m/Attendance_app",
+    ),
+    MemberCard(
       image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823819215-698840732.jpeg",
       name: "Rajagopika N",
-      project: "Flutter Developer focused on modern e-commerce UI and seamless shopping experiences.",
+      project: "Built a modern e-commerce website with seamless shopping.",
       link: "http://tech-gadgets-store.s3-website.eu-north-1.amazonaws.com",
     ),
     MemberCard(
@@ -87,18 +78,6 @@ class _MemberCardGridState extends State<MemberCardGrid>
       link: "http://bag-shop.s3-website.ap-south-1.amazonaws.com/",
     ),
     MemberCard(
-      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658155618-43958510.jpg",
-      name: "Parthiban R",
-      project: "Flutter Developer building cross‑platform apps with backend APIs.",
-      link: "",
-    ),
-    MemberCard(
-      image: "https://www.ramchintech.com/companyweb/Profile/Software_Developer/1771658164911-985279142.jpeg",
-      name: "Balasubramanian M",
-      project: "Aspiring Full‑Stack Developer skilled in Flutter and backend APIs.",
-      link: "",
-    ),
-    MemberCard(
       image: "https://www.ramchintech.com/companyweb/Profile/Interns/1771823809691-376160524.jpeg",
       name: "Murali K",
       project: "Developer focusing on scalable backend solutions and clean UI.",
@@ -117,6 +96,10 @@ class _MemberCardGridState extends State<MemberCardGrid>
       link: "https://ramchintech.com/video/esakkiammal.mp4",
     ),
   ];
+  late final List<Animation<Offset>> _slideAnimations;
+  late final List<Animation<double>> _fadeAnimations;
+  final Set<int> _animatedIndexes = {};
+  late final List<AnimationController> _controllers;
 
   @override
   void initState() {
@@ -148,6 +131,14 @@ class _MemberCardGridState extends State<MemberCardGrid>
         .toList();
   }
 
+  @override
+  void dispose() {
+    for (var c in _controllers) {
+      c.dispose();
+    }
+    super.dispose();
+  }
+
   void _triggerAnimation(int index) {
     if (!_animatedIndexes.contains(index)) {
       _animatedIndexes.add(index);
@@ -157,143 +148,34 @@ class _MemberCardGridState extends State<MemberCardGrid>
     }
   }
 
-  Future<void> _openLink(String url) async {
-    if (url.trim().isEmpty) return;
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
-
-  @override
-  void dispose() {
-    for (var c in _controllers) {
-      c.dispose();
-    }
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.sizeOf(context).width < 600;
-
     return LayoutBuilder(
       builder: (context, constraints) {
-        int crossAxisCount;
-        if (constraints.maxWidth >= 1100) {
-          crossAxisCount = 4;
-        } else if (constraints.maxWidth >= 800) {
-          crossAxisCount = 3;
-        } else if (constraints.maxWidth >= 600) {
-          crossAxisCount = 2;
-        } else {
-          crossAxisCount = 1;
-        }
+        int crossAxisCount = constraints.maxWidth >= 1100 ? 4 : (constraints.maxWidth >= 800 ? 3 : (constraints.maxWidth >= 600 ? 2 : 1));
 
         return GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 2),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            childAspectRatio: isMobile ? 0.85 : 0.96,
-            crossAxisSpacing: 14,
-            mainAxisSpacing: 12,
+            childAspectRatio: 0.90, // Adjusted for the new card height
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 25,
           ),
           itemCount: members.length,
           itemBuilder: (context, index) {
-            final member = members[index];
-
             return VisibilityDetector(
               key: Key('member_$index'),
               onVisibilityChanged: (info) {
-                if (info.visibleFraction > 0.25) {
-                  _triggerAnimation(index);
-                }
+                if (info.visibleFraction > 0.2) _triggerAnimation(index);
               },
               child: FadeTransition(
                 opacity: _fadeAnimations[index],
                 child: SlideTransition(
                   position: _slideAnimations[index],
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // circular photo with colored outline like screenshot
-                      Container(
-                        height: isMobile ? 130 : 140,
-                        width: isMobile ? 130 : 140,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xFFF9FAFB),
-                          border: Border.all(
-                            color: const Color(0xFFF97316), // orange ring
-                            width: 4,
-                          ),
-                        ),
-                        alignment: Alignment.center,
-                        child: CircleAvatar(
-                          radius: isMobile ? 56 : 60,
-                          backgroundColor: Colors.transparent,
-                          child: ClipOval(
-                            child: Image.network(
-                              member.image,
-                              width: isMobile ? 112 : 120,
-                              height: isMobile ? 112 : 120,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Icon(
-                                  Icons.person,
-                                  size: 50,
-                                  color: Colors.grey,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-
-                      // name (uppercased, bold, similar to screenshot)
-                      Text(
-                        member.name.toUpperCase(),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: isMobile ? 16 : 18,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1.1,
-                          color: const Color(0xFF111827),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      // description / project (2–3 lines, soft gray)
-                      Text(
-                        member.project,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 13,
-                          height: 1.5,
-                          color: Color(0xFF4B5563),
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-
-                      // bold link, no underline
-                      if (member.link.trim().isNotEmpty)
-                        InkWell(
-                          onTap: () => _openLink(member.link),
-                          child: Text(
-                            member.link,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF1D4ED8),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
+                  child: InteractiveMemberCard(member: members[index]),
                 ),
               ),
             );
@@ -302,4 +184,123 @@ class _MemberCardGridState extends State<MemberCardGrid>
       },
     );
   }
+}
+
+class InteractiveMemberCard extends StatefulWidget {
+  final MemberCard member;
+  const InteractiveMemberCard({super.key, required this.member});
+
+  @override
+  State<InteractiveMemberCard> createState() => _InteractiveMemberCardState();
+}
+
+class _InteractiveMemberCardState extends State<InteractiveMemberCard> {
+  bool isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+        transform: isHovered
+            ? Matrix4.translationValues(0, -10, 0)
+            : Matrix4.identity(),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: isHovered ? Colors.black.withValues(alpha:0.1) : Colors.black.withValues(alpha:0.05),
+              blurRadius: isHovered ? 30 : 20,
+              offset: const Offset(0, 10),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child:Column(
+          children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    width: 110,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFFF97316), Color(0xFFEC4899)],
+                      ),
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 52,
+                    backgroundColor: Colors.white,
+                    child: CircleAvatar(
+                      radius: 48,
+                      backgroundImage: NetworkImage(widget.member.image),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Text(
+                widget.member.name,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF1E293B),
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                height: 60,
+                child: Text(
+                  widget.member.project,
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 13,
+                    height: 1.5,
+                    color: Colors.grey.shade600,
+                  ),
+                ),
+              ),
+            if (widget.member.link.isNotEmpty)
+              TextButton(
+                onPressed: () => launchUrl(Uri.parse(widget.member.link)),
+                child: const Text("View Project"),
+              )
+            else
+                const Text(
+                  "Full Stack Developer",
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MemberCard {
+  final String image;
+  final String name;
+  final String project;
+  final String link;
+
+  MemberCard({
+    required this.image,
+    required this.name,
+    required this.project,
+    required this.link,
+  });
 }

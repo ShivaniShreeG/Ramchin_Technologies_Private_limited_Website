@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'widget/project_overview.dart';
+import 'widget/tech_stack.dart';
+import 'widget/footer.dart';
+import 'widget/course_available.dart';
 
 class InternshipPage extends StatefulWidget {
-  const InternshipPage({super.key});
+  const InternshipPage({
+    super.key,
+    required this.onTabSelected,
+  });
+
+  final void Function(int) onTabSelected;
 
   @override
   State<InternshipPage> createState() => _InternshipPageState();
@@ -42,13 +50,17 @@ class _InternshipPageState extends State<InternshipPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
           children:  [
+            Courses(),
             ProjectPreview(),
+            TechStack(),
+            InternshipFooter(
+              onContactTap: () => widget.onTabSelected(5),
+            ),
           ],
         ),
       ),

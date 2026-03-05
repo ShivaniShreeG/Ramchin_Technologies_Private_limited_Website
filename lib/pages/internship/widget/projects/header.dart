@@ -6,65 +6,118 @@ class InternshipHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 28),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              style: const TextStyle(
-                fontSize: 38,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-              children: [
-                const TextSpan(text: "Our "),
-                TextSpan(
-                  text: "Internship Projects",
-                  style: TextStyle(
-                    foreground: Paint()
-                      ..shader = const LinearGradient(
-                        colors: [
-                          Color(0xFF4F46E5),
-                          Color(0xFF9333EA),
-                          Color(0xFFEC4899),
+    final width = MediaQuery.sizeOf(context).width;
+    final bool isMobile = width < 600;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        // --- BACKGROUND DECORATION (The "Glow") ---
+        Positioned(
+          top: -50,
+          right: isMobile ? -20 : width * 0.1,
+          child: Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xFF4F46E5).withValues(alpha:0.08),
+            ),
+          ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: isMobile ? 40 : 60
+          ),
+          child: Column(
+            children: [
+              TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 800),
+                tween: Tween(begin: 0.8, end: 1.0),
+                builder: (context, value, child) => Transform.scale(
+                  scale: value,
+                  child: child,
+                ),
+                child: Column(
+                  children: [
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: isMobile ? 32 : 54,
+                          height: 1.1,
+                          fontWeight: FontWeight.w900,
+                          color: const Color(0xFF1E293B),
+                        ),
+                        children: [
+                          const TextSpan(text: "Our "),
+                          TextSpan(
+                            text: "Internship Projects",
+                            style: TextStyle(
+                              foreground: Paint()
+                                ..shader = const LinearGradient(
+                                  colors: [
+                                    Color(0xFF4F46E5),
+                                    Color(0xFF9333EA),
+                                    Color(0xFFEC4899),
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ).createShader(
+                                  const Rect.fromLTWH(0, 0, 400, 100),
+                                ),
+                            ),
+                          ),
                         ],
-                      ).createShader(
-                        const Rect.fromLTWH(0, 0, 200, 70),
                       ),
+                    ),
+                    const SizedBox(height: 20),
+                    // Refined Decorative Underline
+                    Container(
+                      height: 4,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFF4F46E5), Color(0xFFEC4899)],
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // --- 3. SUBTITLE ---
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 700),
+                child: Text(
+                  "Empowering the next generation of developers through hands-on experience "
+                      "with real-world enterprise applications and innovative digital platforms.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: isMobile ? 16 : 20,
+                    color: Colors.grey.shade600,
+                    height: 1.6,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-            height: 3,
-            width: 260,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [Color(0xFFEC4899), Color(0xFF4F46E5)],
               ),
-              borderRadius: BorderRadius.circular(2),
-            ),
+
+              const SizedBox(height: 40),
+
+              // --- 4. THE CAROUSEL (Existing) ---
+              const VisionCarousel(),
+            ],
           ),
-          const SizedBox(height: 14),
-          const Text(
-            "Discover the innovative digital solutions crafted by our talented team. "
-                "Each project is designed with cutting-edge technology and user experience in mind.",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 18, color: Colors.black54, height: 1.4),
-          ),
-          SizedBox(height: 6),
-          VisionCarousel(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
-
 
 class VisionCarousel extends StatefulWidget {
   const VisionCarousel({super.key});
@@ -74,75 +127,53 @@ class VisionCarousel extends StatefulWidget {
 }
 
 class _VisionCarouselState extends State<VisionCarousel> {
-  final PageController _controller = PageController();
+  // Using a viewportFraction of 0.85 to show a "peek" of other cards
+  late final PageController _controller;
   int _currentIndex = 0;
   Timer? _timer;
-  bool _showOverlay = true;
 
-  late final List<Map<String, String>> _items;
+  final List<Map<String, String>> _items = [
+    {
+      "title": "E-Commerce Solutions",
+      "desc": "Custom online stores designed for performance and conversion.",
+      "image": "https://www.ramchintech.com/companyweb/Gallery/1772518089237-820830305.jpeg",
+    },
+    {
+      "title": "Web Application",
+      "desc": "Robust, scalable, and secure web applications.",
+      "image": "https://www.ramchintech.com/companyweb/Gallery/1772518094408-218587385.jpeg",
+    },
+    {
+      "title": "Mobile Solutions",
+      "desc": "Cross-platform iOS and Android apps with seamless UX.",
+      "image": "https://www.ramchintech.com/companyweb/Gallery/1772518098884-746405697.jpeg"
+    },
+    {
+      "title": "Enterprise Software",
+      "desc": "Comprehensive solutions for large-scale business operations.",
+      "image": "https://www.ramchintech.com/companyweb/Gallery/1772517001500-207167263.jpeg",
+    },
+  ];
 
   @override
   void initState() {
     super.initState();
-
-    _items =
-    [
-      {
-        "title": "E-Commerce Solutions",
-        "desc":
-        "Custom online stores designed for performance, security, and conversion.",
-        "image": "https://www.ramchintech.com/companyweb/Gallery/1772518089237-820830305.jpeg",
-      },
-      {
-        "title": "Web Application",
-        "desc": "Robust, scalable, and secure web applications.",
-        "image": "https://www.ramchintech.com/companyweb/Gallery/1772518094408-218587385.jpeg",
-      },
-      {
-        "title": "Mobile Solutions",
-        "desc": "Cross-platform iOS and Android apps with seamless UX.",
-        "image":"https://www.ramchintech.com/companyweb/Gallery/1772518076092-166858587.jpeg"
-      },
-      {
-        "title": "Enterprise Software",
-        "desc":
-        "Comprehensive solutions for large-scale business operations.",
-        "image":"https://www.ramchintech.com/companyweb/Gallery/1772517001500-207167263.jpeg",
-      },
-    ];
-
-    // Precache first two images for smoother start
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      precacheImage(NetworkImage(_items[0]["image"]!), context);
-      if (_items.length > 1) {
-        precacheImage(NetworkImage(_items[1]["image"]!), context);
-      }
-    });
-
+    _controller = PageController(viewportFraction: 0.85);
     _startAutoPlay();
   }
 
   void _startAutoPlay() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 7), (_) {
-      final nextIndex = (_currentIndex + 1) % _items.length;
+    _timer = Timer.periodic(const Duration(seconds: 5), (_) {
       if (_controller.hasClients) {
+        int nextIndex = (_currentIndex + 1) % _items.length;
         _controller.animateToPage(
           nextIndex,
-          duration: const Duration(milliseconds: 600),
-          curve: Curves.easeInOut,
+          duration: const Duration(milliseconds: 800),
+          curve: Curves.easeInOutCubic,
         );
       }
     });
-  }
-
-  void _cacheAdjacentImages() {
-    if (_currentIndex < _items.length - 1) {
-      precacheImage(NetworkImage(_items[_currentIndex + 1]["image"]!), context);
-    }
-    if (_currentIndex > 0) {
-      precacheImage(NetworkImage(_items[_currentIndex - 1]["image"]!), context);
-    }
   }
 
   @override
@@ -152,70 +183,115 @@ class _VisionCarouselState extends State<VisionCarousel> {
     super.dispose();
   }
 
-  Widget buildBackground(String imagePath) {
-    return RepaintBoundary(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
-        child: Image.network(
-          imagePath,
-          fit: BoxFit.cover,
-          gaplessPlayback: true, // avoids flicker when images change
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.sizeOf(context).width < 600;
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: SizedBox(
-        height: isMobile ? 400 : 500,
-        child: PageView.builder(
-          controller: _controller,
-          itemCount: _items.length,
-          physics: const BouncingScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() => _currentIndex = index);
-            _cacheAdjacentImages();
-          },
-          itemBuilder: (context, index) {
-            final item = _items[index];
-            return GestureDetector(
-              onTap: () => setState(() => _showOverlay = !_showOverlay),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  // Background image
-                  buildBackground(item["image"]!),
+    return Column(
+      children: [
+        SizedBox(
+          height: isMobile ? 350 : 500,
+          child: PageView.builder(
+            controller: _controller,
+            itemCount: _items.length,
+            onPageChanged: (index) => setState(() => _currentIndex = index),
+            itemBuilder: (context, index) {
+              // Calculate scale based on distance from current index
+              double scale = _currentIndex == index ? 1.0 : 0.9;
 
-                  // Dark overlay
-                  AnimatedOpacity(
-                    opacity: _showOverlay ? 1 : 0,
-                    duration: const Duration(milliseconds: 400),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.55),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
+              return TweenAnimationBuilder(
+                duration: const Duration(milliseconds: 350),
+                tween: Tween(begin: scale, end: scale),
+                builder: (context, double value, child) {
+                  return Transform.scale(
+                    scale: value,
+                    child: child,
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(24),
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        // Background Image
+                        Image.network(
+                          _items[index]["image"]!,
+                          fit: BoxFit.cover,
+                        ),
+                        // Soft Gradient Bottom Overlay
+                        Positioned.fill(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black.withValues(alpha:0.8),
+                                ],
+                                stops: const [0.6, 1.0],
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Content
+                        Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                _items[index]["title"]!,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: isMobile ? 22 : 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                _items[index]["desc"]!,
+                                style: TextStyle(
+                                  color: Colors.white.withValues(alpha:0.9),
+                                  fontSize: isMobile ? 14 : 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-
-                  // Text overlay (separated widget for fewer rebuilds)
-                  OverlayContent(
-                    showOverlay: _showOverlay,
-                    title: item["title"]!,
-                    desc: item["desc"]!,
-                    isMobile: isMobile,
-                  ),
-                ],
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 20),
+        // Custom Modern Indicators
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(_items.length, (index) {
+            bool isSelected = _currentIndex == index;
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              height: 8,
+              width: isSelected ? 24 : 8,
+              decoration: BoxDecoration(
+                color: isSelected ? const Color(0xFF4F46E5) : Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(4),
               ),
             );
-          },
+          }),
         ),
-      ),
+      ],
     );
   }
 }

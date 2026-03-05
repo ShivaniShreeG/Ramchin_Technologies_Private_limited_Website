@@ -1,193 +1,169 @@
 import 'package:flutter/material.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
-/// TECH STACK GRID (unchanged)
-class TechStackGrid extends StatefulWidget {
-  const TechStackGrid({super.key});
+class TechStack extends StatelessWidget {
+  const TechStack({super.key});
 
-  @override
-  State<TechStackGrid> createState() => _TechStackGridState();
-}
-
-class _TechStackGridState extends State<TechStackGrid>
-    with TickerProviderStateMixin {
-  late final List<AnimationController> _controllers;
-  late final List<Animation<Offset>> _slideAnimations;
-  late final List<Animation<double>> _fadeAnimations;
-  final Set<int> _animatedIndexes = {};
-
-  final List<Map<String, String>> techStack = [
-    {"icon": "assets/react1.png", "name": "React", "desc": "Frontend"},
-    {"icon": "assets/flutter.png", "name": "Flutter", "desc": "Mobile"},
-    {"icon": "assets/node1.png", "name": "Node.js", "desc": "Backend"},
-    {"icon": "assets/mysql21.png", "name": "MySQL", "desc": "Database"},
-    {"icon": "assets/mong.png", "name": "MongoDB", "desc": "Database"},
+  final List<Map<String, dynamic>> techStack = const [
+    {"name": "Flutter", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637232672-883463208.png", "color": Colors.blue, "desc": "Build Android & Web Apps"},
+    {"name": "React", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637262645-426500600.png", "color": Colors.cyan, "desc": "Modern Web Frontend"},
+    {"name": "React Native", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637262645-426500600.png", "color": Colors.blueAccent, "desc": "Cross-Platform Mobile Apps"},
+    {"name": "Angular", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637225631-33144048.png", "color": Colors.red, "desc": "Enterprise Web Apps"},
+    {"name": "Node.js", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637247462-62460647.png", "color": Colors.green, "desc": "Server & API Development"},
+    {"name": "MySQL", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637241765-546254011.png", "color": Colors.orange, "desc": "Relational Database"},
+    {"name": "Python", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637256953-730800332.png", "color": Colors.yellow, "desc": "AI, Data Science & Backend"},
+    {"name": "PHP", "icon": "https://www.ramchintech.com/companyweb/Icon/1772637252655-903121176.png", "color": Colors.indigo, "desc": "Dynamic Web Applications"},
   ];
 
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
 
-    _controllers = List.generate(
-      techStack.length,
-          (i) => AnimationController(
-        vsync: this,
-        duration: const Duration(milliseconds: 600),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
+      child: Column(
+        children: [
+          _buildHeader(context),
+          const SizedBox(height: 60),
+
+          LayoutBuilder(
+            builder: (context, constraints) {
+
+              double width = constraints.maxWidth;
+              int crossAxisCount;
+
+              if (width >= 1100) {
+                crossAxisCount = 4; // Desktop
+              } else if (width >= 700) {
+                crossAxisCount = 2; // Tablet
+              } else {
+                crossAxisCount = 1; // Mobile
+              }
+
+              const double cardWidth = 180;
+              const double spacing = 20;
+
+              double totalWidth =
+                  (cardWidth * crossAxisCount) + (spacing * (crossAxisCount - 1));
+
+              return Center(
+                child: SizedBox(
+                  width: totalWidth,
+                  child: Wrap(
+                    spacing: spacing,
+                    runSpacing: spacing,
+                    alignment: WrapAlignment.center,
+                    children:
+                    techStack.map((tech) => TechTile(tech: tech)).toList(),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
-
-    _slideAnimations = _controllers
-        .map(
-          (c) => Tween<Offset>(
-        begin: const Offset(0, 0.15),
-        end: Offset.zero,
-      ).animate(
-        CurvedAnimation(parent: c, curve: Curves.easeOut),
-      ),
-    )
-        .toList();
-
-    _fadeAnimations = _controllers
-        .map(
-          (c) => CurvedAnimation(parent: c, curve: Curves.easeIn),
-    )
-        .toList();
   }
 
-  void _triggerAnimation(int index) {
-    if (!_animatedIndexes.contains(index)) {
-      _animatedIndexes.add(index);
-      Future.delayed(Duration(milliseconds: 100 * (index % 3)), () {
-        if (mounted) _controllers[index].forward();
-      });
-    }
+  Widget _buildHeader(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 600;
+
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+
+        // 🔹 MAIN HEADING
+        Text(
+          "Technologies You’ll Work With & Master",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: isMobile ? 26 : 40,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xFF1E293B),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        // 🔹 SUBTITLE
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 700),
+          child: Text(
+            "Gain hands-on experience with real-world technologies used by modern development teams. Build, deploy, and scale applications using industry-standard tools across frontend, backend, mobile, and databases.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: isMobile ? 14 : 17,
+              height: 1.6,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 30),
+      ],
+    );
   }
+}
+
+class TechTile extends StatefulWidget {
+  final Map<String, dynamic> tech;
+  const TechTile({super.key, required this.tech});
 
   @override
-  void dispose() {
-    for (var c in _controllers) {
-      c.dispose();
-    }
-    super.dispose();
-  }
+  State<TechTile> createState() => _TechTileState();
+}
+
+class _TechTileState extends State<TechTile> {
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 24),
-        Text.rich(
-          TextSpan(
-            children: [
-              const TextSpan(
-                text: "Our ",
-                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-              ),
-              TextSpan(
-                text: "Technology Stack",
-                style: TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  foreground: Paint()
-                    ..shader = const LinearGradient(
-                      colors: [Colors.blue, Colors.purple],
-                    ).createShader(const Rect.fromLTWH(0, 0, 200, 70)),
-                ),
-              ),
-            ],
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: 180,
+        height: 180,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+            color: _isHovered ? widget.tech["color"].withValues(alpha:0.1) : Colors.grey.shade200,
+            width: 2,
           ),
-          textAlign: TextAlign.center,
+          boxShadow: [
+            BoxShadow(
+              color: _isHovered
+                  ? (widget.tech["color"] as Color).withValues(alpha:0.1)
+                  : Colors.black.withValues(alpha:0.03),
+              blurRadius: _isHovered ? 20 : 10,
+              offset: const Offset(0, 8),
+            ),
+          ],
         ),
-        const SizedBox(height: 8),
-        const Text(
-          "We leverage industry-leading technologies to build robust and scalable solutions",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.black54, fontSize: 14),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 60,
+              width: 60,
+              padding: const EdgeInsets.all(12),
+              child: Image.network(widget.tech["icon"]!), // Fixed mapping from widget.tech
+            ),
+            const SizedBox(height: 16),
+            Text(
+              widget.tech["name"],
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF1E293B)),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              widget.tech["desc"],
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 11, color: Colors.grey.withValues(alpha:0.8)),
+            ),
+          ],
         ),
-        const SizedBox(height: 20),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            int crossAxisCount;
-            if (constraints.maxWidth > 1000) {
-              crossAxisCount = 5;
-            } else if (constraints.maxWidth > 700) {
-              crossAxisCount = 3;
-            } else {
-              crossAxisCount = 2;
-            }
-
-            return GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: crossAxisCount,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-                childAspectRatio: 1,
-              ),
-              itemCount: techStack.length,
-              itemBuilder: (context, index) {
-                final tech = techStack[index];
-
-                return VisibilityDetector(
-                  key: Key("tech_$index"),
-                  onVisibilityChanged: (info) {
-                    if (info.visibleFraction > 0.2) {
-                      _triggerAnimation(index);
-                    }
-                  },
-                  child: FadeTransition(
-                    opacity: _fadeAnimations[index],
-                    child: SlideTransition(
-                      position: _slideAnimations[index],
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha:0.05),
-                              blurRadius: 8,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              tech["icon"]!,
-                              height: 60,
-                              width: 60,
-                            ),
-                            const SizedBox(height: 15),
-                            Text(
-                              tech["name"]!,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              tech["desc"]!,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      ],
+      ),
     );
   }
 }
