@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:photo_view/photo_view_gallery.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GalleryItem {
   final String imageUrl;
@@ -121,47 +120,21 @@ class _GalleryPageState extends State<GalleryPage> {
     ),
   ];
 
+  Future<void> _openImageUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+
+    if (!await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     photos = List.from(_networkPhotos);
-  }
-
-
-  void _openFullScreen(BuildContext context, int index) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => Scaffold(
-          backgroundColor: Colors.black,
-          body: Stack(
-            children: [
-              PhotoViewGallery.builder(
-                itemCount: photos.length,
-                builder: (context, idx) {
-                  final img = photos[idx];
-                  return PhotoViewGalleryPageOptions(
-                    imageProvider: NetworkImage(img.imageUrl),
-                    minScale: PhotoViewComputedScale.contained,
-                    maxScale: PhotoViewComputedScale.covered * 2,
-                  );
-                },
-                pageController: PageController(initialPage: index),
-                backgroundDecoration: const BoxDecoration(color: Colors.black),
-              ),
-              Positioned(
-                top: 40,
-                right: 20,
-                child: IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white, size: 32),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   @override
@@ -213,8 +186,7 @@ class _GalleryPageState extends State<GalleryPage> {
                 itemBuilder: (context, index) {
                   return _HoverCard(
                     key: ValueKey('${photos[index].imageUrl}-$index'),                    photo: photos[index],
-                    onTap: () => _openFullScreen(context, index),
-                  );
+                    onTap: () => _openImageUrl(photos[index].imageUrl),                  );
                 },
               ),
             ),

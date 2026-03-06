@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
+import 'terms_of_use.dart';
+import 'privacy.dart';
 
 class Footer extends StatelessWidget {
   final VoidCallback? onContactNavigate;
@@ -143,9 +145,9 @@ class Footer extends StatelessWidget {
         const SizedBox(height: 40),
         _sectionHeader("LEGAL"),
         const SizedBox(height: 20),
-        _HoverLink(text: "Privacy Policy", url: "https://privacy_policy.ramchintech.com"),
-        const SizedBox(height: 12),
-        _HoverLink(text: "Terms of Use", url: "https://terms_of_use.ramchintech.com"),
+        _HoverLink(text: "Privacy Policy", url: "privacy"),
+        SizedBox(height: 12),
+        _HoverLink(text: "Terms of Use", url: "terms"),
       ],
     );
   }
@@ -392,7 +394,19 @@ class _HoverLinkState extends State<_HoverLink> {
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
-        onTap: () => Footer._launch(widget.url),
+        onTap: () {
+          if (widget.url == "privacy") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const PrivacyPolicyPage()),
+            );
+          } else if (widget.url == "terms") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const TermsOfUsePage()),
+            );
+          }
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

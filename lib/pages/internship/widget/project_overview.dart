@@ -3,7 +3,6 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'projects/project_page.dart';
 
-// Defined a cohesive Professional Theme
 class AppTheme {
   static const Color darkSlate = Color(0xFF0F172A); // Main Text
   static const Color mediumSlate = Color(0xFF334155); // Body Text
