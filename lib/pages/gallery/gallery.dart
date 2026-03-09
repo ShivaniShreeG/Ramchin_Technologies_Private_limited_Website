@@ -21,6 +21,21 @@ class _GalleryPageState extends State<GalleryPage> {
 
   final List<GalleryItem> _networkPhotos = [
     GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1773051488836-539401502.jpeg",
+        'MoU signing with Govindammal Aditanar College for Women.'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1773051493071-41068040.jpeg",
+        'MoU signing with Govindammal Aditanar College for Women.'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1773051498471-604377430.jpeg",
+        'MoU signing with Govindammal Aditanar College for Women.'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1773051503152-864538764.jpeg",
+        'IMoU signing with Govindammal Aditanar College for Women.'),
+    GalleryItem(
+        "https://www.ramchintech.com/companyweb/Gallery/1773051509287-748949754.jpeg",
+        'MoU signing with Govindammal Aditanar College for Women.'),
+    GalleryItem(
         "https://www.ramchintech.com/companyweb/Gallery/1772518126818-810057111.jpeg",
         'Internship Training'),
     GalleryItem(
@@ -58,20 +73,16 @@ class _GalleryPageState extends State<GalleryPage> {
         'Internship Training'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517052153-715550535.jpeg",
-      'Chief Guest being welcomed at the opening ceremony',
-    ),
+      'Chief Guest being welcomed at the opening ceremony'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517048054-14530304.jpeg",
-      'Reception of Guests at the Opening Ceremony',
-    ),
+      'Reception of Guests at the Opening Ceremony'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517040794-345508224.jpeg",
-      'The Chief Guest Opening the Ramchin Technologies (P) Ltd.',
-    ),
+      'The Chief Guest Opening the Ramchin Technologies (P) Ltd.'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517037121-225041983.jpeg",
-      'Honouring Mr.V.Vairavaraj, Director, Farmer\'s Insurance, USA',
-    ),
+      'Honouring Mr.V.Vairavaraj, Director, Farmer\'s Insurance, USA'),
     GalleryItem(
         "https://www.ramchintech.com/companyweb/Gallery/1772517033624-727020189.jpeg",
         'Honouring the Guest'),
@@ -80,44 +91,34 @@ class _GalleryPageState extends State<GalleryPage> {
         'Honouring the Guest'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517017583-801637198.jpeg",
-      'Briefing the objectives of the Company',
-    ),
+      'Briefing the objectives of the Company'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517011914-879692453.png",
-      'Internship batch from B.Sc (Computer Science)',
-    ),
+      'Internship batch from B.Sc (Computer Science)'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517007307-710182824.png",
-      'Internship batch from B.E (Computer Science & Engineering)',
-    ),
+      'Internship batch from B.E (Computer Science & Engineering)'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772517001500-207167263.jpeg",
-      'Students actively engaged in their Internship Program',
-    ),
+      'Students actively engaged in their Internship Program'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772516997539-465332409.jpeg",
-      'Students actively engaged in their Internship Program',
-    ),
+      'Students actively engaged in their Internship Program'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772516994078-177940857.jpeg",
-      'Students actively engaged in their Internship Program',
-    ),
+      'Students actively engaged in their Internship Program'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772516656214-804792678.jpeg",
-      'The Principal of GAC addressing Students during Campus Interview',
-    ),
+      'The Principal of GAC addressing Students during Campus Interview'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772516661218-309601420.jpeg",
-      'Screening the Students by conducting a written test',
-    ),
+      'Screening the Students by conducting a written test'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772516664723-803445675.jpeg",
-      'The Students are being screened through Personal Interview',
-    ),
+      'The Students are being screened through Personal Interview'),
     GalleryItem(
       "https://www.ramchintech.com/companyweb/Gallery/1772516668026-165700842.jpeg",
-      'The Director of Ramchin Tech addressing candidates during Interview',
-    ),
+      'The Director of Ramchin Tech addressing candidates during Interview'),
   ];
 
   Future<void> _openImageUrl(String url) async {
