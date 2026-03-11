@@ -479,18 +479,18 @@ class _HallManagementPageState extends State<HallManagementPage>
                 ),
                 label: "Google Play",
                 onTap: () => _launch(
-                  "https://play.google.com/store/apps/details?id=com.demo.ramchin_smart_school",
+                  "https://play.google.com/store/apps/details?id=com.ramchin_hall_management",
                 ),
               ),
 
-              StoreButton(
-                icon: const Icon(Icons.android,
-                    size: 55, color: Colors.green),
-                label: "Download APK",
-                onTap: () => _launch(
-                  "https://yourdomain.com/downloads/app-release.apk",
-                ),
-              ),
+              // StoreButton(
+              //   icon: const Icon(Icons.android,
+              //       size: 55, color: Colors.green),
+              //   label: "Download APK",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/app-release.apk",
+              //   ),
+              // ),
               // StoreButton(
               //   icon: const WindowsLogo(),
               //   label: "Microsoft Store",
@@ -506,15 +506,15 @@ class _HallManagementPageState extends State<HallManagementPage>
               //     "https://apps.apple.com/app/idYOUR_APP_ID",
               //   ),
               // ),
-
-              StoreButton(
-                icon: const Icon(Icons.window,
-                    size: 55, color: Colors.blue),
-                label: "Windows",
-                onTap: () => _launch(
-                  "https://yourdomain.com/downloads/windows_app.zip",
-                ),
-              ),
+              //
+              // StoreButton(
+              //   icon: const Icon(Icons.window,
+              //       size: 55, color: Colors.blue),
+              //   label: "Windows",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/windows_app.zip",
+              //   ),
+              // ),
 
 
 

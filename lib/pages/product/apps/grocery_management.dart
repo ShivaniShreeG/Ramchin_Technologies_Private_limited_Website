@@ -200,9 +200,9 @@ class _GroceryManagementPageState extends State<GroceryManagementPage>
                             ),
                           ),
 
-                          const SizedBox(height: 60),
+                          // const SizedBox(height: 60),
 
-                          _downloadCard(),
+                          // _downloadCard(),
 
                           const SizedBox(height: 40),
                          ],

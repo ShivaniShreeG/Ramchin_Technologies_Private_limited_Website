@@ -199,9 +199,9 @@ class _MoneyManagementPageState extends State<MoneyManagementPage>
                             ),
                           ),
 
-                          const SizedBox(height: 60),
+                          // const SizedBox(height: 60),
 
-                          _downloadCard(),
+                          // _downloadCard(),
 
                           const SizedBox(height: 40),
                         ],

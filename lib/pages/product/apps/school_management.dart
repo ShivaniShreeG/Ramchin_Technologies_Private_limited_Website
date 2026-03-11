@@ -490,14 +490,14 @@ class _SchoolPageState extends State<SchoolPage>
                 ),
               ),
 
-              StoreButton(
-                icon: const Icon(Icons.android,
-                    size: 55, color: Colors.green),
-                label: "Download APK",
-                onTap: () => _launch(
-                  "https://yourdomain.com/downloads/app-release.apk",
-                ),
-              ),
+              // StoreButton(
+              //   icon: const Icon(Icons.android,
+              //       size: 55, color: Colors.green),
+              //   label: "Download APK",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/app-release.apk",
+              //   ),
+              // ),
               // StoreButton(
               //   icon: const WindowsLogo(),
               //   label: "Microsoft Store",
@@ -514,14 +514,14 @@ class _SchoolPageState extends State<SchoolPage>
               //   ),
               // ),
 
-              StoreButton(
-                icon: const Icon(Icons.window,
-                    size: 55, color: Colors.blue),
-                label: "Windows",
-                onTap: () => _launch(
-                  "https://yourdomain.com/downloads/windows_app.zip",
-                ),
-              ),
+              // StoreButton(
+              //   icon: const Icon(Icons.window,
+              //       size: 55, color: Colors.blue),
+              //   label: "Windows",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/windows_app.zip",
+              //   ),
+              // ),
 
 
 

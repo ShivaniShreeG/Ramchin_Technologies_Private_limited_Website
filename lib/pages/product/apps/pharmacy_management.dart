@@ -472,26 +472,26 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
             alignment: WrapAlignment.center,
             children: [
 
-              StoreButton(
-                icon: Image.network(
-                  "https://www.ramchintech.com/companyweb/Icon/1772169948779-125916949.png",
-                  width: 55,
-                  height: 55,
-                ),
-                label: "Google Play",
-                onTap: () => _launch(
-                  "https://play.google.com/store/apps/details?id=com.demo.ramchin_smart_school",
-                ),
-              ),
-
-              StoreButton(
-                icon: const Icon(Icons.android,
-                    size: 55, color: Colors.green),
-                label: "Download APK",
-                onTap: () => _launch(
-                  "https://yourdomain.com/downloads/app-release.apk",
-                ),
-              ),
+              // StoreButton(
+              //   icon: Image.network(
+              //     "https://www.ramchintech.com/companyweb/Icon/1772169948779-125916949.png",
+              //     width: 55,
+              //     height: 55,
+              //   ),
+              //   label: "Google Play",
+              //   onTap: () => _launch(
+              //     "https://play.google.com/store/apps/details?id=com.demo.ramchin_smart_school",
+              //   ),
+              // ),
+              //
+              // StoreButton(
+              //   icon: const Icon(Icons.android,
+              //       size: 55, color: Colors.green),
+              //   label: "Download APK",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/app-release.apk",
+              //   ),
+              // ),
               // StoreButton(
               //   icon: const WindowsLogo(),
               //   label: "Microsoft Store",
@@ -508,15 +508,15 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
               //   ),
               // ),
 
-              StoreButton(
-                icon: const Icon(Icons.window,
-                    size: 55, color: Colors.blue),
-                label: "Windows",
-                onTap: () => _launch(
-                  "https://yourdomain.com/downloads/windows_app.zip",
-                ),
-              ),
-
+              // StoreButton(
+              //   icon: const Icon(Icons.window,
+              //       size: 55, color: Colors.blue),
+              //   label: "Windows",
+              //   onTap: () => _launch(
+              //     "https://yourdomain.com/downloads/windows_app.zip",
+              //   ),
+              // ),
+              //
 
 
               StoreButton(
