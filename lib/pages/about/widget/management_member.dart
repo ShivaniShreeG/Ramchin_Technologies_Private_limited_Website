@@ -36,7 +36,7 @@ class MemberSection extends StatelessWidget {
       pdfPath: "https://www.ramchintech.com/companyweb/Profile/Management_Member/Resume/1771827208715-231557912.pdf",
     ),
     ManagementMember(
-      image: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1772102788086-625076359.jpeg",
+      image: "https://www.ramchintech.com/companyweb/Profile/Management_Member/1773295186257-569590519.jpeg",
       name: "SENTHIL RAMCHIN V",
       role: "Data Analyst",
       description: "Mr Senthil Ramchin V is the Data Analyst of Ramchin Technologies (P) Ltd. He is M.Sc Post Graduate in Mathematics.",
