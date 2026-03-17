@@ -8,7 +8,7 @@ class TermsOfUsePage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey[50], // Subtle background contrast
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text("Terms of Use", style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
@@ -19,7 +19,6 @@ class TermsOfUsePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Header Section
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
@@ -49,7 +48,6 @@ class TermsOfUsePage extends StatelessWidget {
               ),
             ),
 
-            // Content Section
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -95,7 +93,6 @@ class TermsOfUsePage extends StatelessWidget {
                     "These Terms of Use shall be governed by and interpreted according to the laws of India.",
                     Icons.balance,
                   ),
-                  // Footer Info
                   const SizedBox(height: 20),
                   const Divider(),
                   const SizedBox(height: 20),

@@ -72,7 +72,6 @@ class MemberSection extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // --- Header Section ---
           Text(
             "OUR LEADERSHIP",
             style: TextStyle(
@@ -89,7 +88,7 @@ class MemberSection extends StatelessWidget {
             style: TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF0F172A), // Deep Navy
+              color: Color(0xFF0F172A),
               letterSpacing: -1,
             ),
           ),
@@ -136,7 +135,6 @@ class MemberSection extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // --- Image Header ---
               Stack(
                 alignment: Alignment.center,
                 clipBehavior: Clip.none,
@@ -174,7 +172,6 @@ class MemberSection extends StatelessWidget {
               ),
               const SizedBox(height: 80),
 
-              // --- Text Section ---
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 child: SizedBox(
@@ -205,7 +202,6 @@ class MemberSection extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // Flexible description
                       Expanded(
                         child: Text(
                           member.description,

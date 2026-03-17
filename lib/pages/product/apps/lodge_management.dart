@@ -4,9 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'widget/microsoft_button.dart';
 import 'widget/header.dart';
 import 'widget/footer.dart';
-import 'widget/video_header.dart';
+// import 'widget/video_header.dart';
 import 'widget/button.dart';
-import 'package:video_player/video_player.dart';
+// import 'package:video_player/video_player.dart';
 import 'features/lodge.dart';
 
 class LodgeManagementPage extends StatefulWidget {
@@ -22,21 +22,21 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _demoSectionKey = GlobalKey();
   final String pdfPath = 'assets/ramchin_smart_school_manual.pdf';
-  late VideoPlayerController _videoController;
-  bool _isVideoReady = false;
+  // late VideoPlayerController _videoController;
+  // bool _isVideoReady = false;
   bool _showScrollToTop = false;
 
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset('assets/screenV.mp4')
-      ..initialize().then((_) {
-        setState(() {
-          _isVideoReady = true;
-        });
-        _videoController.play();
-        _videoController.setLooping(true);
-      });
+    // _videoController = VideoPlayerController.asset('assets/screenV.mp4')
+    //   ..initialize().then((_) {
+    //     setState(() {
+    //       _isVideoReady = true;
+    //     });
+    //     _videoController.play();
+    //     _videoController.setLooping(true);
+    //   });
     _scrollController.addListener(_scrollListener);
 
   }
@@ -44,7 +44,7 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
   @override
   void dispose() {
     _controller.dispose();
-    _videoController.dispose();
+    // _videoController.dispose();
     super.dispose();
   }
 
@@ -98,7 +98,6 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
       body: Stack(
         children: [
 
-          // ===== MAIN SCROLL VIEW =====
           SingleChildScrollView(
             controller: _scrollController,
             child: Column(
@@ -278,14 +277,12 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
             ),
           ),
 
-          // ===== BACK BUTTON =====
           Positioned(
             top: 40,
             left: 20,
             child: _backButton(context),
           ),
 
-          // ===== SCROLL TO TOP BUTTON =====
           if (_showScrollToTop)
             Positioned(
               bottom: 40,
@@ -400,7 +397,6 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Softer Icon Style
                   Container(
                     width: 64,
                     height: 64,
@@ -556,7 +552,6 @@ class _LodgeManagementPageState extends State<LodgeManagementPage>
 
           const SizedBox(height: 14),
 
-          // Center underline
           Container(
             width: 70,
             height: 4,

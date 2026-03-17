@@ -6,7 +6,7 @@ import 'course/angular.dart';
 
 class CourseData {
   final String title, subtitle;
-  final String imagePath; // Changed from IconData to String
+  final String imagePath;
   final Color color;
   CourseData(this.title, this.subtitle, this.imagePath, this.color);
 }
@@ -32,7 +32,6 @@ class Courses extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 24),
           child: Column(
             children: [
-              // --- Header Section ---
               Column(
                 children: [
                   Container(
@@ -86,7 +85,6 @@ class Courses extends StatelessWidget {
               ),
               const SizedBox(height: 64),
 
-              // --- Grid Section ---
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 1200),
                 child: GridView.builder(
@@ -97,7 +95,6 @@ class Courses extends StatelessWidget {
                     crossAxisCount: crossAxisCount,
                     crossAxisSpacing: 24,
                     mainAxisSpacing: 24,
-                    // Dynamic ratio for better card height
                     childAspectRatio:0.99,
                   ),
                   itemBuilder: (context, index) => _EnhancedCourseCard(

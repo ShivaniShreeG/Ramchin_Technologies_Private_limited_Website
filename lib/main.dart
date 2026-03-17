@@ -11,7 +11,7 @@ class MyWebApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ramchin Technologies Pvt Ltd',
+      title: 'Ramchin Technologies Private Limited',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const Home(),
       debugShowCheckedModeBanner: false,

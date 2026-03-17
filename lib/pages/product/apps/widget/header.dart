@@ -153,19 +153,16 @@ class BottomCornersCurveClipper extends CustomClipper<Path> {
     const curveHeight = 50.0;
 
     final path = Path();
-    path.moveTo(0, 0); // top-left
-    path.lineTo(0, size.height - curveHeight); // bottom-left before curve
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height - curveHeight);
 
-    // bottom-left curve
     path.quadraticBezierTo(0, size.height, curveHeight, size.height);
 
-    // straight bottom line
     path.lineTo(size.width - curveHeight, size.height);
 
-    // bottom-right curve
     path.quadraticBezierTo(size.width, size.height, size.width, size.height - curveHeight);
 
-    path.lineTo(size.width, 0); // top-right
+    path.lineTo(size.width, 0);
     path.close();
     return path;
   }

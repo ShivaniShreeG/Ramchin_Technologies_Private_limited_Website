@@ -3,11 +3,13 @@ import 'package:http_parser/http_parser.dart';
 import 'package:ramchin_web/utils/utils.dart';
 
 class UploadService {
+
   static Future<String?> uploadFile({
     required List<int> fileBytes,
     required String fileName,
     required String category,
-  }) async {
+  }) async
+  {
     final uri = Uri.parse('${Utils.baseUrl}/upload');
 
     final request = http.MultipartRequest('POST', uri);

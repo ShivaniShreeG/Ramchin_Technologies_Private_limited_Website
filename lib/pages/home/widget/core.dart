@@ -10,14 +10,12 @@ class CoreServicesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // ===== Responsive values =====
     double horizontalPadding = 60;
     double verticalPadding = 90;
     double headingSize = 38;
     double subtitleSize = 17;
     double gridSpacing = 28;
 
-    // Tablet
     if (screenWidth < 900) {
       horizontalPadding = 40;
       verticalPadding = 64;
@@ -26,7 +24,6 @@ class CoreServicesSection extends StatelessWidget {
       gridSpacing = 22;
     }
 
-    // Mobile
     if (screenWidth < 600) {
       horizontalPadding = 20;
       verticalPadding = 48;
@@ -168,13 +165,11 @@ class _ServiceCardState extends State<ServiceCard> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    // ===== Responsive card values =====
     double padding = 18;
     double titleSize = 20;
     double descSize = 15;
     double blur = 6;
 
-    // Tablet
     if (width < 900) {
       padding = 16;
       titleSize = 18;
@@ -182,7 +177,6 @@ class _ServiceCardState extends State<ServiceCard> {
       blur = 5;
     }
 
-    // Mobile
     if (width < 600) {
       padding = 14;
       titleSize = 16;

@@ -11,7 +11,6 @@ class WhyChooseRamchinSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
 
-    // Responsive settings
     int columns = 4;
     double horizontalPadding = 56.0;
     double verticalPadding = 72.0;
@@ -23,7 +22,6 @@ class WhyChooseRamchinSection extends StatelessWidget {
     double titleFontSize = 20.0;
     double descriptionFontSize = 16.0;
 
-// Tablet
     if (width < 900) {
       columns = 2;
       horizontalPadding = 32.0;
@@ -37,7 +35,6 @@ class WhyChooseRamchinSection extends StatelessWidget {
       descriptionFontSize = 13.0;
     }
 
-// Mobile
     if (width < 600) {
       columns = 1;
       horizontalPadding = 20.0;
@@ -71,7 +68,6 @@ class WhyChooseRamchinSection extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // Heading
               Text(
                 "Why Choose Ramchin",
                 textAlign: TextAlign.center,
@@ -96,7 +92,6 @@ class WhyChooseRamchinSection extends StatelessWidget {
                 ),
               ),
               SizedBox(height: spacing),
-              // Cards
               LayoutBuilder(
                 builder: (context, constraints) {
                   final cardWidth = (constraints.maxWidth - (columns - 1) * spacing) / columns;
@@ -200,7 +195,6 @@ class _ValueCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Icon
           Container(
             width: iconSize * 1.8,
             height: iconSize * 1.8,
@@ -211,7 +205,6 @@ class _ValueCard extends StatelessWidget {
             child: Icon(icon, size: iconSize, color: _primary),
           ),
           SizedBox(height: padding * 0.6),
-          // Title
           Text(
             title,
             textAlign: TextAlign.center,
@@ -222,7 +215,6 @@ class _ValueCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: padding * 0.3),
-          // Description
           Text(
             description,
             textAlign: TextAlign.center,

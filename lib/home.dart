@@ -46,7 +46,6 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.onTabSelected,
   });
 
-  // This tells the Scaffold how tall your custom bar is
   @override
   Size get preferredSize => const Size.fromHeight(80);
 
@@ -59,7 +58,6 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
     final width = MediaQuery.of(context).size.width;
 
     return Container(
-      // Same styling as before...
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -178,7 +176,6 @@ class ResponsiveAppBar extends StatelessWidget implements PreferredSizeWidget {
         _navItem("Products", 1),
         _navItem("About", 2),
         const SizedBox(width: 8),
-        // The "More" menu styled exactly like the mobile version
         PopupMenuButton<int>(
           tooltip: "Show More",
           color: Colors.white,

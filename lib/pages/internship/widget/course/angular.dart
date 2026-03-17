@@ -19,7 +19,6 @@ class AngularPage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: [
 
-          // HERO HEADER
           SliverAppBar(
             expandedHeight: 320,
             pinned: true,
@@ -35,7 +34,6 @@ class AngularPage extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
 
-                  // Same Gradient
                   Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -46,7 +44,6 @@ class AngularPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Background Logo
                   Positioned(
                     right: -20,
                     bottom: 20,
@@ -57,7 +54,6 @@ class AngularPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Center Logo Glow
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -82,7 +78,6 @@ class AngularPage extends StatelessWidget {
             ),
           ),
 
-          // FLOATING CONTENT
           SliverToBoxAdapter(
             child: Transform.translate(
               offset: const Offset(0, -40),
@@ -107,7 +102,6 @@ class AngularPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Stats
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -119,7 +113,6 @@ class AngularPage extends StatelessWidget {
 
                       const Divider(height: 48, thickness: 1),
 
-                      // Curriculum
                       _sectionHeader("The Curriculum"),
                       const Text(
                         "Learn to build dynamic web applications using Angular. Master components, services, routing, and deployment.",
@@ -132,7 +125,6 @@ class AngularPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Timeline
                       _buildEnhancedTimeline([
                         _TimelineData("01", "TypeScript Basics", "Variables, Classes, OOP Concepts", true),
                         _TimelineData("02", "Angular Core", "Components, Modules, Data Binding", true),
@@ -142,12 +134,10 @@ class AngularPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Capstone
                       _buildProjectCard(primaryBrand),
 
                       const SizedBox(height: 24),
 
-                      // Certificate
                       _buildCertificateCard(primaryBrand),
 
                       const SizedBox(height: 40),
@@ -161,8 +151,6 @@ class AngularPage extends StatelessWidget {
       ),
     );
   }
-
-  // SAME WIDGETS (unchanged)
 
   Widget _buildBackButton(BuildContext context) {
     return Container(

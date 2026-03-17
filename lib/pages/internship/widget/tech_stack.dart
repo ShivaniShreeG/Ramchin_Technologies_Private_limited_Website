@@ -31,11 +31,11 @@ class TechStack extends StatelessWidget {
               int crossAxisCount;
 
               if (width >= 1100) {
-                crossAxisCount = 4; // Desktop
+                crossAxisCount = 4;
               } else if (width >= 700) {
-                crossAxisCount = 2; // Tablet
+                crossAxisCount = 2;
               } else {
-                crossAxisCount = 1; // Mobile
+                crossAxisCount = 1;
               }
 
               const double cardWidth = 180;
@@ -70,7 +70,6 @@ class TechStack extends StatelessWidget {
       children: [
         const SizedBox(height: 10),
 
-        // 🔹 MAIN HEADING
         Text(
           "Technologies You’ll Work With & Master",
           textAlign: TextAlign.center,
@@ -83,7 +82,6 @@ class TechStack extends StatelessWidget {
 
         const SizedBox(height: 16),
 
-        // 🔹 SUBTITLE
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 700),
           child: Text(
@@ -148,7 +146,7 @@ class _TechTileState extends State<TechTile> {
               height: 60,
               width: 60,
               padding: const EdgeInsets.all(12),
-              child: Image.network(widget.tech["icon"]!), // Fixed mapping from widget.tech
+              child: Image.network(widget.tech["icon"]!),
             ),
             const SizedBox(height: 16),
             Text(

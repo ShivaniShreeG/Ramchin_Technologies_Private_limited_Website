@@ -47,7 +47,6 @@ class _ProjectPageState extends State<ProjectPage> {
 
       body: Stack(
         children: [
-          // 🔹 Main Content
           SingleChildScrollView(
             controller: _scrollController,
             child: Column(
@@ -61,7 +60,6 @@ class _ProjectPageState extends State<ProjectPage> {
             ),
           ),
 
-          // 🔙 Back Button (Top Left)
           Positioned(
             top: 20,
             left: 16,

@@ -15,7 +15,6 @@ class HeroSection extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    // Defaults (Desktop)
     double horizontalPadding = 40;
     double verticalPadding = 80;
     double headingSize = 44;
@@ -26,7 +25,6 @@ class HeroSection extends StatelessWidget {
     double imageHeightFactor = 0.45;
     bool isMobile = false;
 
-    // Tablet
     if (width < 900) {
       horizontalPadding = 28;
       verticalPadding = 56;
@@ -38,7 +36,6 @@ class HeroSection extends StatelessWidget {
       imageHeightFactor = 0.38;
     }
 
-    // Mobile
     if (width < 600) {
       horizontalPadding = 20;
       verticalPadding = 40;

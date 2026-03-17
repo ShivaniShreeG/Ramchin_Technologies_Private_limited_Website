@@ -50,7 +50,7 @@ class MissionVisionSection extends StatelessWidget {
             ),
           ),
         ),
-            const SizedBox(height: 24), // was 32
+            const SizedBox(height: 24),
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
@@ -58,7 +58,7 @@ class MissionVisionSection extends StatelessWidget {
               fontSize: isWide ? 64 : 40,
               color: const Color(0xFF101828),
               letterSpacing: -2.5,
-              height: 0.95, // was 1.0
+              height: 0.95,
             ),
             children: [
               const TextSpan(
@@ -168,8 +168,8 @@ class MissionVisionSection extends StatelessWidget {
                 icon,
                 size: 40,
                 color: isPrimary
-                    ? Colors.white // primary card icon
-                    : Colors.black, // secondary card icon
+                    ? Colors.white
+                    : Colors.black,
               ),
             ],
           ),

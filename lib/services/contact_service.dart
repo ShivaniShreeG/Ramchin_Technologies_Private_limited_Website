@@ -24,47 +24,6 @@ class ContactService {
       return false;
     }
   }
-
-  /// ✅ Delete a contact by ID
-  Future<bool> deleteContact(int id) async {
-    final url = Uri.parse("${Utils.baseUrl}/contact/$id");
-
-    try {
-      final response = await http.delete(
-        url,
-        headers: {"Content-Type": "application/json"},
-      );
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return data['status'] == 'success';
-      }
-      return false;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  /// ✅ Fetch all contacts
-  Future<List<Contact>> getAllContacts() async {
-    final url = Uri.parse("${Utils.baseUrl}/contact/all");
-
-    try {
-      final response = await http.get(
-        url,
-        headers: {"Content-Type": "application/json"},
-      );
-
-
-      if (response.statusCode == 200) {
-        final List<dynamic> data = jsonDecode(response.body);
-        return data.map((json) => Contact.fromJson(json)).toList();
-      }
-      return [];
-    } catch (e) {
-      return [];
-    }
-  }
 }
 
 class Contact {
@@ -72,7 +31,7 @@ class Contact {
   final String name;
   final String email;
   final String message;
-  final DateTime createdAt; // <-- Use DateTime instead of String
+  final DateTime createdAt;
 
   Contact({
     required this.id,
@@ -90,7 +49,7 @@ class Contact {
       message: json['message'],
       createdAt: json['createdAt'] != null
           ? DateTime.parse(json['createdAt'])
-          : DateTime.now(), // fallback if null
+          : DateTime.now(),
     );
   }
   @override

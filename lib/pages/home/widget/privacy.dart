@@ -20,7 +20,6 @@ class PrivacyPolicyPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            /// Header
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
@@ -59,7 +58,6 @@ class PrivacyPolicyPage extends StatelessWidget {
               ),
             ),
 
-            /// Content
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(

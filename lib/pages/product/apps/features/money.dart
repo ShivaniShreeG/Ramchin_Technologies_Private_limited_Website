@@ -112,7 +112,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
       body: Stack(
         children: [
 
-          /// ===== MAIN CONTENT =====
           SingleChildScrollView(
             controller: _scrollController,
             child: SafeArea(
@@ -141,7 +140,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
                         Stack(
                           alignment: Alignment.center,
                           children: [
-                            /// GOLD BORDER (sharp stroke)
                             Text(
                               String.fromCharCode(Icons.auto_awesome.codePoint),
                               style: TextStyle(
@@ -155,7 +153,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
                               ),
                             ),
 
-                            /// WHITE FILL + WHITE SHADOW
                             Text(
                               String.fromCharCode(Icons.auto_awesome.codePoint),
                               style: TextStyle(
@@ -202,7 +199,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                         SizedBox(height: 18),
 
-                        /// SUBTITLE
                         Text(
                           "A simple platform to track income, expenses, budgets, and more",
                           textAlign: TextAlign.center,
@@ -229,7 +225,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                   const SizedBox(height: 20),
 
-                  /// ===== FOOTER =====
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 28),
@@ -249,7 +244,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
                     ),
                     child: Column(
                       children: [
-                        // ===== CENTERED PRIVACY BUTTON =====
                         TextButton.icon(
                           onPressed: () async {
                             final Uri url = Uri.parse("https://moneypolicy.ramchintech.com");
@@ -263,19 +257,19 @@ class _FeaturesPageState extends State<FeaturesPage> {
                           icon: const Icon(
                             Icons.privacy_tip,
                             size: 20,
-                            color: Color(0xFF1E3C72), // keep icon color
+                            color: Color(0xFF1E3C72),
                           ),
                           label: const Text(
                             "Read Your Privacy Policy",
                             style: TextStyle(
-                              color: Color(0xFF1E3C72), // keep text color
+                              color: Color(0xFF1E3C72),
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                            backgroundColor: Colors.white, // changed to full white
+                            backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -313,14 +307,12 @@ class _FeaturesPageState extends State<FeaturesPage> {
             ),
           ),
 
-          /// ===== FLOATING BACK BUTTON (TOP LEFT) =====
           Positioned(
             top: 45,
             left: 20,
             child: _floatingBackButton(context),
           ),
 
-          /// ===== SCROLL TO TOP BUTTON (BOTTOM RIGHT) =====
           if (_showScrollToTop)
             Positioned(
               bottom: 40,
@@ -380,12 +372,10 @@ class RoleContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-          /// ===== HEADER =====
           Stack(
             alignment: Alignment.center,
             children: [
 
-              /// CENTER: ICON + TITLE
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -416,7 +406,6 @@ class RoleContainer extends StatelessWidget {
                 ],
               ),
 
-              /// RIGHT: GUIDE BUTTON
               Align(
                 alignment: Alignment.centerRight,
                 child: InkWell(
@@ -534,12 +523,10 @@ class _PremiumFeatureCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
 
-          /// HEADER ROW
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
-              /// ICON
               Container(
                 height: 44,
                 width: 44,
@@ -557,7 +544,6 @@ class _PremiumFeatureCard extends StatelessWidget {
 
               const SizedBox(width: 16),
 
-              /// TITLE
               Expanded(
                 child: Text(
                   title,
@@ -575,7 +561,6 @@ class _PremiumFeatureCard extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          /// DESCRIPTION
           Text(
             description,
             style: const TextStyle(

@@ -129,146 +129,92 @@ class _FeaturesPageState extends State<FeaturesPage> {
   }
 
   void _showPricingDialog(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    double monthly = 0;
-    double yearly = 0;
-    double gst = 0;
-    double total = 0;
 
     showDialog(
       context: context,
       builder: (context) {
-        return StatefulBuilder(
-          builder: (context, setState) {
-            void calculate() {
-              final int strength = int.tryParse(controller.text) ?? 0;
-
-              monthly = strength * 5;
-              yearly = monthly * 10; // 2 months free
-              gst = yearly * 0.18;
-              total = yearly + gst;
-
-              setState(() {});
-            }
-
-            return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 340),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Header
-                          Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Colors.blue.shade700, Colors.blue.shade400],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "School Pricing Calculator",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 340),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 16),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Colors.blue.shade700, Colors.blue.shade400],
                           ),
-
-                          const SizedBox(height: 16),
-
-                          const Text(
-                            "₹5 per student per month\nYearly: Pay only 10 months (2 Months FREE)",
-                            textAlign: TextAlign.center,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Lodge Pricing",
                             style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.black87,
-                              height: 1.4,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
-                          ),
-
-                          const SizedBox(height: 20),
-
-                          // Input
-                          TextField(
-                            controller: controller,
-                            keyboardType: TextInputType.number,
-                            onChanged: (_) => calculate(),
-                            decoration: InputDecoration(
-                              hintText: "Enter Student Strength",
-                              hintStyle: TextStyle(color: Colors.blueGrey.shade400),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: BorderSide(color: Colors.blueGrey.shade100),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(16),
-                                borderSide: BorderSide(color: Colors.blue.shade400, width: 2),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                            ),
-                          ),
-
-                          if (yearly > 0) ...[
-                            const SizedBox(height: 24),
-                            Divider(color: Colors.grey.shade300),
-                            const SizedBox(height: 12),
-
-                            _dialogRow("Monthly (Inc. GST)", "₹ ${(monthly * 1.18).toStringAsFixed(0)}"),
-                            const SizedBox(height: 10),
-                            _dialogRow("Yearly (Inc. GST)", "₹ ${total.toStringAsFixed(0)}", bold: true),
-
-                            const SizedBox(height: 16),
-                            Text(
-                              "Includes 18% GST",
-                              style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
-                            ),
-                          ],
-
-                          const SizedBox(height: 20),
-                        ],
-                      ),
-                    ),
-
-                    // Close icon
-                    Positioned(
-                      top: 12,
-                      right: 12,
-                      child: InkWell(
-                        onTap: () => Navigator.pop(context),
-                        borderRadius: BorderRadius.circular(20),
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.grey.shade300.withValues(alpha: 0.7),
-                          ),
-                          child: const Icon(
-                            Icons.close,
-                            size: 20,
-                            color: Colors.black87,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+
+                      const SizedBox(height: 24),
+
+                      _dialogRow("Base Price (Yearly)", "₹ 5,000"),
+                      const SizedBox(height: 10),
+                      _dialogRow("GST (18%)", "₹ 900"),
+                      const Divider(height: 30),
+
+                      _dialogRow(
+                        "Total Payable",
+                        "₹ 5,900",
+                        bold: true,
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      Text(
+                        "Price includes 18% GST",
+                        style:
+                        TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+
+                Positioned(
+                  top: 12,
+                  right: 12,
+                  child: InkWell(
+                    onTap: () => Navigator.pop(context),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.grey.shade300.withValues(alpha: 0.7),
+                      ),
+                      child: const Icon(
+                        Icons.close,
+                        size: 20,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
@@ -342,7 +288,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
       body: Stack(
         children: [
 
-          /// ===== MAIN CONTENT =====
           SingleChildScrollView(
             controller: _scrollController,
             child: SafeArea(
@@ -371,7 +316,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
                         Stack(
                           alignment: Alignment.center,
                           children: [
-                            /// GOLD BORDER (sharp stroke)
                             Text(
                               String.fromCharCode(Icons.auto_awesome.codePoint),
                               style: TextStyle(
@@ -385,7 +329,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
                               ),
                             ),
 
-                            /// WHITE FILL + WHITE SHADOW
                             Text(
                               String.fromCharCode(Icons.auto_awesome.codePoint),
                               style: TextStyle(
@@ -432,7 +375,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                         SizedBox(height: 18),
 
-                        /// SUBTITLE
                         Text(
                           "A smart platform for Admins and Managers to manage lodge bookings, billing, and guest services",
                           textAlign: TextAlign.center,
@@ -448,7 +390,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                   const SizedBox(height: 30),
 
-                  /// FILTER BUTTONS
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Wrap(
@@ -481,7 +422,7 @@ class _FeaturesPageState extends State<FeaturesPage> {
                               borderRadius: BorderRadius.circular(40),
                               border: Border.all(
                                 color: isSelected
-                                    ? const Color(0xFFD4AF37) // gold accent
+                                    ? const Color(0xFFD4AF37)
                                     : const Color(0xFF1E3C72).withValues(alpha: 0.4),
                                 width: 1.2,
                               ),
@@ -543,7 +484,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                   const SizedBox(height: 20),
 
-                  /// ===== FOOTER =====
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 28),
@@ -564,12 +504,10 @@ class _FeaturesPageState extends State<FeaturesPage> {
                     child: Column(
                       children: [
 
-                        /// ================== TOP SECTION ==================
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
 
-                            /// ===== LEFT SIDE =====
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -628,7 +566,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
                               ),
                             ),
 
-                            /// Vertical Divider
                             Container(
                               height: 120,
                               width: 1,
@@ -637,14 +574,13 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                             const SizedBox(width: 24),
 
-                            /// ===== RIGHT SIDE =====
                             Expanded(
                               child: Align(
-                                alignment: Alignment.centerRight, // push whole block to right
+                                alignment: Alignment.centerRight,
                                 child: SizedBox(
-                                  width: 200, // fixed width for clean alignment
+                                  width: 200,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start, // align all text same
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
 
                                       const Text(
@@ -658,7 +594,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                                       const SizedBox(height: 18),
 
-                                      /// Brochure
                                       TextButton.icon(
                                         onPressed: () async {
                                           final Uri url =
@@ -687,7 +622,6 @@ class _FeaturesPageState extends State<FeaturesPage> {
 
                                       const SizedBox(height: 12),
 
-                                      /// User Manual
                                       TextButton.icon(
                                         onPressed: () async {
                                           final Uri url =
@@ -756,14 +690,12 @@ class _FeaturesPageState extends State<FeaturesPage> {
             ),
           ),
 
-          /// ===== FLOATING BACK BUTTON (TOP LEFT) =====
           Positioned(
             top: 45,
             left: 20,
             child: _floatingBackButton(context),
           ),
 
-          /// ===== SCROLL TO TOP BUTTON (BOTTOM RIGHT) =====
           if (_showScrollToTop)
             Positioned(
               bottom: 40,
@@ -838,12 +770,10 @@ class RoleContainer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
-          /// ===== HEADER =====
           Stack(
             alignment: Alignment.center,
             children: [
 
-              /// CENTER: ICON + TITLE
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -874,7 +804,6 @@ class RoleContainer extends StatelessWidget {
                 ],
               ),
 
-              /// RIGHT: GUIDE BUTTON
               Align(
                 alignment: Alignment.centerRight,
                 child: InkWell(
@@ -992,12 +921,10 @@ class _PremiumFeatureCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
 
-          /// HEADER ROW
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
-              /// ICON
               Container(
                 height: 44,
                 width: 44,
@@ -1015,7 +942,7 @@ class _PremiumFeatureCard extends StatelessWidget {
 
               const SizedBox(width: 16),
 
-              /// TITLE
+
               Expanded(
                 child: Text(
                   title,
@@ -1033,7 +960,6 @@ class _PremiumFeatureCard extends StatelessWidget {
 
           const SizedBox(height: 16),
 
-          /// DESCRIPTION
           Text(
             description,
             style: const TextStyle(

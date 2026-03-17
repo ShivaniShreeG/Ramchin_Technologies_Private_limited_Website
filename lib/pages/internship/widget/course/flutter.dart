@@ -18,7 +18,6 @@ class FlutterPage extends StatelessWidget {
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          // 1. STUNNING HERO HEADER
           SliverAppBar(
             expandedHeight: 320,
             pinned: true,
@@ -30,7 +29,6 @@ class FlutterPage extends StatelessWidget {
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  // Gradient Overlay
                   Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -40,7 +38,6 @@ class FlutterPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Background Graphic Pattern
                   Positioned(
                     right: -20,
                     bottom: 20,
@@ -50,7 +47,6 @@ class FlutterPage extends StatelessWidget {
                       size: 240,
                     ),
                   ),
-                  // Centered Logo with Glow
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -75,7 +71,6 @@ class FlutterPage extends StatelessWidget {
             ),
           ),
 
-          // 2. THE FLOATING CONTENT AREA
           SliverToBoxAdapter(
             child: Transform.translate(
               offset: const Offset(0, -40),
@@ -108,7 +103,6 @@ class FlutterPage extends StatelessWidget {
                       ),
                       const Divider(height: 48, thickness: 1),
 
-                      // --- ABOUT ---
                       _sectionHeader("The Curriculum"),
                       const Text(
                         "Transition from a beginner to a high-performance mobile developer. We focus on clean architecture, optimized rendering, and real-world scalability.",
@@ -116,7 +110,6 @@ class FlutterPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 40),
 
-                      // --- TIMELINE ---
                       _buildEnhancedTimeline([
                         _TimelineData("01", "Foundations & Dart", "OOP Concepts, Widget Tree, Layouts", true),
                         _TimelineData("02", "State & UI Logic", "Custom Painters & Layouts", true),
@@ -126,12 +119,10 @@ class FlutterPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // --- CAPSTONE PROJECT ---
                       _buildProjectCard(primaryBrand),
 
                       const SizedBox(height: 24),
 
-                      // --- CERTIFICATE ---
                       _buildCertificateCard(primaryBrand),
 
                       const SizedBox(height: 40),
@@ -145,8 +136,6 @@ class FlutterPage extends StatelessWidget {
       ),
     );
   }
-
-  // --- SUB-WIDGETS ---
 
   Widget _buildBackButton(BuildContext context) {
     return Container(

@@ -96,7 +96,6 @@ class _SchoolPageState extends State<SchoolPage>
       body: Stack(
         children: [
 
-          // ===== MAIN SCROLL VIEW =====
           SingleChildScrollView(
             controller: _scrollController,
             child: Column(
@@ -114,7 +113,7 @@ class _SchoolPageState extends State<SchoolPage>
                     titleColor: Colors.blue.shade700,
                     subtitleColor: Colors.blueGrey.shade800,
                     actionButton: SizedBox(
-                      height: 60, // fixed height
+                      height: 60,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -282,14 +281,12 @@ class _SchoolPageState extends State<SchoolPage>
             ),
           ),
 
-          // ===== BACK BUTTON =====
           Positioned(
             top: 40,
             left: 20,
             child: _backButton(context),
           ),
 
-          // ===== SCROLL TO TOP BUTTON =====
           if (_showScrollToTop)
             Positioned(
               bottom: 40,
@@ -404,7 +401,6 @@ class _SchoolPageState extends State<SchoolPage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Softer Icon Style
                   Container(
                     width: 64,
                     height: 64,
@@ -560,7 +556,6 @@ class _SchoolPageState extends State<SchoolPage>
 
           const SizedBox(height: 14),
 
-          // Center underline
           Container(
             width: 70,
             height: 4,

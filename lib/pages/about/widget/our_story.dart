@@ -53,7 +53,6 @@ class OurStorySection extends StatelessWidget {
         children: [
           _buildHeader(),
           const SizedBox(height: 36),
-          // We use a Column to maintain the vertical flow
           ..._events.asMap().entries.map((entry) {
             return _buildStoryNode(entry.value, entry.key, isWide, entry.key == _events.length - 1);
           }),
@@ -97,17 +96,14 @@ class OurStorySection extends StatelessWidget {
   }
 
   Widget _buildStoryNode(_StoryEvent event, int index, bool isWide, bool isLast) {
-    // Determine side: 0 = Right, 1 = Left
     bool isLeft = isWide && index % 2 != 0;
 
     return IntrinsicHeight(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Left side spacer or content
           if (isWide) Expanded(child: isLeft ? _StoryCard(event: event) : const SizedBox()),
 
-          // Timeline Path
           SizedBox(
             width: isWide ? 80 : 50,
             child: Column(
@@ -148,7 +144,6 @@ class OurStorySection extends StatelessWidget {
             ),
           ),
 
-          // Right side content
           Expanded(
             child: isWide
                 ? (isLeft ? const SizedBox() : _StoryCard(event: event))

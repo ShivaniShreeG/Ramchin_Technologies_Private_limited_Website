@@ -4,12 +4,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'projects/project_page.dart';
 
 class AppTheme {
-  static const Color darkSlate = Color(0xFF0F172A); // Main Text
-  static const Color mediumSlate = Color(0xFF334155); // Body Text
-  static const Color mutedSlate = Color(0xFF64748B); // Secondary Text
-  static const Color primaryBlue = Color(0xFF2563EB); // Accent
-  static const Color borderStroke = Color(0xFFE2E8F0); // Subtle borders
-  static const Color surfaceBG = Color(0xFFF8FAFC); // Background tint
+  static const Color darkSlate = Color(0xFF0F172A);
+  static const Color mediumSlate = Color(0xFF334155);
+  static const Color mutedSlate = Color(0xFF64748B);
+  static const Color primaryBlue = Color(0xFF2563EB);
+  static const Color borderStroke = Color(0xFFE2E8F0);
+  static const Color surfaceBG = Color(0xFFF8FAFC);
 }
 
 class ProjectPreview extends StatelessWidget {
@@ -25,7 +25,6 @@ class ProjectPreview extends StatelessWidget {
       decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         children: [
-          // Header Section
           Column(
             children: [
                Text(
@@ -58,7 +57,6 @@ class ProjectPreview extends StatelessWidget {
             ],
           ),
           SizedBox(height: Responsive.isMobile(context) ? 32 : 60),
-          // Grid Section
           const MemberCardGrid(),
 
           SizedBox(height: Responsive.isMobile(context) ? 32 : 60),
@@ -168,11 +166,11 @@ class _MemberCardGridState extends State<MemberCardGrid> with TickerProviderStat
 
         int crossAxisCount;
         if (width >= 1100) {
-          crossAxisCount = 4; // Desktop
+          crossAxisCount = 4;
         } else if (width >= 600) {
-          crossAxisCount = 2; // Tablet
+          crossAxisCount = 2;
         } else {
-          crossAxisCount = 1; // Mobile
+          crossAxisCount = 1;
         }
         return GridView.builder(
           shrinkWrap: true,
@@ -230,7 +228,6 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
 
-      // 🔻 REDUCED CARD PADDING
       padding: EdgeInsets.all(
         isMobile ? 10 : isTablet ? 14 : 18,
       ),
@@ -245,7 +242,6 @@ class _ProfessionalMemberCardState extends State<ProfessionalMemberCard> {
       ),
       child: Column(
         children: [
-          // 🔻 SMALLER AVATAR
           CircleAvatar(
             radius: isMobile ? 26 : isTablet ? 34 : 40,
             backgroundImage: NetworkImage(widget.member.image),

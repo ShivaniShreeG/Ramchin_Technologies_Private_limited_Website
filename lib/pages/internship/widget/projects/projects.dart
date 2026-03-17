@@ -160,7 +160,7 @@ class _MemberCardGridState extends State<MemberCardGrid> with TickerProviderStat
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
-            childAspectRatio: 0.90, // Adjusted for the new card height
+            childAspectRatio: 0.90,
             crossAxisSpacing: 20,
             mainAxisSpacing: 25,
           ),

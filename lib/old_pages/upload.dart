@@ -18,7 +18,7 @@ class _UploadPageState extends State<UploadPage> {
 
   String sanitizeCategory(String category) {
     String safe = category.replaceAll("'", "").replaceAll('"', '');
-    safe = safe.replaceAll(' ', '_'); // replace spaces with underscores
+    safe = safe.replaceAll(' ', '_'); 
     return safe;
   }
 
@@ -26,7 +26,7 @@ class _UploadPageState extends State<UploadPage> {
   Future<void> pickFile() async {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
-      withData: true, // IMPORTANT
+      withData: true, 
     );
 
     if (result != null) {
@@ -48,13 +48,12 @@ class _UploadPageState extends State<UploadPage> {
     setState(() => loading = true);
 
     try {
-      // Sanitize the category before sending
       final safeCategory = sanitizeCategory(categoryController.text);
 
       await UploadService.uploadFile(
         fileBytes: selectedFileBytes!,
         fileName: fileName!,
-        category: safeCategory,  // ✅ sanitized
+        category: safeCategory,  
       );
       if(!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

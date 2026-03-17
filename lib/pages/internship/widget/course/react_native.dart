@@ -19,7 +19,6 @@ class ReactNativePage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: [
 
-          // 1️⃣ HERO HEADER
           SliverAppBar(
             expandedHeight: 320,
             pinned: true,
@@ -35,7 +34,6 @@ class ReactNativePage extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
 
-                  // Same Gradient as Flutter
                   Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
@@ -46,7 +44,6 @@ class ReactNativePage extends StatelessWidget {
                     ),
                   ),
 
-                  // Background Logo
                   Positioned(
                     right: -20,
                     bottom: 20,
@@ -57,7 +54,6 @@ class ReactNativePage extends StatelessWidget {
                     ),
                   ),
 
-                  // Center Logo Glow
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -82,7 +78,6 @@ class ReactNativePage extends StatelessWidget {
             ),
           ),
 
-          // 2️⃣ FLOATING CONTENT
           SliverToBoxAdapter(
             child: Transform.translate(
               offset: const Offset(0, -40),
@@ -107,7 +102,6 @@ class ReactNativePage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Stats
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -119,7 +113,6 @@ class ReactNativePage extends StatelessWidget {
 
                       const Divider(height: 48, thickness: 1),
 
-                      // Curriculum
                       _sectionHeader("The Curriculum"),
                       const Text(
                         "Build cross-platform mobile apps using React Native. Learn native modules, navigation, APIs, and production deployment.",
@@ -132,7 +125,6 @@ class ReactNativePage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Timeline
                       _buildEnhancedTimeline([
                         _TimelineData("01", "JavaScript & ES6", "Modern JS, Async, Modules", true),
                         _TimelineData("02", "Core React Native", "Components, Styling, Flexbox", true),
@@ -142,12 +134,10 @@ class ReactNativePage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Capstone
                       _buildProjectCard(primaryBrand),
 
                       const SizedBox(height: 24),
 
-                      // Certificate
                       _buildCertificateCard(primaryBrand),
 
                       const SizedBox(height: 40),
@@ -162,7 +152,6 @@ class ReactNativePage extends StatelessWidget {
     );
   }
 
-  // --- SAME WIDGETS AS FLUTTER PAGE ---
 
   Widget _buildBackButton(BuildContext context) {
     return Container(

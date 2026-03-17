@@ -4,9 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'widget/microsoft_button.dart';
 import 'widget/header.dart';
 import '../../../pages/product/apps/widget/footer.dart';
-import 'widget/video_header.dart';
+// import 'widget/video_header.dart';
 import 'widget/button.dart';
-import 'package:video_player/video_player.dart';
+// import 'package:video_player/video_player.dart';
 import 'features/pharmacy.dart';
 
 class PharmacyManagementPage extends StatefulWidget {
@@ -22,21 +22,21 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _demoSectionKey = GlobalKey();
   final String pdfPath = 'assets/ramchin_smart_school_manual.pdf';
-  late VideoPlayerController _videoController;
-  bool _isVideoReady = false;
+  // late VideoPlayerController _videoController;
+  // bool _isVideoReady = false;
   bool _showScrollToTop = false;
 
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset('assets/screenV.mp4')
-      ..initialize().then((_) {
-        setState(() {
-          _isVideoReady = true;
-        });
-        _videoController.play();
-        _videoController.setLooping(true);
-      });
+    // _videoController = VideoPlayerController.asset('assets/screenV.mp4')
+    //   ..initialize().then((_) {
+    //     setState(() {
+    //       _isVideoReady = true;
+    //     });
+    //     _videoController.play();
+    //     _videoController.setLooping(true);
+    //   });
     _scrollController.addListener(_scrollListener);
 
   }
@@ -44,7 +44,7 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
   @override
   void dispose() {
     _controller.dispose();
-    _videoController.dispose();
+    // _videoController.dispose();
     super.dispose();
   }
 
@@ -96,7 +96,6 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
       body: Stack(
         children: [
 
-          // ===== MAIN SCROLL VIEW =====
           SingleChildScrollView(
             controller: _scrollController,
             child: Column(
@@ -114,7 +113,7 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
                   titleColor: Color(0xFF671A1A).withValues(alpha: 0.2),
                   subtitleColor: Colors.blueGrey.shade800,
                   actionButton: SizedBox(
-                    height: 60, // fixed height
+                    height: 60,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -276,14 +275,12 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
             ),
           ),
 
-          // ===== BACK BUTTON =====
           Positioned(
             top: 40,
             left: 20,
             child: _backButton(context),
           ),
 
-          // ===== SCROLL TO TOP BUTTON =====
           if (_showScrollToTop)
             Positioned(
               bottom: 40,
@@ -554,7 +551,6 @@ class _PharmacyManagementPageState extends State<PharmacyManagementPage>
 
           const SizedBox(height: 14),
 
-          // Center underline
           Container(
             width: 70,
             height: 4,

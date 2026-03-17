@@ -24,7 +24,7 @@ class _TermsConditionsPageState extends State<TermsConditionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF1F5F9), // Lighter Slate
+      backgroundColor: const Color(0xFFF1F5F9),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -206,7 +206,6 @@ class _TermsConditionsPageState extends State<TermsConditionsPage> {
               icon: const Icon(Icons.close, color: Color(0xFF1E293B)),
             ),
             const Spacer(),
-            // READ PROGRESS BAR
             Container(
               width: 100,
               height: 4,

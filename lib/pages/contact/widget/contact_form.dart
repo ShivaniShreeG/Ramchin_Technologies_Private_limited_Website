@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// A professional-grade contact form with validation,
-/// loading states, and optimized UX.
 class ContactForm extends StatefulWidget {
   final Future<bool> Function(String name, String email, String message) onSubmit;
   final void Function(String message, {bool success}) showMessage;
@@ -21,12 +19,10 @@ class _ContactFormState extends State<ContactForm> {
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  // Controllers
   late final TextEditingController _nameController;
   late final TextEditingController _emailController;
   late final TextEditingController _messageController;
 
-  // Focus Nodes
   late final FocusNode _nameFocus;
   late final FocusNode _emailFocus;
   late final FocusNode _msgFocus;
@@ -189,7 +185,7 @@ class _HeaderSection extends StatelessWidget {
           style: TextStyle(
             color: const Color(0xFF64748B),
             fontSize: 15,
-            height: 1.5, // Improves readability
+            height: 1.5,
           ),
         ),
       ],

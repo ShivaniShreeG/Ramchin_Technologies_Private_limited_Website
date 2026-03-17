@@ -10,7 +10,7 @@ class TeamMember {
   final String linkedin;
   final String github;
   final String upwork;
-  final String resumeUrl; // Added field
+  final String resumeUrl;
 
   TeamMember({
     required this.image,
@@ -20,7 +20,7 @@ class TeamMember {
     required this.linkedin,
     required this.github,
     required this.upwork,
-    required this.resumeUrl, // Added required parameter
+    required this.resumeUrl,
   });
 }
 
@@ -259,7 +259,6 @@ class _InteractiveSocialBtnState extends State<_InteractiveSocialBtn> {
           margin: const EdgeInsets.symmetric(horizontal: 6),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            // When hovered, use full color. When not, use a subtle ghost version.
             color: isHovered ? widget.color : widget.color.withValues(alpha:0.08),
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
@@ -273,7 +272,6 @@ class _InteractiveSocialBtnState extends State<_InteractiveSocialBtn> {
           ),
           child: FaIcon(
             widget.icon,
-            // Flip the icon color to white when the background fills up
             color: isHovered ? Colors.white : widget.color,
             size: 18,
           ),

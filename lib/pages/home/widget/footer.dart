@@ -22,7 +22,6 @@ class Footer extends StatelessWidget {
 
     return Column(
       children: [
-        // 1. Spacing above the footer
         const SizedBox(height: 20),
 
         Container(
@@ -42,7 +41,6 @@ class Footer extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // 2. Center White Line (Desktop Only)
               if (!isMobile) ...[
                 Center(
                   child: Container(
@@ -50,14 +48,13 @@ class Footer extends StatelessWidget {
                     height: 4,
                     margin: const EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
-                      color: Colors.white70, // Subtle white line
+                      color: Colors.white70,
                       borderRadius: BorderRadius.circular(2),
                     ),
                   ),
                 ),
               ],
 
-              // Main Footer Content
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 1400),
                 child: isMobile ? _mobileLayout() : _desktopLayout(),
@@ -88,32 +85,29 @@ class Footer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _brandBlock(),
-        const SizedBox(height: 30), // Reduced from 50
+        const SizedBox(height: 30),
         const Divider(color: Colors.white10),
-        const SizedBox(height: 30), // Reduced from 50
+        const SizedBox(height: 30),
         _linksBlock(),
-        const SizedBox(height: 30), // Reduced from 50
+        const SizedBox(height: 30),
         const Divider(color: Colors.white10),
-        const SizedBox(height: 30), // Reduced from 50
+        const SizedBox(height: 30),
         _contactBlock(),
-        const SizedBox(height: 30), // Reduced from 50
+        const SizedBox(height: 30),
       ],
     );
   }
-  // ────────────────── Semantic Blocks ──────────────────
 
   Widget _brandBlock() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Refined Contact Us Header with Navigation Ability
         _sectionHeader("FOR SUPPORT"),
         const SizedBox(height: 24),
         _contactItem(Icons.chat_bubble_outline_rounded, "+91 86108 19018", "tel:+918610819018"),
         _contactItem(Icons.phone_in_talk_outlined, "+91 89039 72502", "tel:+918903972502"),
         _contactItem(Icons.email_outlined, "ramchintech@gmail.com", "mailto:ramchintech@gmail.com"),
         const SizedBox(height: 24),
-        // NEW HEADER BEFORE BROCHURE
         _sectionHeader("RESOURCES"),
         const SizedBox(height: 24),
         const _BrochureButton(
@@ -166,13 +160,11 @@ class Footer extends StatelessWidget {
         ),
         const SizedBox(height: 16),
 
-        // CIN Badge - Now Copyable
         MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             onTap: () {
               Clipboard.setData(const ClipboardData(text: cinNumber));
-              // Optional: You can add a ScaffoldMessenger here to show "Copied!"
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -198,7 +190,6 @@ class Footer extends StatelessWidget {
 
         const SizedBox(height: 28),
 
-        // 📍 High-End Map Action Tile
         _professionalMapLink(),
       ],
     );
@@ -212,7 +203,7 @@ class Footer extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha:0.03), // Subtle glass effect
+            color: Colors.white.withValues(alpha:0.03),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: Colors.white.withValues(alpha:0.08), width: 1),
           ),
@@ -222,19 +213,16 @@ class Footer extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // 1. Left Accent Bar (Indicator of Action)
                   Container(
                     width: 4,
                     color: _accent.withValues(alpha:0.6),
                   ),
 
-                  // 2. Main Content Area
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
                       child: Row(
                         children: [
-                          // The Icon with a soft glow background
                           Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
@@ -249,7 +237,6 @@ class Footer extends StatelessWidget {
                           ),
                           const SizedBox(width: 16),
 
-                          // Text Stack
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,7 +263,6 @@ class Footer extends StatelessWidget {
                             ),
                           ),
 
-                          // Trailing Arrow with modern styling
                           Container(
                             padding: const EdgeInsets.all(6),
                             decoration: BoxDecoration(
@@ -374,7 +360,6 @@ class Footer extends StatelessWidget {
   }
 }
 
-// ────────────────── Interaction Components ──────────────────
 
 class _HoverLink extends StatefulWidget {
   final String text;
@@ -446,10 +431,8 @@ class _SocialIconState extends State<_SocialIcon> {
 
   Color _getBrandColor() {
     if (widget.icon == FontAwesomeIcons.linkedinIn) return const Color(0xFF0077B5);
-    // GitHub & X: White Background on hover
     if (widget.icon == FontAwesomeIcons.github)     return Colors.white70;
     if (widget.icon == FontAwesomeIcons.xTwitter)   return const Color(0xFFFFFFFF);
-
     if (widget.icon == FontAwesomeIcons.youtube)    return const Color(0xFFFF0000);
     if (widget.icon == FontAwesomeIcons.upwork)     return const Color(0xFF14A800);
     if (widget.icon == FontAwesomeIcons.facebook)   return const Color(0xFF1877F2);
@@ -462,7 +445,6 @@ class _SocialIconState extends State<_SocialIcon> {
   Widget build(BuildContext context) {
     final Color brandColor = _getBrandColor();
 
-    // Check if it's one of the "White Background" brands
     final bool isWhiteHover = (widget.icon == FontAwesomeIcons.github ||
         widget.icon == FontAwesomeIcons.xTwitter);
 
@@ -481,7 +463,6 @@ class _SocialIconState extends State<_SocialIcon> {
             border: Border.all(
               color: _isHovered ? brandColor : Colors.white10,
             ),
-            // White brands get a subtle white glow, others get colored glow
             boxShadow: _isHovered
                 ? [
               BoxShadow(
@@ -495,8 +476,6 @@ class _SocialIconState extends State<_SocialIcon> {
           child: FaIcon(
             widget.icon,
             size: 16,
-            // Logic: If hovered and it's a white-background brand, make icon BLACK.
-            // Otherwise, make it white.
             color: _isHovered
                 ? (isWhiteHover ? Colors.black : Colors.white)
                 : Colors.white70,

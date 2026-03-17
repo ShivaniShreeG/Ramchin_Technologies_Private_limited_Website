@@ -38,7 +38,6 @@ class WhoWeAreSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: isWide ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       children: [
-        // Subtle tag
         Text(
           "ABOUT RAMCHIN",
           style: TextStyle(
@@ -94,7 +93,6 @@ class WhoWeAreSection extends StatelessWidget {
   Widget _buildImageSide(bool isWide) {
     return Stack(
       children: [
-        // Main Image Placeholder
         Container(
           height: isWide ? 420 : 320,
           decoration: BoxDecoration(

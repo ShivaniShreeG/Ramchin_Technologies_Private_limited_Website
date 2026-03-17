@@ -186,8 +186,10 @@ class _GalleryPageState extends State<GalleryPage> {
                 ),
                 itemBuilder: (context, index) {
                   return _HoverCard(
-                    key: ValueKey('${photos[index].imageUrl}-$index'),                    photo: photos[index],
-                    onTap: () => _openImageUrl(photos[index].imageUrl),                  );
+                    key: ValueKey('${photos[index].imageUrl}-$index'),
+                    photo: photos[index],
+                    onTap: () => _openImageUrl(photos[index].imageUrl),
+                  );
                 },
               ),
             ),

@@ -100,7 +100,6 @@ Center(
   }
 }
 
-/* ================= Headings ================= */
 
 class _MainHeading extends StatelessWidget {
   final String title;
@@ -121,7 +120,6 @@ class _MainHeading extends StatelessWidget {
   }
 }
 
-/* ================= Social Links ================= */
 
 class SocialLinks extends StatelessWidget {
   const SocialLinks({super.key});

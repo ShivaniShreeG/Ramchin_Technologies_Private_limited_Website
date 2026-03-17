@@ -90,7 +90,6 @@ class _GoalCardState extends State<_GoalCard> {
     final double progress = widget.goal['progress'];
     final bool isCompleted = progress >= 1.0;
 
-    // Define status-based colors
     final Color activeColor = isCompleted ? const Color(0xFF16A34A) : const Color(0xFF2563EB);
 
     return MouseRegion(
@@ -102,11 +101,10 @@ class _GoalCardState extends State<_GoalCard> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(30),
-          // 👇 Border now matches the theme of the specific goal
           border: Border.all(
             color: isHovered
                 ? activeColor.withValues(alpha: 0.5)
-                : activeColor.withValues(alpha: 0.1), // Subtle border when not hovered
+                : activeColor.withValues(alpha: 0.1),
             width: 2,
           ),
           boxShadow: [
@@ -170,7 +168,6 @@ class _GoalCardState extends State<_GoalCard> {
     );
   }
 
-  // Pass activeColor to the progress section to maintain consistency
   Widget _buildModernProgress(double progress, bool isCompleted, Color activeColor) {
     final int current = widget.goal['current'];
     final int target = widget.goal['target'];

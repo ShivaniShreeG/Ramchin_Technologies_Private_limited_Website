@@ -19,7 +19,6 @@ class ReactPage extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         slivers: [
 
-          // 1️⃣ HERO HEADER
           SliverAppBar(
             expandedHeight: 320,
             pinned: true,
@@ -35,17 +34,16 @@ class ReactPage extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
 
-                  // Gradient Background
                   Container(
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [backgroundNavy, primaryBrand],                      ),
+                        colors: [backgroundNavy, primaryBrand],
+                      ),
                     ),
                   ),
 
-                  // Big Background Logo
                   Positioned(
                     right: -20,
                     bottom: 20,
@@ -56,7 +54,6 @@ class ReactPage extends StatelessWidget {
                     ),
                   ),
 
-                  // Center Logo with Glow
                   Center(
                     child: Container(
                       decoration: BoxDecoration(
@@ -81,7 +78,6 @@ class ReactPage extends StatelessWidget {
             ),
           ),
 
-          // 2️⃣ FLOATING CONTENT
           SliverToBoxAdapter(
             child: Transform.translate(
               offset: const Offset(0, -40),
@@ -106,7 +102,6 @@ class ReactPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // Stats Row
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -118,7 +113,6 @@ class ReactPage extends StatelessWidget {
 
                       const Divider(height: 48, thickness: 1),
 
-                      // ABOUT
                       _sectionHeader("The Curriculum"),
                       const Text(
                         "Master modern web development with React. Build dynamic SPAs, integrate APIs, and deploy production-ready applications.",
@@ -131,7 +125,6 @@ class ReactPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // TIMELINE
                       _buildEnhancedTimeline([
                         _TimelineData("01", "Web Foundations", "HTML, CSS, JavaScript ES6+", true),
                         _TimelineData("02", "React Core", "Components, Props, State", true),
@@ -141,12 +134,10 @@ class ReactPage extends StatelessWidget {
 
                       const SizedBox(height: 40),
 
-                      // PROJECT
                       _buildProjectCard(primaryBrand),
 
                       const SizedBox(height: 24),
 
-                      // CERTIFICATE
                       _buildCertificateCard(primaryBrand),
 
                       const SizedBox(height: 40),
@@ -160,8 +151,6 @@ class ReactPage extends StatelessWidget {
       ),
     );
   }
-
-  // --- WIDGETS ---
 
   Widget _buildBackButton(BuildContext context) {
     return Container(

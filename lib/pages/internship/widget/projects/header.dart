@@ -12,7 +12,6 @@ class InternshipHeader extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        // --- BACKGROUND DECORATION (The "Glow") ---
         Positioned(
           top: -50,
           right: isMobile ? -20 : width * 0.1,
@@ -74,7 +73,6 @@ class InternshipHeader extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    // Refined Decorative Underline
                     Container(
                       height: 4,
                       width: 80,
@@ -91,7 +89,6 @@ class InternshipHeader extends StatelessWidget {
 
               const SizedBox(height: 30),
 
-              // --- 3. SUBTITLE ---
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 700),
                 child: Text(
@@ -109,7 +106,6 @@ class InternshipHeader extends StatelessWidget {
 
               const SizedBox(height: 40),
 
-              // --- 4. THE CAROUSEL (Existing) ---
               const VisionCarousel(),
             ],
           ),
@@ -127,7 +123,6 @@ class VisionCarousel extends StatefulWidget {
 }
 
 class _VisionCarouselState extends State<VisionCarousel> {
-  // Using a viewportFraction of 0.85 to show a "peek" of other cards
   late final PageController _controller;
   int _currentIndex = 0;
   Timer? _timer;
@@ -196,7 +191,6 @@ class _VisionCarouselState extends State<VisionCarousel> {
             itemCount: _items.length,
             onPageChanged: (index) => setState(() => _currentIndex = index),
             itemBuilder: (context, index) {
-              // Calculate scale based on distance from current index
               double scale = _currentIndex == index ? 1.0 : 0.9;
 
               return TweenAnimationBuilder(
@@ -218,12 +212,10 @@ class _VisionCarouselState extends State<VisionCarousel> {
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        // Background Image
                         Image.network(
                           _items[index]["image"]!,
                           fit: BoxFit.cover,
                         ),
-                        // Soft Gradient Bottom Overlay
                         Positioned.fill(
                           child: DecoratedBox(
                             decoration: BoxDecoration(
@@ -239,7 +231,6 @@ class _VisionCarouselState extends State<VisionCarousel> {
                             ),
                           ),
                         ),
-                        // Content
                         Padding(
                           padding: const EdgeInsets.all(24.0),
                           child: Column(
@@ -274,7 +265,6 @@ class _VisionCarouselState extends State<VisionCarousel> {
           ),
         ),
         const SizedBox(height: 20),
-        // Custom Modern Indicators
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(_items.length, (index) {

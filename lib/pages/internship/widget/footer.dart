@@ -23,7 +23,6 @@ class InternshipFooter extends StatelessWidget {
             spacing: 30,
             runSpacing: 10,
             children: [
-              // 🔹 CONTACT (Tab 5)
               TextButton(
                 onPressed: onContactTap,
                 child: const Text(
@@ -32,7 +31,6 @@ class InternshipFooter extends StatelessWidget {
                 ),
               ),
 
-              // 🔹 TERMS & CONDITIONS
               TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -48,7 +46,6 @@ class InternshipFooter extends StatelessWidget {
                 ),
               ),
 
-              // 🔹 PRIVACY POLICY
               TextButton(
                 onPressed: () {
                   Navigator.push(
